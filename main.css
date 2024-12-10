@@ -85,14 +85,16 @@ header {
 
 /* Container for text and image */
 .content-container {
-    margin-top: 60px;
+    margin-top: 0px;
+    margin-bottom: -35px;
     text-align: center; /* Align text to the left */
     display: flex; /* Flexbox for 
     side-by-side alignment */
     justify-content: space-between; /* Ensure spacing between text and image */
     align-items: center; /* Vertically align items */
-    height: 100vh; /* Full viewport height */
+    height: calc(100vh - 1rem); /* Full viewport height */
     padding: 0 20px; /* Optional padding for edges */
+    border-bottom: 1px solid rgb(179, 172, 172); /* Adds a gray line only below each row */
 }
 
 .text-section {
@@ -140,13 +142,290 @@ header {
 }
 
 #about {
+    display: block; /* Ensure standard block layout */
     background: #ffffff;
-    
+    text-align: left;
+    padding-left: 20pt;
+    padding-right: 20pt;
+    padding-top: 20pt;
+    margin: 0; /* Remove default margin */
+    border-bottom: 1px solid rgb(179, 172, 172); /* Adds a gray line only below each row */
 }
 
+.about-container {
+    margin-top: -70px;
+    text-align: center; /* Align text to the left */
+    display: flex; /* Flexbox for 
+    side-by-side alignment */
+    justify-content: space-between; /* Ensure spacing between text and image */
+    align-items: center; /* Vertically align items */
+    height: calc(100vh - 1rem); /* Full viewport height */
+    padding: 20px; /* Optional padding for edges */
+}
+
+.title {
+    font-weight: 600;
+    font-size: 32pt;
+    align-items: left;
+    padding-left: 25pt;
+    /*padding-top: 50pt; /* Reduce top padding */
+    margin-top: 50px; /* Remove default margin */
+}
+
+.title-project {
+    font-weight: 600;
+    font-size: 32pt;
+    align-items: left;
+    padding-left: -250pt;
+    margin-left:-650pt;
+    /*padding-top: 50pt; /* Reduce top padding */
+    /* margin-top: 50px; Remove default margin */
+}
+
+.h2 {
+    font-size: 102pt;
+}
+
+.download-btn {
+    display: block; /* Makes the button a block element so it takes up the full width available */
+    margin: 20px auto; /* Centers the button horizontally with space above and below */
+    padding: 10px 20px;
+    background-color: #fff;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 200px;
+    border-color: #333;
+    border-width: 1px;
+    transition: background-color 0.3s ease;
+}
+
+/* Change button color when hovered */
+.download-btn:hover {
+    background-color: #45a049; /* Slightly darker green */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.paragraph {
+    font-size: 12pt;
+    flex: 3; /* Take up 50% of the width */
+    padding-left: 20px; /* Add spacing around the text */
+    padding-right: 20px;
+    text-align: left; /* Align text to the left */
+    margin-right: 15px; /* Optional: adds space between the text and image */
+    color: #555;
+}
+
+.bullets {
+    flex: 2; /* Take up 50% of the width */
+    line-height: 40px;
+    display: flex;
+    text-align: left; /* Align text to the left */;
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
+}
+
+.bullets table {
+    border-collapse: collapse; /* Removes spacing between table cells */
+    border: none; /* Removes table borders */
+    width: 100%; /* Optional: makes the table take full width */
+}
+
+.bullets td {
+    padding: 5px 10px; /* Adds some space around text for readability */
+    vertical-align: top; /* Ensures proper alignment for multi-line content */
+}
+
+.bullets tr {
+    border-bottom: 1px solid rgb(179, 172, 172); /* Adds a gray line only below each row */
+}
+
+.bullets td:first-child {
+    font-weight: bold; /* Makes the first column bold */
+    text-align: left; /* Aligns the first column text to the left */
+    width: 25%; /* Ensures a consistent width for the label column */
+}
 #projects {
     background: #ffffff;
 }
+.projects-section {
+    text-align: center;
+    background-color: #fff; /*Light background*/
+    padding: 20px;
+    color: black;
+  }
+  
+  .projects-container {
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* Add spacing between project boxes */
+    flex-wrap: wrap; /* Make it responsive */
+  }  
+  .project-box {
+    background-color: #fff; /* Dark background for cards */
+    color: #444; /* White text color */
+    border-radius: 8px; /* Rounded corners */
+    width: 300px; /* Fixed width for each box */
+    padding: 20px;
+    cursor: pointer; /* Make it look clickable */
+    text-align: left;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
+    border: 0.5px solid #bebebe; /* Add a border with a specific color */
+  }
+  
+  .project-box:hover {
+    transform: translateY(-5px); /* Lift the card slightly */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow */
+  }
+  
+  .project-box .icon {
+    font-size: 30px; /* Icon size */
+    margin-bottom: 10px;
+  }
+  
+  .project-box h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .project-box p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: #444; /* Slightly lighter text color */
+  }
+  
+  .project-box .tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Allow tags to wrap if too long */
+  }
+  
+  .project-box .tags span {
+    background-color: #fff; /* Tag background color */
+    color: #444; /* Text color */
+    border: 1px solid #444; /* Add a border with a specific color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Space inside the tag */
+    font-size: 12px; /* Font size */
+}
+
+.project-box .tags span.tool {
+    background-color: #fff; /* Tag background color */
+    color: #444444; /* Text color */
+    border: 1px solid rgb(0, 255, 140); /* Add a border with a specific color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Space inside the tag */
+    font-size: 12px; /* Font size */
+}
+
+#skills {
+    background: #ffffff
+}
+
+/* Skills Section */
+#skills {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  #skills h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+  }
+  
+  /* Flexbox Container */
+  .skills-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  /* Common Styles for Sections */
+  .container {
+    /* flex: 1; */
+    flex: 0 1 auto; /* Prevent stretching */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .container h2 {
+    margin-left: 60px;
+    margin-bottom: 20px;
+  }
+
+  .container h2.frameworks{
+    margin-left: 70px;
+  }
+
+  .container h2.tools{
+    margin-left: 43px;
+  }
+
+  .container h2.cert{
+    margin-left: 20px;
+  }
+  
+  
+  /* Frameworks Styling */
+  .frameworks div {
+    border: 1.5px solid rgb(0, 255, 140);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    width: 200px;
+    margin-left: 70px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
+  }
+  
+  .frameworks div:hover {
+    transform: translateY(-5px); /* Lift the card slightly */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow */
+  }
+  
+  /* Tools Styling */
+  .tools ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .tools ul li {
+    margin: 10px 0;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    margin-left: 55px;
+    width: 250px;
+  }
+
+  /* Certifications Styling */
+  .certifications {
+    border: 2px solid black;
+    background-color: #ccc;
+    border-radius: 10px;
+    width: 400px; /* Reduced width */
+    padding: 1px; /* Adjust padding for content */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Retain shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
+    margin: 20px auto; /* Center the box horizontally */
+  }
+  
+  .certifications:hover {
+    transform: translateY(-5px); /* Hover effect remains */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Slightly enhanced shadow on hover */
+  }
+  
+  .certifications div {
+    margin: 10px 0;
+  }
 
 #contact {
     background: #ffffff
