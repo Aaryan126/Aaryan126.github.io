@@ -12,7 +12,8 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About Me</a></li>
-                <li><a href="#projects">My Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -25,6 +26,7 @@
                   <p class="small-bold">Hello and welcome to my website</p>
                   <h1 class="large-bold">I am Aaryan Kandiah</h1>
                   <p class="medium-text">A university student fascinated by the world of machine learning and computer vision</p>
+                  <a href="path/to/your/file.pdf" download class="download-btn">Download My Resume</a>
                 </div>
             <div class="image-section">
                 <img src="logo.png" alt="Logo" />
@@ -32,18 +34,118 @@
         </section>
 
         <section id="about" class="section">
-            <h2>About Me</h2>
-            <p>Hi, I'm Aaryan. I'm passionate about machine learning!.</p>
+            <div class="title">About Me</div>
+            <div class="about-container">
+                <div class="bullets">
+                    <table>
+                        
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td>Aaryan Kandiah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>School</strong></td>
+                            <td>Nanyang Technological University</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Degree</strong></td>
+                            <td>Bachelors of Engineering</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Major</strong></td>
+                            <td>Electrical and Electronic Engineering</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Specialisation</strong></td>
+                            <td>Data Analysis and Machine Learning</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Minor</strong></td>
+                            <td>Computing and Data Analysis</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class ="paragraph">
+            <p>I am an aspiring engineer and data science enthusiast pursuing a Bachelor of Engineering in Electrical and Electronic Engineering at Nanyang Technological University (NTU), with an expected graduation in December 2025. With a strong academic foundation and a specialization in data analysis and machine learning, I am passionate about leveraging technology to solve meaningful problems. My experience spans programming languages like Python and Java, as well as frameworks such as TensorFlow and PyTorch, which I have applied to research and practical projects focused on creating efficient and ethical solutions in artificial intelligence. </p>
+            <p>Beyond academics, I actively engage in extracurricular activities that foster teamwork, leadership, and innovation. I enjoy playing sports, primarily basketball and cricket as they are a very enjoyable pass time. My curiosity and creativity also extend to pursuits like swimming, reading, and traveling, which continually inspire my growth. I am driven by a vision to merge technical expertise with impactful applications, contributing to solutions that empower communities and advance society.</p>
+            </div>
+            
+        </div>
         </section>
-
+        <!-- <section id="skills" class="section"> -->
+        <div class="title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSkills</div>
+            <div class="skills-container">
+                <!-- Frameworks Section -->
+                <div class="container frameworks">
+                  <h2 class = "frameworks">Frameworks</h2>
+                  <div>TensorFlow</div>
+                  <div>PyTorch</div>
+                  <div>Scikit-Learn</div>
+                  <div>Keras</div>
+                </div>
+                <!-- Machine Learning Tools Section -->
+                <div class="container tools">
+                  <h2 class="tools">Machine Learning Tools</h2>
+                  <ul>
+                    <li>Pandas</li>
+                    <li>NumPy</li>
+                    <li>Matplotlib</li>
+                    <li>SciPy</li>
+                    <li>Seaborn</li>
+                    <li>OpenCV</li>
+                  </ul>
+                </div>
+                <!-- Certifications Section -->
+                <div class="container certifications">
+                  <h2 class="cert">Certifications</h2>
+                  <div>Course 1</div>
+                  <div>Course 2</div>
+                  <div>Course 3</div>
+                  <div>Course 4</div>
+                  <div>Course 5</div>
+                  <div>Course 6</div>
+                  <div>Course 7</div>
+                </div>
+              </div>
+        </section>
         <section id="projects" class="section">
-            <h2>My Projects</h2>
-            <p>Here are some of the projects I've worked on:</p>
-            <ul>
-                <li>Project 1</li>
-                <li>Project 2</li>
-                <li>Project 3</li>
-            </ul>
+            <div class="title-project">Projects</div>
+            <!-- <h2>Projects</h2> -->
+            <div class="projects-section">
+                <!-- <p>Click on any project to learn more</p> -->
+                <div class="projects-container">
+                  <div class="project-box" onclick="location.href='https://github.com/Aaryan126/AutomaticNavigation_Algorithms'">
+                    <div class="icon">🚢</div>
+                    <h3>Ship Navigation System</h3>
+                    <p>This system performs global and local path planning to allow ships to navigate efficiently while avoiding obstacles and reaching it's destination in the shortest time.</p>
+                    <div class="tags">
+                      <span>Python</span>
+                      <span>PyQt5</span>
+                      <span class="tool">Sci-Kit Learn</span>
+                    </div>
+                  </div>
+                  <div class="project-box" onclick="location.href='https://github.com/Aaryan126/AccidentSeverityProject-USA-Analysis'">
+                    <div class="icon">⛔</div>
+                    <h3>Accident Severity Analysis</h3>
+                    <p>This prediction model utilizes both categorical and numerical data to accurately predict the severity of accidents.</p>
+                    <div class="tags">
+                      <span>Python</span>
+                    </div>
+                  </div>
+                  <div class="project-box" onclick="location.href='https://github.com/Aaryan126/DimensionalityReduction-for-BrainTumorClassification'">
+                    <div class="icon">🧠</div>
+                    <h3>Dimensionality Reduction for Enhanced Brain Tumor Detection</h3>
+                    <p>This project explores the use of dimensionality reduction techniques to enhance the classification accuracy of brain tumor detection.</p>
+                    <div class="tags">
+                      <span>Python</span>
+                      <span class="tool">Sci-Kit Learn</span>
+                      <span class="tool">TensorFlow</span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>              
         </section>
 
         <section id="contact" class="section">
