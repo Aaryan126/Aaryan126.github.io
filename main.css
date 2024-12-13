@@ -22,44 +22,58 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid #333;
+    height: 0px;
+    /* border-bottom: 1px solid #333; */
     /*margin-bottom: 0.5rem;*/
 }
 
 
+.navbar {
+    position: fixed;
+    top: 0;
+    padding: 0.05rem 1rem;
+    width: 100%;
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    /* border: 1px solid #2e94fa; */
+}
+
 .nav-links {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     list-style: none;
     margin: 0;
-    padding: 0;
-    
+    padding: 0.5rem 1rem;
+    margin-right: 30px;
 }
 
 .nav-links li {
-    margin: 0 2rem;
+    margin: 0 1rem;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 25px;
 }
 
 .nav-links a {
-    color: #333;
     text-decoration: none;
+    color: #fff;
     font-weight: 500;
-    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, colour 0.5s; /* Slow and smooth */
-    display: inline-block;
-    position: relative;
-    
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    display: flex;
-    transform: translateY(-2px);
-    /*box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
-    /*transform: scale(1.1); /* Optional: slight zoom effect */
-    border-radius: 0px;
-    /*background-color: black;*/
-    color: #2e94fa ;
+    color: #2e94fa;
+    transform: translateY(-10px); /* Lift the card slightly */
 }
 
+/* Navbar hidden class */
+.navbar.hidden {
+    transform: translateY(-100%); /* Moves the navbar out of view */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+
+}
 
 /* Section Styles */
 .section {
@@ -70,16 +84,16 @@ header {
     height: 100vh;
     /*padding: 4rem 2rem;
     text-align: center;*/
-    
+
 }
 
 /*#home {
     background: #ffffff;
-    padding: 20px; 
-    text-align: center; 
-    max-width: 50%; 
-    margin-left: 0; 
-    margin-right: auto; 
+    padding: 20px;
+    text-align: center;
+    max-width: 50%;
+    margin-left: 0;
+    margin-right: auto;
 }*/
 
 
@@ -88,13 +102,13 @@ header {
     margin-top: 0px;
     margin-bottom: -35px;
     text-align: center; /* Align text to the left */
-    display: flex; /* Flexbox for 
+    display: flex; /* Flexbox for
     side-by-side alignment */
     justify-content: space-between; /* Ensure spacing between text and image */
     align-items: center; /* Vertically align items */
     height: calc(100vh - 1rem); /* Full viewport height */
     padding: 0 20px; /* Optional padding for edges */
-    border-bottom: 1px solid rgb(179, 172, 172); /* Adds a gray line only below each row */
+    /* border-bottom: 1px solid rgb(179, 172, 172); Adds a gray line only below each row */
 }
 
 .text-section {
@@ -143,19 +157,19 @@ header {
 
 #about {
     display: block; /* Ensure standard block layout */
-    background: #ffffff;
+    background: #f3f1f1;
     text-align: left;
     padding-left: 20pt;
     padding-right: 20pt;
-    padding-top: 20pt;
+    padding-top: 10pt;
     margin: 0; /* Remove default margin */
-    border-bottom: 1px solid rgb(179, 172, 172); /* Adds a gray line only below each row */
+    /* border-bottom: 1px solid rgb(179, 172, 172); Adds a gray line only below each row */
 }
 
 .about-container {
     margin-top: -70px;
     text-align: center; /* Align text to the left */
-    display: flex; /* Flexbox for 
+    display: flex; /* Flexbox for
     side-by-side alignment */
     justify-content: space-between; /* Ensure spacing between text and image */
     align-items: center; /* Vertically align items */
@@ -172,22 +186,14 @@ header {
     margin-top: 50px; /* Remove default margin */
 }
 
-.title-project {
-    font-weight: 600;
-    font-size: 32pt;
-    align-items: left;
-    padding-left: -250pt;
-    margin-left:-650pt;
-    /*padding-top: 50pt; /* Reduce top padding */
-    /* margin-top: 50px; Remove default margin */
-}
-
 .h2 {
     font-size: 102pt;
 }
 
 .download-btn {
-    display: block; /* Makes the button a block element so it takes up the full width available */
+    display: flex; /* Makes the button a flex container */
+    align-items: center; /* Centers the text and icon vertically */
+    justify-content: center; /* Aligns the text and icon horizontally */
     margin: 20px auto; /* Centers the button horizontally with space above and below */
     padding: 10px 20px;
     background-color: #fff;
@@ -196,18 +202,26 @@ header {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
+    border: 1px solid #333;
     border-radius: 5px;
-    width: 200px;
-    border-color: #333;
-    border-width: 1px;
     transition: background-color 0.3s ease;
+    color: inherit;
+    width: 220px;
 }
 
-/* Change button color when hovered */
 .download-btn:hover {
-    background-color: #45a049; /* Slightly darker green */
-    cursor: pointer; /* Change cursor to pointer */
+    border: 1px solid #333;
+    background-color: rgb(0, 255, 140); /* Slightly darker green */
+    cursor: pointer;
+    /* color: white; */
 }
+
+.download-icon {
+    width: 25px; /* Adjust the size of the icon */
+    height: 25px; /* Adjust the size of the icon */
+    margin-left: 10px; /* Space between the text and the icon */
+}
+
 
 .paragraph {
     font-size: 12pt;
@@ -251,20 +265,35 @@ header {
 #projects {
     background: #ffffff;
 }
+
+
+.title-project {
+  font-weight: 600;
+  font-size: 32pt;
+  align-items: left;
+  padding-left: -250pt;
+  margin-left:-750pt;
+  padding-top: 750px;
+  /*padding-top: 50pt; /* Reduce top padding */
+  /* margin-top: 50px; Remove default margin */
+}
+
 .projects-section {
     text-align: center;
     background-color: #fff; /*Light background*/
     padding: 20px;
     color: black;
+    padding-bottom: 400px;
+
   }
-  
+
   .projects-container {
     color: black;
     display: flex;
     justify-content: space-around;
     gap: 20px; /* Add spacing between project boxes */
     flex-wrap: wrap; /* Make it responsive */
-  }  
+  }
   .project-box {
     background-color: #fff; /* Dark background for cards */
     color: #444; /* White text color */
@@ -277,35 +306,35 @@ header {
     transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
     border: 0.5px solid #bebebe; /* Add a border with a specific color */
   }
-  
+
   .project-box:hover {
     transform: translateY(-5px); /* Lift the card slightly */
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow */
   }
-  
+
   .project-box .icon {
     font-size: 30px; /* Icon size */
     margin-bottom: 10px;
   }
-  
+
   .project-box h3 {
     font-size: 18px;
     margin-bottom: 10px;
   }
-  
+
   .project-box p {
     font-size: 14px;
     line-height: 1.5;
     margin-bottom: 10px;
     color: #444; /* Slightly lighter text color */
   }
-  
+
   .project-box .tags {
     display: flex;
     gap: 10px;
     flex-wrap: wrap; /* Allow tags to wrap if too long */
   }
-  
+
   .project-box .tags span {
     background-color: #fff; /* Tag background color */
     color: #444; /* Text color */
@@ -315,7 +344,7 @@ header {
     font-size: 12px; /* Font size */
 }
 
-.project-box .tags span.tool {
+.project-box .tags span.framework {
     background-color: #fff; /* Tag background color */
     color: #444444; /* Text color */
     border: 1px solid rgb(0, 255, 140); /* Add a border with a specific color */
@@ -324,22 +353,38 @@ header {
     font-size: 12px; /* Font size */
 }
 
-#skills {
-    background: #ffffff
+.project-box .tags span.tool {
+    background-color: #fff; /* Tag background color */
+    color: #444444; /* Text color */
+    border: 1px solid rgb(170, 0, 255); /* Add a border with a specific color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Space inside the tag */
+    font-size: 12px; /* Font size */
 }
+
+
 
 /* Skills Section */
 #skills {
     padding: 20px;
+    /* margin-top: 50px; */
     background-color: #f9f9f9;
   }
-  
+
   #skills h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2em;
   }
-  
+
+  .skills-title {
+    font-weight: 600;
+    font-size: 32pt;
+    align-items: left;
+    padding-left: 25pt;
+    margin-left: -1080px;
+}
+
   /* Flexbox Container */
   .skills-container {
     display: flex;
@@ -347,7 +392,7 @@ header {
     margin: 0 auto;
     max-width: 1200px;
   }
-  
+
   /* Common Styles for Sections */
   .container {
     /* flex: 1; */
@@ -356,25 +401,24 @@ header {
     box-sizing: border-box;
     text-align: center;
   }
-  
+
   .container h2 {
     margin-left: 60px;
     margin-bottom: 20px;
   }
 
   .container h2.frameworks{
-    margin-left: 70px;
+    margin-left: -100px;
   }
 
   .container h2.tools{
-    margin-left: 43px;
+    margin-left: 0px;
   }
 
   .container h2.cert{
-    margin-left: 20px;
+    margin-left: 0px;
   }
-  
-  
+
   /* Frameworks Styling */
   .frameworks div {
     border: 1.5px solid rgb(0, 255, 140);
@@ -382,95 +426,146 @@ header {
     margin: 10px 0;
     border-radius: 5px;
     width: 200px;
-    margin-left: 70px;
+    margin-left: -100px;
+    text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
     transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
   }
-  
+
   .frameworks div:hover {
     transform: translateY(-5px); /* Lift the card slightly */
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow */
   }
-  
-  /* Tools Styling */
-  .tools ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .tools ul li {
+
+  .tools div {
+    border: 1.5px solid rgb(170, 0, 255);
+    padding: 0px;
     margin: 10px 0;
-    border-bottom: 1px solid black;
-    padding-bottom: 5px;
-    margin-left: 55px;
-    width: 250px;
+    border-radius: 5px;
+    width: 200px;
+    margin-left: 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .tools div:hover {
+    transform: translateY(-5px); /* Lift the card slightly */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow */
   }
 
   /* Certifications Styling */
   .certifications {
     border: 2px solid black;
-    background-color: #ccc;
-    border-radius: 10px;
-    width: 400px; /* Reduced width */
-    padding: 1px; /* Adjust padding for content */
+    background-color: #fff;
+    border-radius: 5px;
+    width: 550px;
+    padding-left: 10px;
+    padding-right: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Retain shadow */
     transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
-    margin: 20px auto; /* Center the box horizontally */
+    margin: 20px auto; /*Center the box horizontally*/
+    margin-left: 40px;
+    margin-right: -80px;
+    margin-top: -5px;
+    overflow: auto; /* Make content scrollable */
+    max-height: 350px;
+    text-align: left;
+    padding-bottom: 5px; /* Add some space between the text and the line */
   }
-  
+
+  /* Remove the line after the last div */
+.certifications div:last-child {
+    border-bottom: none;
+}
+
   .certifications:hover {
     transform: translateY(-5px); /* Hover effect remains */
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Slightly enhanced shadow on hover */
   }
-  
+
   .certifications div {
     margin: 10px 0;
+    text-align: left;
   }
 
 #contact {
-    background: #ffffff
+    background: #ffffff;
+
 }
 
-/* Form Styles */
-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    text-align: left;
-}
-
-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-form button {
-    display: inline-block;
-    background: #333;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-form button:hover {
-    background: #555;
-}
-
-/* Footer Styles */
-footer {
+.contact-container {
+    background: #e4e3e38e;
+    margin-top: 400px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 1rem 0;
-    background: #333;
-    color: #fff;
+    max-width:1200px;
+    max-height: 350px;
+    height: 100%;
+    width: 100%;
+    /* border: 2px solid #000; */
+    
 }
+
+.contact-container h1 {
+    margin-bottom: 10px;
+    color: #000;
+    font-weight: 600;
+    font-size: 32pt;
+    word-spacing: 10px;
+}
+
+.contact-container p {
+    margin: 10px 0;
+    font-size: 1em;
+    line-height: 3;
+    color: #000;
+}
+
+.contact-container a {
+    text-decoration: none;
+    color: #464a4e;
+    transition: color 0.3s ease;
+    line-height: 2;
+    color: #000;
+
+}
+
+.contact-container a:hover {
+    color: #2e94fa;
+}
+
+.social-links {
+  display: flex; /* Align items horizontally */
+  justify-content: center; /* Center align all icons */
+  gap: 40px; /* Add spacing between the icons */
+  margin-top: 20px; /* Maintain existing margin */
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    color: #333;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.social-link i {
+    margin-right: 8px;
+    font-size: 1.5em;
+}
+
+.social-link:hover {
+    transform: scale(1.05);
+    color: #2e94fa;
+}
+
+/* .contact-container .social-icons a:hover:nth-child(2) {
+    color: #333;
+} */
