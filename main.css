@@ -214,7 +214,7 @@ body {
     color: #555;
 }
 .paragraph {
-  font-size: 1.2vw; /* Font size relative to viewport width */
+  font-size: 1.3vw; /* Font size relative to viewport width */
   flex: 3;
   padding-left: 20px;
   padding-right: 20px;
