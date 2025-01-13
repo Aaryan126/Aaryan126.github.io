@@ -2,9 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 
-
-
-/* General Styles */
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +10,8 @@ body {
     /*font-family: 'Montserrat', sans-serif;*/
     line-height: 1.6;
     color: #333;
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden;
 }
 
 .navbar {
@@ -205,7 +204,7 @@ body {
 
 /* ABOUT SECTION */
 
-.paragraph {
+.paragraphx {
     font-size: 12pt;
     flex: 3; /* Take up 50% of the width */
     padding-left: 20px; /* Add spacing around the text */
@@ -213,6 +212,15 @@ body {
     text-align: left; /* Align text to the left */
     margin-right: 15px; /* Optional: adds space between the text and image */
     color: #555;
+}
+.paragraph {
+  font-size: 1.2vw; /* Font size relative to viewport width */
+  flex: 3;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+  margin-right: 15px;
+  color: #555;
 }
 
 .bullets {
@@ -222,6 +230,7 @@ body {
     text-align: left; /* Align text to the left */;
     justify-content: center; /* Center image horizontally */
     align-items: center; /* Center image vertically */
+    font-size: 1.3vw;;
 }
 
 .bullets table {
@@ -248,7 +257,6 @@ body {
 /* SKILLS SECTION */
 #skills {
     padding: 20px;
-    /* margin-top: 50px; */
     background-color: #f9f9f9;
   }
 
@@ -257,16 +265,16 @@ body {
     margin-bottom: 30px;
     font-size: 2em;
   }
+  
 
   .skills-title {
     font-weight: 600;
     font-size: 32pt;
     align-items: left;
     padding-left: 25pt;
-    margin-left: -1080px;
+    margin-left: -86vw;
 }
 
-  /* Flexbox Container */
   .skills-container {
     display: flex;
     justify-content: space-between;
@@ -274,7 +282,6 @@ body {
     max-width: 1200px;
   }
 
-  /* Common Styles for Sections */
   .container {
     /* flex: 1; */
     flex: 0 1 auto; /* Prevent stretching */
@@ -293,7 +300,7 @@ body {
   }
 
   .container h2.tools{
-    margin-left: 0px;
+    margin-left: 10px;
   }
 
   .container h2.cert{
@@ -302,24 +309,20 @@ body {
 
   /* Frameworks Styling */
   .frameworks div {
-    border: 1.5px solid rgb(0, 255, 140);
+    border: 1.5px solid rgb(0, 0, 0);
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
     width: 200px;
-    margin-left: -100px;
+    /* margin-left: -100px; */
+    margin-left: -7vw;
     text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
     transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover */
   }
 
-  .frameworks div:hover {
-    transform: translateY(-5px); /* Lift the card slightly */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow */
-  }
-
   .tools div {
-    border: 1.5px solid rgb(170, 0, 255);
+    border: 1.5px solid rgb(0, 0, 0);
     padding: 0px;
     margin: 10px 0;
     border-radius: 5px;
@@ -327,11 +330,6 @@ body {
     margin-left: 50px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .tools div:hover {
-    transform: translateY(-5px); /* Lift the card slightly */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow */
   }
 
   /* Certifications Styling */
@@ -359,11 +357,6 @@ body {
     border-bottom: none;
 }
 
-  .certifications:hover {
-    transform: translateY(-5px); /* Hover effect remains */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Slightly enhanced shadow on hover */
-  }
-
   .certifications div {
     margin: 10px 0;
     text-align: left;
@@ -380,7 +373,7 @@ body {
   font-size: 32pt;
   align-items: left;
   padding-left: -250pt;
-  margin-left:-750pt;
+  margin-left:-79vw;
   padding-top: 450px;
   /*padding-top: 50pt; /* Reduce top padding */
   /* margin-top: 50px; Remove default margin */
@@ -391,6 +384,7 @@ body {
     background-color: #fff; /*Light background*/
     padding: 20px;
     color: black;
+    padding-bottom: 100px;
   }
 
   .projects-container {
@@ -474,14 +468,14 @@ body {
 /* CONTACT SECTION */
 
 #contact {
-  background: #ffffff;
+  background: #000;
   scroll-margin-top: -150px;
 }
 
 
 
 .contact-container {
-    background: #ffffff;
+    background: #000;
     margin-top: 500px;
     align-items: center;
     justify-content: center;
@@ -491,15 +485,13 @@ body {
     max-height: 400px;
     height: 120%;
     width: 100%;
-    box-sizing: border-box;
-    /* border: 2px solid #000; */
-    
+    box-sizing: border-box;    
     
 }
 
 .contact-container h1 {
     margin-bottom: 10px;
-    color: #000;
+    color: #fff;
     font-weight: 600;
     font-size: 32pt;
     word-spacing: 10px;
@@ -509,7 +501,7 @@ body {
     margin: 10px 0;
     font-size: 1em;
     line-height: 3;
-    color: #000;
+    color: #fff;
 }
 
 .contact-container a {
@@ -517,7 +509,7 @@ body {
     color: #464a4e;
     transition: color 0.3s ease;
     line-height: 2;
-    color: #000;
+    color: #fff;
 
 }
 
@@ -537,7 +529,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: 10px 0;
-    color: #333;
+    color: #fff;
     font-size: 1.2em;
     text-decoration: none;
     transition: transform 0.3s ease;
