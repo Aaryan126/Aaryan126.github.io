@@ -203,80 +203,61 @@ body {
 }
 
 /* ABOUT SECTION */
-
-#about {
-  padding: 20px 20px;
-  background-color: #f9f9f9;
-  margin-bottom: 100px; 
-  scroll-margin-top: 0px;
-  padding-bottom: 120px;
-}
-
-.about-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; /* Align content to the left */
-  max-width: 1100px;
-  margin: 0 auto;
-  gap: 20px;
-}
-
 .bullets {
   flex: 1;
   min-width: 280px;
-  font-size: 1.1rem;
+  font-size: 12pt ;
   display: flex;
-  justify-content: flex-start; /* Align text to the left */
-  align-items: flex-start;
-  margin-left: -50px;
+  flex-direction: column;
+  gap: 10px; /* Spacing between individual containers */
 }
 
-.bullets table {
-  width: 100%;
-  border-collapse: collapse;
+.bullet-item {
+  background-color: black; /* Black background */
+  color: white; /* White text */
+  padding: 10px 12px; /* Padding inside each container */
+  border-radius: 5px; /* Rounded corners */
 }
 
-.bullets td {
-  padding: 12px 10px;
-  vertical-align: top;
-}
-
-.bullets tr {
-  border-bottom: 1px solid #ccc;
-}
-
-.bullets td:first-child {
+.bullet-item strong {
+  color: #fff; 
   font-weight: bold;
-  text-align: left;
-  width: 30%;
 }
+
 
 .paragraph {
   flex: 2;
   min-width: 300px;
   text-align: justify;
-  font-size: 1.1rem;
+  font-size: 12pt;
+  margin-left: 50px;
   color: #555;
   line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  padding-bottom: 20px; /* Adds spacing below to prevent overlap */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .about-container {
       flex-direction: column;
-      align-items: flex-start; /* Align everything to the left */
+      align-items: flex-start;
       text-align: left;
   }
 
-  .bullets {
-      justify-content: flex-start; /* Ensures bullets stay left-aligned */
+  .bullets, .paragraph {
       width: 100%;
   }
 
   .paragraph {
-      text-align: left;
+      padding-top: 10px;
+      padding-bottom: 40px; /* Extra space at the bottom to avoid overlap */
   }
 }
+
+
 
 
 /*SKILLS SECTION*/
