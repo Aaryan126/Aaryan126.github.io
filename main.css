@@ -35,9 +35,9 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
 }
 
 /* Navigation */
@@ -58,10 +58,10 @@ body {
 }
 
 .nav-container {
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 2rem;
-  display: flex;
+    padding: 0 3rem;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     height: 60px;
@@ -152,9 +152,9 @@ body {
 }
 
 .hero-container {
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
     position: relative;
     z-index: 1;
 }
@@ -254,14 +254,16 @@ body {
 
 /* Section Headers */
 .section-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 2.5rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--primary-color);
 }
 
 .section-header h2 {
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     color: var(--text-primary);
 }
 
@@ -320,10 +322,13 @@ body {
 .about-stats {
     display: flex;
     gap: 2rem;
+    justify-content: flex-start;
 }
 
 .stat-item {
-    text-align: center;
+    text-align: left;
+    padding-left: 1rem;
+    border-left: 3px solid var(--primary-color);
 }
 
 .stat-number {
@@ -655,10 +660,11 @@ body {
     background: var(--bg-primary);
   }
 
-  .skills-grid {
+.skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    justify-items: start;
 }
 
 .skill-category {
@@ -672,7 +678,7 @@ body {
     transform: translateY(20px);
     position: relative;
     overflow: hidden;
-    max-width: 350px;
+    width: 100%;
 }
 
 .skill-category::before {
@@ -755,8 +761,9 @@ body {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 1.5rem;
+    justify-items: start;
 }
 
 .project-card {
@@ -771,6 +778,7 @@ body {
     transform: translateY(20px);
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .project-card::before {
@@ -850,6 +858,12 @@ body {
     color: white;
 }
 
+.contact .section-header {
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+}
+
 .contact .section-header h2,
 .contact .section-header p {
     color: white;
@@ -863,38 +877,36 @@ body {
 .contact-main {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    padding: 1rem;
+    padding: 1.5rem 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
+    text-align: center;
 }
 
 .contact-info {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
     align-items: center;
     justify-content: center;
 }
 
 .contact-item {
-  display: flex;
+    display: flex;
     align-items: center;
     gap: 0.5rem;
     text-align: center;
-    justify-content: center;
 }
 
 .contact-item i {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--accent-color);
-    width: 12px;
 }
 
 .contact-item h3 {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.15rem;
     color: #cccccc;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -903,10 +915,10 @@ body {
 .contact-item a,
 .contact-item p {
     color: white;
-  text-decoration: none;
+    text-decoration: none;
     font-weight: 500;
-    font-size: 0.75rem;
-  transition: color 0.3s ease;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
 }
 
 .contact-item a:hover {
@@ -914,10 +926,10 @@ body {
 }
 
 .contact-divider {
-    width: 25px;
+    width: 60px;
     height: 1px;
     background: rgba(255, 255, 255, 0.2);
-    margin: 0 auto 0.75rem;
+    margin: 0 auto 1rem;
 }
 
 .social-links {
@@ -1061,7 +1073,11 @@ body {
     }
 
     .container {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
+    }
+
+    .hero-container {
+        padding: 0 1.5rem;
     }
 }
 
