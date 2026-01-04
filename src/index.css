@@ -25,23 +25,106 @@
   --navbar-bg: rgba(255, 255, 255, 0.95);
 }
 
-/* Dark Mode Variables */
+/* Dark Mode Variables - Charcoal Theme */
 [data-theme="dark"] {
-  --primary-color: #3b82f6;
-  --secondary-color: #2563eb;
-  --accent-color: #60a5fa;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-light: #64748b;
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-dark: #0f172a;
-  --border-color: #334155;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
-  --card-bg: #1e293b;
-  --navbar-bg: rgba(15, 23, 42, 0.95);
+  --primary-color: #a1a1aa;
+  --secondary-color: #d4d4d8;
+  --accent-color: #e4e4e7;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-light: #52525b;
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-dark: #09090b;
+  --border-color: #27272a;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.6);
+  --card-bg: #18181b;
+  --navbar-bg: rgba(9, 9, 11, 0.95);
+}
+
+/* Dark Mode Specific Overrides */
+[data-theme="dark"] .btn-primary {
+  background: #fafafa;
+  color: #09090b;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: #d4d4d8;
+  color: #09090b;
+}
+
+[data-theme="dark"] .hero-greeting {
+  color: #a1a1aa;
+}
+
+[data-theme="dark"] .typewriter {
+  color: #fafafa;
+}
+
+[data-theme="dark"] .cursor {
+  color: #fafafa;
+}
+
+[data-theme="dark"] .nav-menu a:hover,
+[data-theme="dark"] .nav-menu a.active {
+  color: #fafafa;
+}
+
+[data-theme="dark"] .nav-menu a::after {
+  background: #fafafa;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: #fafafa;
+  color: #09090b;
+  border-color: #fafafa;
+}
+
+[data-theme="dark"] .section-header h2::after {
+  background: #71717a;
+}
+
+[data-theme="dark"] .skill-tag,
+[data-theme="dark"] .interest-tag:hover {
+  background: #27272a;
+  color: #fafafa;
+  border-color: #3f3f46;
+}
+
+[data-theme="dark"] .contact-card:hover {
+  border-color: #52525b;
+}
+
+[data-theme="dark"] .contact-icon {
+  background: #27272a;
+}
+
+[data-theme="dark"] .social-btn:hover {
+  background: #fafafa;
+  color: #09090b;
+  border-color: #fafafa;
+}
+
+[data-theme="dark"] .about-section:hover,
+[data-theme="dark"] .info-card:hover,
+[data-theme="dark"] .experience-card:hover,
+[data-theme="dark"] .skill-category:hover,
+[data-theme="dark"] .project-card:hover {
+  border-color: #3f3f46;
+}
+
+[data-theme="dark"] .skill-progress {
+  background: #71717a;
+}
+
+[data-theme="dark"] .company-logo {
+  background: #27272a;
+}
+
+[data-theme="dark"] .logo-text {
+  color: #fafafa;
 }
 
 body {
