@@ -336,6 +336,7 @@ export default function About() {
                 left: dragPosition.x,
                 top: dragPosition.y,
                 width: state.width,
+                height: state.height,
                 zIndex: 1000,
                 pointerEvents: 'none',
               }}
