@@ -114,6 +114,52 @@
   border-color: #3f3f46;
 }
 
+/* Dark mode bento - code-like text colors */
+[data-theme="dark"] .bento-intro h3 {
+  color: #61afef;
+}
+
+[data-theme="dark"] .bento-intro {
+  border-color: #61afef;
+}
+
+[data-theme="dark"] .education-content .school {
+  color: #e5c07b;
+}
+
+[data-theme="dark"] .current-role {
+  color: #c678dd;
+}
+
+[data-theme="dark"] .bento-goals p strong {
+  color: #56b6c2;
+}
+
+[data-theme="dark"] .fact-value {
+  color: #d19a66;
+}
+
+/* Dark mode stat numbers - varied colors */
+[data-theme="dark"] .bento-stat:nth-child(2) .stat-value {
+  color: #c678dd;
+}
+
+[data-theme="dark"] .bento-stat:nth-child(3) .stat-value {
+  color: #56b6c2;
+}
+
+[data-theme="dark"] .bento-stat:nth-child(4) .stat-value {
+  color: #e5c07b;
+}
+
+[data-theme="dark"] .bento-experience .experience-value {
+  color: #e06c75;
+}
+
+[data-theme="dark"] .bento-experience {
+  border-color: #e06c75;
+}
+
 [data-theme="dark"] .skill-progress {
   background: #71717a;
 }
