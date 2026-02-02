@@ -1,5 +1,16 @@
-import StatCounter from './StatCounter'
 import { useInView } from '../hooks/useInView'
+import { useCountUp } from '../hooks/useCountUp'
+
+function StatTile({ end, suffix = '', label, delay = 0 }) {
+  const { count, ref } = useCountUp(end, 2000)
+
+  return (
+    <div className="bento-tile bento-stat" ref={ref} style={{ animationDelay: `${delay}s` }}>
+      <span className="stat-value">{count}{suffix}</span>
+      <span className="stat-label">{label}</span>
+    </div>
+  )
+}
 
 export default function About() {
   const { ref: sectionRef, hasBeenInView } = useInView()
@@ -12,73 +23,89 @@ export default function About() {
           <p>Get to know me better</p>
         </div>
 
-        <div className={`about-hero ${hasBeenInView ? 'animate-in' : ''}`}>
-          <div className="about-image">
-            <img src="/logo.png" alt="Aaryan Kandiah" />
-          </div>
-          <div className="about-intro">
+        <div className={`bento-grid ${hasBeenInView ? 'animate-in' : ''}`}>
+          {/* Row 1 */}
+          <div className="bento-tile bento-intro" style={{ animationDelay: '0s' }}>
             <h3>AI Engineer & Data Scientist</h3>
-            <p className="intro-text">
-              Passionate about leveraging artificial intelligence to solve real-world problems and create meaningful impact through innovative technology solutions.
+            <p>
+              Building AI solutions that solve real-world problems. Passionate about machine learning, computer vision, and agentic systems.
             </p>
-            <div className="about-stats">
-              <StatCounter end={8} suffix="+" label="End-to-End Implementations Projects in AI & Data Science" />
-              <StatCounter end={15} suffix="+" label="Python Libraries & ML Frameworks" />
-              <StatCounter end={5} suffix="+" label="Certified Skills: Google, AWS, DeepLearning.AI" />
-            </div>
           </div>
-        </div>
 
-        <div className="about-content">
-          <div className="about-main">
-            <div className={`about-section ${hasBeenInView ? 'animate-in' : ''}`}>
-              <h4><i className="fas fa-graduation-cap"></i> Education & Background</h4>
-              <p>
-                I am currently pursuing a Bachelor of Engineering in Electrical and Electronic Engineering at NTU, with a specialization in Data Analysis and Machine Learning. With a strong academic foundation (Honours with Distinction expected), I've built a versatile skillset through coursework, certifications, and research projects in AI fairness, data science, and computer vision.
-              </p>
-            </div>
+          <StatTile end={8} suffix="+" label="Projects" delay={0.1} />
+          <StatTile end={15} suffix="+" label="Tools" delay={0.15} />
 
-            <div className={`about-section ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
-              <h4><i className="fas fa-code"></i> Technical Expertise</h4>
-              <p>
-                My technical strengths include Python, machine learning frameworks (PyTorch, TensorFlow), and data tools like Pandas, NumPy, and MySQL. I've applied these in diverse academic and internship settings—from predictive analytics and NLP pipelines to fairness analysis in neural networks—delivering efficient, explainable, and impactful solutions.
-              </p>
-            </div>
+          {/* Row 2 */}
+          <StatTile end={5} suffix="+" label="Certifications" delay={0.2} />
 
-            <div className={`about-section ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.2s' }}>
-              <h4><i className="fas fa-lightbulb"></i> Interests & Goals</h4>
-              <p>
-                I'm deeply interested in building intelligent systems that learn from data and act autonomously. My passion lies in AI, particularly in designing fair and interpretable models, multi-agent systems, and data-driven decision-making pipelines. I aim to contribute to the development of ethical, adaptive AI agents that solve real-world problems—advancing the intersection of machine learning, automation, and responsible innovation.
-              </p>
+          <div className="bento-tile bento-education" style={{ animationDelay: '0.25s' }}>
+            <h4>Education</h4>
+            <div className="education-content">
+              <span className="degree">B.Eng Electrical & Electronic Engineering</span>
+              <span className="school">Nanyang Technological University</span>
+              <span className="details">Data Analysis & ML • Honours (Distinction) • Dec 2025</span>
             </div>
           </div>
 
-          <div className="about-sidebar">
-            <div className={`info-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.3s' }}>
-              <h4>Quick Facts</h4>
-              <ul className="facts-list">
-                <li><strong>Location:</strong> Singapore</li>
-                <li><strong>University:</strong> NTU</li>
-                <li><strong>Major:</strong> Electrical & Electronic Engineering</li>
-                <li><strong>Specialization:</strong> Data Analysis & ML</li>
-                <li><strong>Graduation:</strong> December 2025</li>
-              </ul>
-            </div>
+          <div className="bento-tile bento-experience" style={{ animationDelay: '0.28s' }}>
+            <span className="experience-value">1+</span>
+            <span className="experience-label">Years Experience</span>
+            <span className="experience-sub">Internships</span>
+          </div>
 
-            <div className={`info-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.4s' }}>
-              <h4>Interests</h4>
-              <div className="interests-grid">
-                {['Machine Learning', 'Agentic AI', 'Computer Vision', 'Data Science', 'Basketball', 'Travel', 'Reading'].map((interest) => (
-                  <span key={interest} className="interest-tag">{interest}</span>
-                ))}
-              </div>
+          {/* Row 3 */}
+          <div className="bento-tile bento-technical" style={{ animationDelay: '0.3s' }}>
+            <h4>Technical Stack</h4>
+            <div className="tech-list">
+              <span className="tech-item">Python</span>
+              <span className="tech-item">React</span>
+              <span className="tech-item">PyTorch</span>
+              <span className="tech-item">LangChain</span>
+              <span className="tech-item">FastAPI</span>
+              <span className="tech-item">REST API</span>
+              <span className="tech-item">Scikit-Learn</span>
+              <span className="tech-item">MySQL</span>
+              <span className="tech-item">Docker</span>
             </div>
+          </div>
 
-            <div className={`info-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.5s' }}>
-              <h4>Currently Working On</h4>
-              <p className="current-work">
-                I'm currently interning as an AI Innovation Engineer, where I'm developing a multi-model AI chatbot tailored for HVAC industry use. I'm also building a secure web-based survey tool with one-time PIN access and automated Excel reporting to streamline data collection and analysis across departments.
-              </p>
+          <div className="bento-tile bento-goals" style={{ animationDelay: '0.35s' }}>
+            <h4>Focus Areas</h4>
+            <p>
+              Designing <strong>intelligent systems</strong> that learn, reason, and act <strong>autonomously</strong> across complex environments. Special emphasis on <strong>fairness</strong>, <strong>interpretability</strong>, and <strong>robustness</strong> in machine learning models, alongside the development of <strong>multi-agent</strong> and <strong>decision-making pipelines</strong> that balance performance with transparency.
+            </p>
+          </div>
+
+          {/* Row 4 */}
+          <div className="bento-tile bento-facts" style={{ animationDelay: '0.4s' }}>
+            <div className="fact-item">
+              <span className="fact-label">Location</span>
+              <span className="fact-value">Singapore</span>
+            </div>
+            <div className="fact-item">
+              <span className="fact-label">University</span>
+              <span className="fact-value">NTU</span>
+            </div>
+            <div className="fact-item">
+              <span className="fact-label">Graduated</span>
+              <span className="fact-value">Dec 2025</span>
+            </div>
+          </div>
+
+          <div className="bento-tile bento-current" style={{ animationDelay: '0.45s' }}>
+            <h4>Current Role</h4>
+            <span className="current-role">AI Innovation Engineer Intern</span>
+            <p>
+              Developing multi-model AI chatbot for HVAC industry and secure survey tools with automated reporting.
+            </p>
+          </div>
+
+          <div className="bento-tile bento-interests" style={{ animationDelay: '0.5s' }}>
+            <h4>Interests</h4>
+            <div className="interest-tags">
+              {['ML', 'Agentic AI', 'CV', 'Data Science', 'Basketball', 'Travel'].map((interest) => (
+                <span key={interest} className="interest-tag">{interest}</span>
+              ))}
             </div>
           </div>
         </div>
