@@ -2,31 +2,29 @@ import { useInView } from '../hooks/useInView'
 
 const experiences = [
   {
-    title: 'AI Innovation Engineer',
+    title: 'AI Innovation Engineer Intern',
     company: 'Univers',
-    duration: 'May 2025 - Present',
-    durationText: 'May 2025 - Present · 2 months',
-    location: 'Singapore · On-site',
-    icon: 'fa-building',
+    period: 'May 2025 — Present',
+    year: '2025',
+    location: 'Singapore',
     description: [
       'Developed a context-sensitive, multi-model AI chatbot using GPT-4, FastAPI, and Python that helps employees across departments understand HVAC concepts through tailored, role-specific responses.',
       'Engineered a secure, modern web-based survey tool featuring one-time PIN access using Flask, and automated Excel report generation for streamlined data collection and analysis.',
     ],
-    skills: ['Generative AI', 'LangChain', 'FastAPI', 'OpenAI Python SDK', 'Gemini', 'Python'],
+    skills: ['Agent Orchestration', 'Python', 'FastAPI', 'React', 'Google Cloud'],
   },
   {
     title: 'Technology Audit Services Intern',
     company: 'Manulife Singapore',
-    duration: 'May 2023 - Jul 2023',
-    durationText: 'May 2023 - Jul 2023 · 3 months',
+    period: 'May — Jul 2023',
+    year: '2023',
     location: 'Singapore',
-    icon: 'fa-shield-alt',
     description: [
       'Worked on SOX (Sarbanes-Oxley) audit and China market audit, performing testing to evaluate evidence accuracy and reliability.',
       'Prepared comprehensive workpapers to document audit process, fact-findings, and conclusions.',
       'Programmed Python script to traverse through git repositories to uncover potential data privacy issues.',
     ],
-    skills: ['Microsoft Office', 'Audit Procedures', 'Python Programming'],
+    skills: ['Python', 'Audit Procedures', 'Data Analysis'],
   },
 ]
 
@@ -45,31 +43,26 @@ export default function Experience() {
           {experiences.map((exp, index) => (
             <div key={index} className="timeline-item">
               <div className="timeline-marker"></div>
-              <div className="timeline-date">{exp.duration}</div>
               <div className="timeline-content">
                 <div
                   className={`experience-card ${hasBeenInView ? 'animate-in' : ''}`}
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   <div className="experience-header">
-                    <div className="company-info">
-                      <div className="company-logo">
-                        <i className={`fas ${exp.icon}`}></i>
-                      </div>
-                      <div className="company-details">
-                        <h3>{exp.title}</h3>
-                        <p className="company-name">{exp.company}</p>
-                        <p className="duration">{exp.durationText}</p>
-                        <p className="location">{exp.location}</p>
-                      </div>
+                    <div className="experience-title-row">
+                      <h3>{exp.title}</h3>
+                      <span className="experience-period">{exp.period}</span>
+                    </div>
+                    <div className="experience-meta">
+                      <span className="experience-company">{exp.company}</span>
+                      <span className="experience-divider">·</span>
+                      <span className="experience-location">{exp.location}</span>
                     </div>
                   </div>
                   <div className="experience-description">
-                    <ul>
-                      {exp.description.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
+                    {exp.description.map((item, i) => (
+                      <p key={i}>{item}</p>
+                    ))}
                   </div>
                   <div className="experience-skills">
                     {exp.skills.map((skill) => (
