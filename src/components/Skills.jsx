@@ -1,37 +1,14 @@
-import SkillBar from './SkillBar'
 import { useInView } from '../hooks/useInView'
 
-const skillCategories = [
-  {
-    title: 'Programming Languages',
-    icon: 'fa-code',
-    skills: [
-      { name: 'Python', percentage: 90 },
-      { name: 'SQL', percentage: 90 },
-      { name: 'Java', percentage: 70 },
-      { name: 'C Language', percentage: 60 },
-    ],
-  },
-  {
-    title: 'Machine Learning & Tools',
-    icon: 'fa-brain',
-    skills: [
-      { name: 'TensorFlow 2', percentage: 88 },
-      { name: 'PyTorch', percentage: 85 },
-      { name: 'Scikit-Learn', percentage: 90 },
-      { name: 'OpenCV', percentage: 70 },
-    ],
-  },
-  {
-    title: 'Data Analysis',
-    icon: 'fa-chart-bar',
-    skills: [
-      { name: 'Pandas', percentage: 95 },
-      { name: 'NumPy', percentage: 90 },
-      { name: 'Matplotlib', percentage: 85 },
-      { name: 'Seaborn', percentage: 82 },
-    ],
-  },
+const secondarySkills = [
+  'Git',
+  'Java',
+  'TensorFlow',
+  'Scikit-Learn',
+  'NumPy',
+  'OpenCV',
+  'Matplotlib',
+  'Pandas',
 ]
 
 export default function Skills() {
@@ -42,28 +19,80 @@ export default function Skills() {
       <div className="container">
         <div className="section-header">
           <h2>Skills & Expertise</h2>
-          <p>Technologies and tools I work with</p>
+          <p>My core tech stack</p>
         </div>
 
-        <div className="skills-grid">
-          {skillCategories.map((category, index) => (
-            <div
-              key={category.title}
-              className={`skill-category ${hasBeenInView ? 'animate-in' : ''}`}
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <div className="skill-header">
-                <i className={`fas ${category.icon}`}></i>
-                <h3>{category.title}</h3>
+        <div className="bento-skills-grid">
+          {/* Python / FastAPI - Large card */}
+          <div className={`bento-skill-card bento-large ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0s' }}>
+            <div className="bento-skill-icons">
+              <div className="bento-skill-icon" style={{ '--skill-color': '#3776ab' }}>
+                <i className="fab fa-python"></i>
               </div>
-              <div className="skill-items">
-                {category.skills.map((skill) => (
-                  <SkillBar key={skill.name} name={skill.name} percentage={skill.percentage} />
-                ))}
+              <div className="bento-skill-icon" style={{ '--skill-color': '#009688' }}>
+                <i className="fas fa-bolt"></i>
               </div>
             </div>
-          ))}
+            <div className="bento-skill-content">
+              <h3>Python / FastAPI</h3>
+              <span className="bento-skill-label">Backend & APIs</span>
+              <p className="bento-skill-desc">Building production backend services, REST APIs, and data pipelines</p>
+            </div>
+          </div>
+
+          {/* React */}
+          <div className={`bento-skill-card bento-tall ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+            <div className="bento-skill-icons">
+              <div className="bento-skill-icon" style={{ '--skill-color': '#61dafb' }}>
+                <i className="fab fa-react"></i>
+              </div>
+            </div>
+            <div className="bento-skill-content">
+              <h3>React</h3>
+              <span className="bento-skill-label">Frontend</span>
+              <p className="bento-skill-desc">Modern web apps with Tailwind CSS and responsive design</p>
+            </div>
+          </div>
+
+          {/* PyTorch */}
+          <div className={`bento-skill-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.15s' }}>
+            <div className="bento-skill-icon" style={{ '--skill-color': '#ee4c2c' }}>
+              <i className="fas fa-fire"></i>
+            </div>
+            <h3>PyTorch</h3>
+            <span className="bento-skill-label">Deep Learning</span>
+          </div>
+
+          {/* DevOps */}
+          <div className={`bento-skill-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.2s' }}>
+            <div className="bento-skill-icon" style={{ '--skill-color': '#2496ed' }}>
+              <i className="fab fa-docker"></i>
+            </div>
+            <h3>Docker / K8s</h3>
+            <span className="bento-skill-label">DevOps</span>
+          </div>
+
+          {/* MySQL */}
+          <div className={`bento-skill-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.25s' }}>
+            <div className="bento-skill-icon" style={{ '--skill-color': '#4479a1' }}>
+              <i className="fas fa-database"></i>
+            </div>
+            <h3>MySQL</h3>
+            <span className="bento-skill-label">Database</span>
+          </div>
         </div>
+
+        <div className={`secondary-skills ${hasBeenInView ? 'animate-in' : ''}`}>
+          <p className="secondary-label">Also experienced with</p>
+          <div className="secondary-skills-list">
+            {secondarySkills.map((skill) => (
+              <span key={skill} className="secondary-skill-badge">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   )
