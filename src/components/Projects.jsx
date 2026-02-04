@@ -4,110 +4,119 @@ import { useInView } from '../hooks/useInView'
 const personalProjects = [
   {
     title: 'AlphaDrop',
-    icon: 'fa-wand-magic-sparkles',
-    gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-    description: 'Chrome extension for AI-powered background removal that runs entirely in your browser. Fast, private, and free - no uploads to external servers.',
-    tech: ['Chrome Extension', 'JavaScript', 'RMBG 1.4', 'Canvas API'],
+    subtitle: 'Chrome Extension',
+    image: '/projects/alphadrop.png',
+    description: 'AI-powered background removal that runs entirely in your browser. Fast, private, and free.',
+    tech: ['JavaScript', 'RMBG 1.4', 'Canvas API'],
     link: 'https://chromewebstore.google.com/detail/alphadrop/hbmfofpedlbllenmpnebikhadgkplobj',
-    linkType: 'chrome',
+    linkLabel: 'Chrome Web Store',
+    gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
   },
 ]
 
 const academicProjects = [
   {
     title: 'US Traffic Accident Analysis',
-    icon: 'fa-car-burst',
-    gradient: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-    description: 'Applied Python programming to perform EDA and utilized Decision Tree, Random Forest, and SVM models for predicting accident location and severity.',
-    tech: ['Python', 'Scikit-Learn', 'Pandas', 'Matplotlib'],
+    image: '/projects/traffic-analysis.png',
+    description: 'ML models for predicting accident location and severity using Random Forest classification.',
+    tech: ['Python', 'Scikit-Learn', 'Pandas'],
     link: 'https://github.com/Aaryan126/AccidentSeverityProject-USA-Analysis',
-    linkType: 'github',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
   },
   {
-    title: 'Sentiment Analysis of Product Reviews',
-    icon: 'fa-comment-dots',
+    title: 'Chest X-Ray Classification',
+    image: '/projects/CXR_Classification.png',
+    description: 'Multi-label deep learning model to detect multiple thoracic abnormalities in chest X-rays, with Explainable AI (Grad-CAM) for clinical interpretability, achieved AUC Score of 0.845.',
+    tech: ['Deep Learning', 'PyTorch', 'DenseNet', 'Explainable AI', 'Grad-CAM'],
+    link: 'https://github.com/Aaryan126/FYP_Website',
+    linkLabel: 'View Project',
     gradient: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-    description: 'Designed sentiment analysis pipeline using Python and NLP to classify product reviews. Compared Logistic Regression, LSTM, and fine-tuned BERT models.',
-    tech: ['Python', 'BERT', 'LSTM', 'NLP'],
-    link: 'https://github.com/Aaryan126/Sentiment-Product-Review',
-    linkType: 'github',
   },
   {
     title: 'Ship Navigation System',
-    icon: 'fa-ship',
-    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
-    description: 'Global and local path planning system for efficient ship navigation with obstacle avoidance using PyQt5 interface.',
-    tech: ['Python', 'PyQt5', 'Scikit-Learn'],
+    image: '/projects/ship-navigation.png',
+    description: 'Global and local path planning with obstacle avoidance using PyQt5 interface.',
+    tech: ['Python', 'PyQt5', 'Algorithms'],
     link: 'https://github.com/Aaryan126/Ship-Navigation-System',
-    linkType: 'github',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
   },
   {
     title: 'Brain Tumor Detection',
-    icon: 'fa-brain',
-    gradient: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
-    description: 'Enhanced brain tumor classification using dimensionality reduction techniques and computer vision.',
+    image: '/projects/brain-tumor.png',
+    description: 'Enhanced classification using dimensionality reduction and computer vision.',
     tech: ['Python', 'TensorFlow', 'OpenCV'],
     link: 'https://github.com/Aaryan126/DimensionalityReduction-for-BrainTumorClassification',
-    linkType: 'github',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
   },
   {
     title: 'Semantic Book Recommendation',
-    icon: 'fa-book',
-    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-    description: 'LLM-powered book recommendation system using OpenAI embeddings and vector storage.',
+    image: '/projects/book-recommendation.png',
+    description: 'LLM-powered recommendation system using OpenAI embeddings and vector storage.',
     tech: ['Python', 'LangChain', 'OpenAI'],
     link: 'https://github.com/Aaryan126/Semantic-Book-Recommendation',
-    linkType: 'github',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
   },
   {
     title: 'Data Cleaning & EDA',
-    icon: 'fa-database',
-    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-    description: 'Comprehensive data cleaning and exploratory analysis of layoffs dataset using MySQL.',
-    tech: ['MySQL', 'Data Analysis', 'SQL'],
+    image: '/projects/data-cleaning.png',
+    description: 'Comprehensive data cleaning and exploratory analysis of layoffs dataset.',
+    tech: ['MySQL', 'SQL', 'Analysis'],
     link: 'https://github.com/Aaryan126/Data-cleaning-Exploratory-Data-Analysis-MySQL',
-    linkType: 'github',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
   },
 ]
 
 function ProjectCard({ project, index, hasBeenInView }) {
+  const [imageError, setImageError] = useState(false)
+
   return (
-    <div
+    <a
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`project-card ${hasBeenInView ? 'animate-in' : ''}`}
-      style={{ animationDelay: `${index * 0.08}s` }}
+      style={{ animationDelay: `${index * 0.1}s` }}
+      data-title={project.subtitle ? `${project.title} · ${project.subtitle}` : project.title}
     >
-      <div className="project-header">
-        <div className="project-icon" style={{ background: project.gradient }}>
-          <i className={`fa-solid ${project.icon}`}></i>
-        </div>
-        <h3>{project.title}</h3>
-      </div>
-      <p>{project.description}</p>
-      <div className="project-tech">
-        {project.tech.map((tech) => (
-          <span key={tech}>{tech}</span>
-        ))}
-      </div>
-      <a
-        href={project.link}
-        className="project-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {project.linkType === 'chrome' ? (
-          <>
-            <i className="fa-brands fa-chrome"></i>
-            Chrome Web Store
-          </>
+      <div className="project-image">
+        {!imageError ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            onError={() => setImageError(true)}
+          />
         ) : (
-          <>
-            <i className="fa-brands fa-github"></i>
-            View on GitHub
-          </>
+          <div
+            className="project-image-fallback"
+            style={{ background: project.gradient }}
+          >
+            <i className="fa-solid fa-code"></i>
+          </div>
         )}
-        <i className="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
+      </div>
+
+      <div className="project-overlay">
+        <div className="project-overlay-content">
+          {project.subtitle && <span className="project-subtitle">{project.subtitle}</span>}
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+          <div className="project-tech">
+            {project.tech.map((tech) => (
+              <span key={tech}>{tech}</span>
+            ))}
+          </div>
+          <div className="project-cta">
+            {project.linkLabel}
+            <i className="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+    </a>
   )
 }
 
@@ -144,7 +153,7 @@ export default function Projects() {
           />
         </div>
 
-        <div className="projects-grid">
+        <div className={`projects-gallery ${activeTab === 'personal' ? 'featured' : ''}`}>
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}
