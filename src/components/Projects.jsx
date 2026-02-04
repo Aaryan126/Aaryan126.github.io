@@ -55,7 +55,7 @@ const academicProjects = [
     title: 'Ship Navigation System',
     image: '/projects/ship-navigation.png',
     description: 'Global and local path planning with obstacle avoidance using PyQt5 interface.',
-    tech: ['Python', 'PyQt5', 'Algorithms'],
+    tech: ['Python', 'PyQt5', 'A*', 'Dynamic Window Approach', 'Path Planning'],
     link: 'https://github.com/Aaryan126/Ship-Navigation-System',
     linkLabel: 'View Project',
     gradient: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',

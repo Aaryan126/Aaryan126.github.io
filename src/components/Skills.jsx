@@ -1,7 +1,6 @@
 import { useInView } from '../hooks/useInView'
 
 const secondarySkills = [
-  'Git',
   'Java',
   'TensorFlow',
   'Scikit-Learn',

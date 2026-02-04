@@ -8,8 +8,10 @@ const experiences = [
     year: '2025',
     location: 'Singapore',
     description: [
-      'Developed a context-sensitive, multi-model AI chatbot using GPT-4, FastAPI, and Python that helps employees across departments understand HVAC concepts through tailored, role-specific responses.',
-      'Engineered a secure, modern web-based survey tool featuring one-time PIN access using Flask, and automated Excel report generation for streamlined data collection and analysis.',
+      'Developed comprehensive AI HVAC chatbot integrating OpenAI, Gemini, and Google Maps APIs with RAG using company documentation, agentic tools for data auto-completion, document synthesis, and deep thinking mode.',
+      'Debugged critical data communication issues across Java backend and React/TypeScript frontend systems, adding chatbot streaming, Mermaid visualizations, and real-time query response capabilities.',
+      'Built Python/Flask client data collection form to streamline site assessment processes and presented AI dashboard to clients showcasing interactive waterfall layout and chatbot capabilities.',
+      'Delivered full-stack AI solutions using Python (FastAPI, Flask), Java, TypeScript, React, and OpenAI/Gemini APIs, optimizing multi-platform integrations.',
     ],
     skills: ['Agent Orchestration', 'Python', 'FastAPI', 'React', 'Google Cloud'],
   },
