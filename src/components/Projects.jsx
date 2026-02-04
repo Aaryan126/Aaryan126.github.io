@@ -7,10 +7,28 @@ const personalProjects = [
     subtitle: 'Chrome Extension',
     image: '/projects/alphadrop.png',
     description: 'AI-powered background removal that runs entirely in your browser. Fast, private, and free.',
-    tech: ['JavaScript', 'RMBG 1.4', 'Canvas API'],
+    tech: ['JavaScript', 'ONNX', 'Canvas API'],
     link: 'https://chromewebstore.google.com/detail/alphadrop/hbmfofpedlbllenmpnebikhadgkplobj',
     linkLabel: 'Chrome Web Store',
     gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+  },
+  {
+    title: 'Data Cleaning and Exploratory Data Analysis',
+    image: '/projects/data-cleaning.png',
+    description: 'Comprehensive data cleaning and exploratory analysis of layoffs dataset.',
+    tech: ['MySQL', 'Data Cleaning', 'Exploratory Data Analysis'],
+    link: 'https://github.com/Aaryan126/Data-cleaning-Exploratory-Data-Analysis-MySQL',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+  },
+  {
+    title: 'Spotify Streaming History Visualizer',
+    image: '/projects/spotify_viz.png',
+    description: 'An interactive dashboard that transforms Spotify streaming history into insightful visualizations. Explore top tracks, artists, listening patterns, and yearly recaps through bubble charts, time-series graphs, and radar charts.',
+    tech: ['React', 'Recharts', 'Tailwind CSS'],
+    link: 'https://startling-marshmallow-c649ed.netlify.app/',
+    linkLabel: 'Live Demo',
+    gradient: 'linear-gradient(135deg, #1db954 0%, #191414 100%)',
   },
 ]
 
@@ -45,8 +63,8 @@ const academicProjects = [
   {
     title: 'Brain Tumor Detection',
     image: '/projects/brain-tumor.png',
-    description: 'Enhanced classification using dimensionality reduction and computer vision.',
-    tech: ['Python', 'TensorFlow', 'OpenCV'],
+    description: 'Enhanced classification using dimensionality reduction and computer vision. Passive Aggressive Classifier + PCA achieved highest accuracy at 94.35%.',
+    tech: ['Scikit-learn', 'Matplotlib', 'Pandas', 'TensorFlow'],
     link: 'https://github.com/Aaryan126/DimensionalityReduction-for-BrainTumorClassification',
     linkLabel: 'View Project',
     gradient: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
@@ -59,15 +77,6 @@ const academicProjects = [
     link: 'https://github.com/Aaryan126/Semantic-Book-Recommendation',
     linkLabel: 'View Project',
     gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-  },
-  {
-    title: 'Data Cleaning & EDA',
-    image: '/projects/data-cleaning.png',
-    description: 'Comprehensive data cleaning and exploratory analysis of layoffs dataset.',
-    tech: ['MySQL', 'SQL', 'Analysis'],
-    link: 'https://github.com/Aaryan126/Data-cleaning-Exploratory-Data-Analysis-MySQL',
-    linkLabel: 'View Project',
-    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
   },
 ]
 
@@ -153,7 +162,7 @@ export default function Projects() {
           />
         </div>
 
-        <div className={`projects-gallery ${activeTab === 'personal' ? 'featured' : ''}`}>
+        <div className="projects-gallery">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}

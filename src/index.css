@@ -1389,30 +1389,22 @@ body {
 /* Projects Gallery */
 .projects-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2rem;
+  justify-items: center;
 }
 
-/* Featured gallery for personal projects - single wide card */
-.projects-gallery.featured {
-  display: flex;
-  justify-content: center;
-}
-
-.projects-gallery.featured .project-card {
-  width: 100%;
-  max-width: 500px;
-  aspect-ratio: 16 / 9;
-}
 
 /* Project Card - Spotlight Style */
 .project-card {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   cursor: pointer;
   text-decoration: none;
+  width: 100%;
+  max-width: 600px;
 }
 
 
@@ -1821,10 +1813,6 @@ body {
   }
 
   .project-card {
-    aspect-ratio: 16 / 10;
-  }
-
-  .projects-gallery.featured .project-card {
     max-width: 100%;
     aspect-ratio: 16 / 10;
   }
