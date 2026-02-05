@@ -27,6 +27,19 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (!isMenuOpen) return
+
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.nav-menu') && !e.target.closest('.hamburger')) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [isMenuOpen])
+
   const handleNavClick = (e, id) => {
     e.preventDefault()
     const element = document.getElementById(id)
