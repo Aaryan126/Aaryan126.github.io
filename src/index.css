@@ -308,6 +308,13 @@ body {
   letter-spacing: -0.02em;
 }
 
+.logo-icon {
+  height: 36px;
+  width: auto;
+  margin-top: 6px;
+  margin-bottom: -2px;
+}
+
 .nav-menu {
   display: flex;
   list-style: none;

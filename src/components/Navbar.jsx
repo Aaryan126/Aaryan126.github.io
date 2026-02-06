@@ -53,7 +53,11 @@ export default function Navbar() {
     <nav className={`navbar ${isHidden ? 'navbar-hidden' : ''}`}>
       <div className="nav-container">
         <a href="#home" className="nav-logo" onClick={(e) => handleNavClick(e, 'home')}>
-          <span className="logo-text">AK</span>
+          <img
+            src={isDark ? "/header-icon.png" : "/header-icon_light.png"}
+            alt="AK"
+            className="logo-icon"
+          />
         </a>
 
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
