@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useInView } from '../hooks/useInView'
 
 const personalProjects = [
   {
@@ -80,7 +79,7 @@ const academicProjects = [
   },
 ]
 
-function ProjectCard({ project, index, hasBeenInView }) {
+function ProjectCard({ project, index }) {
   const [imageError, setImageError] = useState(false)
 
   return (
@@ -88,8 +87,7 @@ function ProjectCard({ project, index, hasBeenInView }) {
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className={`project-card ${hasBeenInView ? 'animate-in' : ''}`}
-      style={{ animationDelay: `${index * 0.1}s` }}
+      className="project-card animate-in"
       data-title={project.subtitle ? `${project.title} · ${project.subtitle}` : project.title}
     >
       <div className="project-image">
@@ -131,19 +129,17 @@ function ProjectCard({ project, index, hasBeenInView }) {
 
 export default function Projects() {
   const [activeTab, setActiveTab] = useState('personal')
-  const { ref, hasBeenInView } = useInView()
-
   const projects = activeTab === 'personal' ? personalProjects : academicProjects
 
   return (
-    <section id="projects" className="projects" ref={ref}>
+    <section id="projects" className="projects">
       <div className="container">
         <div className="section-header">
           <h2>Projects</h2>
           <p>A selection of my work</p>
         </div>
 
-        <div className={`projects-tabs ${hasBeenInView ? 'animate-in' : ''}`}>
+        <div className="projects-tabs animate-in">
           <button
             className={`tab-btn ${activeTab === 'personal' ? 'active' : ''}`}
             onClick={() => setActiveTab('personal')}
@@ -168,7 +164,6 @@ export default function Projects() {
               key={project.title}
               project={project}
               index={index}
-              hasBeenInView={hasBeenInView}
             />
           ))}
         </div>

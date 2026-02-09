@@ -1,6 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, LayoutGroup } from 'framer-motion'
-import { useInView } from '../hooks/useInView'
 import { useCountUp } from '../hooks/useCountUp'
 
 // Animation configuration
@@ -32,9 +31,9 @@ const DEFAULT_ORDER = TILES.map(t => t.id)
 
 // StatTile component with countup animation
 function StatTileContent({ end, suffix = '', label }) {
-  const { count, ref } = useCountUp(end, 2000)
+  const { count } = useCountUp(end, 2000, false)
   return (
-    <div ref={ref} className="stat-content">
+    <div className="stat-content">
       <span className="stat-value">{count}{suffix}</span>
       <span className="stat-label">{label}</span>
     </div>
@@ -123,7 +122,6 @@ function TileContent({ tile }) {
 }
 
 export default function About() {
-  const { ref: sectionRef, hasBeenInView } = useInView()
   const [tileOrder, setTileOrder] = useState(DEFAULT_ORDER)
 
   // All drag state in refs for synchronous access
@@ -293,7 +291,7 @@ export default function About() {
   const isHolding = state.isHolding
 
   return (
-    <section id="about" className="about" ref={sectionRef}>
+    <section id="about" className="about">
       <div className="container">
         <div className="section-header">
           <h2>About Me</h2>
@@ -301,7 +299,7 @@ export default function About() {
         </div>
 
         <LayoutGroup>
-          <div className={`bento-grid ${hasBeenInView ? 'animate-in' : ''} ${isDragging ? 'dragging-active' : ''}`}>
+          <div className={`bento-grid animate-in ${isDragging ? 'dragging-active' : ''}`}>
             {tileOrder.map((id, index) => {
               const tile = getTileById(id)
               const isThisDragged = isDragging && draggedId === id

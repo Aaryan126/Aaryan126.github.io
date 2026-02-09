@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 
 const secondarySkills = [
   'Java',
@@ -11,10 +10,8 @@ const secondarySkills = [
 ]
 
 export default function Skills() {
-  const { ref, hasBeenInView } = useInView()
-
   return (
-    <section id="skills" className="skills" ref={ref}>
+    <section id="skills" className="skills">
       <div className="container">
         <div className="section-header">
           <h2>Skills & Expertise</h2>
@@ -23,7 +20,7 @@ export default function Skills() {
 
         <div className="bento-skills-grid">
           {/* Python / FastAPI - Large card */}
-          <div className={`bento-skill-card bento-large ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0s' }}>
+          <div className={`bento-skill-card bento-large animate-in`} style={{ animationDelay: '0s' }}>
             <div className="bento-skill-icons">
               <div className="bento-skill-icon" style={{ '--skill-color': '#3776ab' }}>
                 <i className="fab fa-python"></i>
@@ -40,7 +37,7 @@ export default function Skills() {
           </div>
 
           {/* React */}
-          <div className={`bento-skill-card bento-tall ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.1s' }}>
+          <div className={`bento-skill-card bento-tall animate-in`} style={{ animationDelay: '0.1s' }}>
             <div className="bento-skill-icons">
               <div className="bento-skill-icon" style={{ '--skill-color': '#61dafb' }}>
                 <i className="fab fa-react"></i>
@@ -54,7 +51,7 @@ export default function Skills() {
           </div>
 
           {/* PyTorch */}
-          <div className={`bento-skill-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.15s' }}>
+          <div className={`bento-skill-card animate-in`} style={{ animationDelay: '0.15s' }}>
             <div className="bento-skill-icon" style={{ '--skill-color': '#ee4c2c' }}>
               <i className="fas fa-fire"></i>
             </div>
@@ -63,7 +60,7 @@ export default function Skills() {
           </div>
 
           {/* DevOps */}
-          <div className={`bento-skill-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.2s' }}>
+          <div className={`bento-skill-card animate-in`} style={{ animationDelay: '0.2s' }}>
             <div className="bento-skill-icon" style={{ '--skill-color': '#2496ed' }}>
               <i className="fab fa-docker"></i>
             </div>
@@ -72,7 +69,7 @@ export default function Skills() {
           </div>
 
           {/* MySQL */}
-          <div className={`bento-skill-card ${hasBeenInView ? 'animate-in' : ''}`} style={{ animationDelay: '0.25s' }}>
+          <div className={`bento-skill-card animate-in`} style={{ animationDelay: '0.25s' }}>
             <div className="bento-skill-icon" style={{ '--skill-color': '#4479a1' }}>
               <i className="fas fa-database"></i>
             </div>
@@ -81,7 +78,7 @@ export default function Skills() {
           </div>
         </div>
 
-        <div className={`secondary-skills ${hasBeenInView ? 'animate-in' : ''}`}>
+        <div className={`secondary-skills animate-in`}>
           <p className="secondary-label">Also experienced with</p>
           <div className="secondary-skills-list">
             {secondarySkills.map((skill) => (

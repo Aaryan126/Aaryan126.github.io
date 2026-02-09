@@ -1,12 +1,8 @@
-import { useInView } from '../hooks/useInView'
-
 export default function Contact() {
-  const { ref, hasBeenInView } = useInView()
-
   return (
-    <section id="contact" className="contact" ref={ref}>
+    <section id="contact" className="contact">
       <div className="container">
-        <div className={`contact-content ${hasBeenInView ? 'animate-in' : ''}`}>
+        <div className="contact-content animate-in">
           <div className="contact-left">
             <h2>Let's Connect</h2>
             <span className="contact-tagline">Open to opportunities, collaborations, and new ideas</span>

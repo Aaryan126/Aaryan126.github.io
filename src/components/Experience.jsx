@@ -1,4 +1,3 @@
-import { useInView } from '../hooks/useInView'
 
 const experiences = [
   {
@@ -31,10 +30,8 @@ const experiences = [
 ]
 
 export default function Experience() {
-  const { ref, hasBeenInView } = useInView()
-
   return (
-    <section id="experience" className="experience" ref={ref}>
+    <section id="experience" className="experience">
       <div className="container">
         <div className="section-header">
           <h2>Work Experience</h2>
@@ -47,8 +44,7 @@ export default function Experience() {
               <div className="timeline-marker"></div>
               <div className="timeline-content">
                 <div
-                  className={`experience-card ${hasBeenInView ? 'animate-in' : ''}`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
+                  className="experience-card animate-in"
                 >
                   <div className="experience-header">
                     <div className="experience-title-row">
