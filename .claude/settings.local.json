@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:github.com)",
       "Bash(dir:*)",
-      "Bash(copy \"C:\\\\Users\\\\aaryan.kandiah\\\\Desktop\\\\AK_logo.png\" \"C:\\\\Users\\\\aaryan.kandiah\\\\Desktop\\\\Aaryan126.github.io\\\\public\\\\favicon.png\")"
+      "Bash(copy \"C:\\\\Users\\\\aaryan.kandiah\\\\Desktop\\\\AK_logo.png\" \"C:\\\\Users\\\\aaryan.kandiah\\\\Desktop\\\\Aaryan126.github.io\\\\public\\\\favicon.png\")",
+      "Bash(npm run build:*)"
     ]
   }
 }
