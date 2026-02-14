@@ -1,14 +1,69 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-transition">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aaryan Kandiah - AI Engineer & Data Scientist</title>
     <meta name="description" content="AI Engineer & Data Scientist passionate about Machine Learning, Agentic AI, and Computer Vision" />
+
+    <!-- Set theme before first paint to prevent flash -->
+    <script>
+      (function() {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <!-- Loading screen styles — inline so they render before any external CSS -->
+    <style>
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+      [data-theme="dark"] #loader {
+        background: #09090b;
+      }
+      #loader.fade-out {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #loader-logo {
+        width: 48px;
+        height: 48px;
+        border: 3px solid #e2e8f0;
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+      [data-theme="dark"] #loader-logo {
+        border-color: #27272a;
+        border-top-color: #a1a1aa;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+
+    <!-- Preconnect to font origins for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   </head>
   <body>
+    <!-- Loading screen — visible immediately, hidden after app is ready -->
+    <div id="loader">
+      <div id="loader-logo"></div>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
