@@ -268,7 +268,7 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
-  background-color: var(--bg-primary);
+  background-color: var(--bg-dark);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -413,10 +413,18 @@ body {
   align-items: center;
   background: var(--bg-dark);
   color: white;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   overflow: hidden;
   padding-top: 60px;
   padding-bottom: 2rem;
+  z-index: 0;
+}
+
+.hero-spacer {
+  height: 100vh;
 }
 
 .hero-container {
@@ -426,6 +434,8 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
+  will-change: filter, transform, opacity;
+  transform-origin: center center;
 }
 
 .hero-content {
@@ -665,7 +675,15 @@ body {
 /* About Section - Bento Grid */
 .about {
   padding: 5rem 0;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .about {
+  background: rgba(12, 12, 14, 0.65);
 }
 
 .bento-grid {
@@ -1018,7 +1036,15 @@ body {
 /* Experience Section */
 .experience {
   padding: 5rem 0;
-  background: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .experience {
+  background: rgba(12, 12, 14, 0.65);
 }
 
 .timeline {
@@ -1180,7 +1206,15 @@ body {
 /* Skills Section */
 .skills {
   padding: 5rem 0;
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .skills {
+  background: rgba(12, 12, 14, 0.65);
 }
 
 /* ==========================================
@@ -1340,7 +1374,15 @@ body {
 /* Projects Section */
 .projects {
   padding: 5rem 0;
-  background: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .projects {
+  background: rgba(12, 12, 14, 0.65);
 }
 
 /* Projects Tabs */
@@ -1573,8 +1615,16 @@ body {
 /* Contact Section */
 .contact {
   padding: 1.75rem 0;
-  background: var(--bg-dark);
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   color: white;
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .contact {
+  background: rgba(12, 12, 14, 0.65);
 }
 
 .contact-content {
