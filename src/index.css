@@ -6,6 +6,12 @@
   transition: none !important;
 }
 
+/* Lenis Smooth Scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
 /* Reset and Base Styles */
 * {
   margin: 0;
@@ -412,8 +418,6 @@ body {
   padding-top: 60px;
   padding-bottom: 2rem;
 }
-
-/* Removed generic gradient blob */
 
 .hero-container {
   max-width: 1300px;

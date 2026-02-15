@@ -1,4 +1,5 @@
 import { useTypewriter } from '../hooks/useTypewriter'
+import { getLenis } from '../hooks/useSmoothScroll'
 
 const roles = ['AI Engineer', 'Data Scientist', 'ML Specialist', 'Problem Solver']
 
@@ -51,7 +52,12 @@ export default function Hero() {
               </a>
               <a href="#projects" className="btn btn-secondary" onClick={(e) => {
                 e.preventDefault()
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                const lenis = getLenis()
+                if (lenis) {
+                  lenis.scrollTo('#projects')
+                } else {
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                }
               }}>
                 <i className="fas fa-eye"></i>
                 View Projects

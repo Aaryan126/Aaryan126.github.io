@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from '../context/ThemeContext'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { getLenis } from '../hooks/useSmoothScroll'
 
 const sections = ['home', 'about', 'experience', 'skills', 'projects', 'contact']
 
@@ -42,9 +43,14 @@ export default function Navbar() {
 
   const handleNavClick = (e, id) => {
     e.preventDefault()
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const lenis = getLenis()
+    if (lenis) {
+      lenis.scrollTo('#' + id)
+    } else {
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
     setIsMenuOpen(false)
   }
