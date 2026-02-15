@@ -1,4 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useScrollReveal } from '../hooks/useScrollReveal'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const personalProjects = [
   {
@@ -79,7 +84,7 @@ const academicProjects = [
   },
 ]
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project }) {
   const [imageError, setImageError] = useState(false)
 
   return (
@@ -87,7 +92,7 @@ function ProjectCard({ project, index }) {
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="project-card animate-in"
+      className="project-card"
       data-title={project.subtitle ? `${project.title} · ${project.subtitle}` : project.title}
     >
       <div className="project-image">
@@ -131,15 +136,67 @@ export default function Projects() {
   const [activeTab, setActiveTab] = useState('personal')
   const projects = activeTab === 'personal' ? personalProjects : academicProjects
 
+  const headerRef = useScrollReveal('fadeUp', { duration: 0.6 })
+  const tabsRef = useScrollReveal('fadeUp', { duration: 0.5, delay: 0.1 })
+
+  // Animate project cards on tab change and initial scroll reveal
+  const galleryRef = useRef(null)
+  const hasRevealedRef = useRef(false)
+
+  useEffect(() => {
+    const el = galleryRef.current
+    if (!el) return
+
+    const cards = el.querySelectorAll('.project-card')
+    if (!cards.length) return
+
+    // If this is the first reveal, use ScrollTrigger
+    if (!hasRevealedRef.current) {
+      const ctx = gsap.context(() => {
+        gsap.fromTo(cards,
+          { opacity: 0, y: 50, scale: 0.92 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 80%',
+              once: true,
+              onEnter: () => { hasRevealedRef.current = true },
+            },
+          }
+        )
+      }, el)
+      return () => ctx.revert()
+    }
+
+    // For tab switches after initial reveal, animate immediately
+    gsap.fromTo(cards,
+      { opacity: 0, y: 30, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: 'power2.out',
+      }
+    )
+  }, [activeTab])
+
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header" ref={headerRef}>
           <h2>Projects</h2>
           <p>A selection of my work</p>
         </div>
 
-        <div className="projects-tabs animate-in">
+        <div className="projects-tabs" ref={tabsRef}>
           <button
             className={`tab-btn ${activeTab === 'personal' ? 'active' : ''}`}
             onClick={() => setActiveTab('personal')}
@@ -158,12 +215,11 @@ export default function Projects() {
           />
         </div>
 
-        <div className="projects-gallery">
-          {projects.map((project, index) => (
+        <div className="projects-gallery" ref={galleryRef}>
+          {projects.map((project) => (
             <ProjectCard
               key={project.title}
               project={project}
-              index={index}
             />
           ))}
         </div>

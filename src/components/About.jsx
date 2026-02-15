@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, LayoutGroup } from 'framer-motion'
 import { useCountUp } from '../hooks/useCountUp'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 // Animation configuration
 const LAYOUT_SPRING = {
@@ -123,6 +124,15 @@ function TileContent({ tile }) {
 
 export default function About() {
   const [tileOrder, setTileOrder] = useState(DEFAULT_ORDER)
+
+  // Scroll reveal refs
+  const headerRef = useScrollReveal('fadeUp', { duration: 0.6 })
+  const gridRef = useScrollReveal('fadeUp', {
+    childSelector: '.bento-tile',
+    stagger: 0.06,
+    duration: 0.6,
+    start: 'top 80%',
+  })
 
   // All drag state in refs for synchronous access
   const dragState = useRef({
@@ -279,12 +289,6 @@ export default function About() {
     }
   }, [handlePointerMove, handlePointerUp])
 
-  // Animation delays for staggered entry
-  const getAnimationDelay = (index) => {
-    const delays = [0, 0.1, 0.15, 0.2, 0.25, 0.28, 0.3, 0.35, 0.4, 0.45, 0.5]
-    return delays[index] || 0.5
-  }
-
   const state = dragState.current
   const isDragging = state.isDragging
   const draggedId = state.draggedId
@@ -293,14 +297,14 @@ export default function About() {
   return (
     <section id="about" className="about">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header" ref={headerRef}>
           <h2>About Me</h2>
           <p>Get to know me better</p>
         </div>
 
         <LayoutGroup>
-          <div className={`bento-grid animate-in ${isDragging ? 'dragging-active' : ''}`}>
-            {tileOrder.map((id, index) => {
+          <div ref={gridRef} className={`bento-grid ${isDragging ? 'dragging-active' : ''}`}>
+            {tileOrder.map((id) => {
               const tile = getTileById(id)
               const isThisDragged = isDragging && draggedId === id
               const isThisHolding = isHolding && !isDragging && draggedId === id
@@ -313,7 +317,6 @@ export default function About() {
                   ref={(el) => { tileRefsMap.current[id] = el }}
                   data-tile-id={id}
                   className={`bento-tile ${tile.className} ${isThisDragged ? 'dragging' : ''} ${isThisHolding ? 'holding' : ''}`}
-                  style={{ animationDelay: `${getAnimationDelay(index)}s` }}
                   onPointerDown={(e) => handlePointerDown(e, id)}
                   transition={LAYOUT_SPRING}
                 >

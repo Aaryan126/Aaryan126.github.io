@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const experiences = [
   {
@@ -30,22 +31,29 @@ const experiences = [
 ]
 
 export default function Experience() {
+  const headerRef = useScrollReveal('fadeUp', { duration: 0.6 })
+  const timelineRef = useScrollReveal('slideLeft', {
+    childSelector: '.timeline-item',
+    stagger: 0.2,
+    duration: 0.8,
+    ease: 'power3.out',
+    start: 'top 80%',
+  })
+
   return (
     <section id="experience" className="experience">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header" ref={headerRef}>
           <h2>Work Experience</h2>
           <p>My professional journey</p>
         </div>
 
-        <div className="timeline">
+        <div className="timeline" ref={timelineRef}>
           {experiences.map((exp, index) => (
             <div key={index} className="timeline-item">
               <div className="timeline-marker"></div>
               <div className="timeline-content">
-                <div
-                  className="experience-card animate-in"
-                >
+                <div className="experience-card">
                   <div className="experience-header">
                     <div className="experience-title-row">
                       <h3>{exp.title}</h3>

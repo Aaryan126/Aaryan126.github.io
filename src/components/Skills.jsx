@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const secondarySkills = [
   'Java',
@@ -10,17 +11,31 @@ const secondarySkills = [
 ]
 
 export default function Skills() {
+  const headerRef = useScrollReveal('fadeUp', { duration: 0.6 })
+  const gridRef = useScrollReveal('clipUp', {
+    childSelector: '.bento-skill-card',
+    stagger: 0.12,
+    duration: 0.8,
+    ease: 'power4.out',
+    start: 'top 80%',
+  })
+  const secondaryRef = useScrollReveal('fadeUp', {
+    duration: 0.6,
+    delay: 0.1,
+    start: 'top 85%',
+  })
+
   return (
     <section id="skills" className="skills">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header" ref={headerRef}>
           <h2>Skills & Expertise</h2>
           <p>My core tech stack</p>
         </div>
 
-        <div className="bento-skills-grid">
+        <div className="bento-skills-grid" ref={gridRef}>
           {/* Python / FastAPI - Large card */}
-          <div className={`bento-skill-card bento-large animate-in`} style={{ animationDelay: '0s' }}>
+          <div className="bento-skill-card bento-large">
             <div className="bento-skill-icons">
               <div className="bento-skill-icon" style={{ '--skill-color': '#3776ab' }}>
                 <i className="fab fa-python"></i>
@@ -37,7 +52,7 @@ export default function Skills() {
           </div>
 
           {/* React */}
-          <div className={`bento-skill-card bento-tall animate-in`} style={{ animationDelay: '0.1s' }}>
+          <div className="bento-skill-card bento-tall">
             <div className="bento-skill-icons">
               <div className="bento-skill-icon" style={{ '--skill-color': '#61dafb' }}>
                 <i className="fab fa-react"></i>
@@ -51,7 +66,7 @@ export default function Skills() {
           </div>
 
           {/* PyTorch */}
-          <div className={`bento-skill-card animate-in`} style={{ animationDelay: '0.15s' }}>
+          <div className="bento-skill-card">
             <div className="bento-skill-icon" style={{ '--skill-color': '#ee4c2c' }}>
               <i className="fas fa-fire"></i>
             </div>
@@ -60,7 +75,7 @@ export default function Skills() {
           </div>
 
           {/* DevOps */}
-          <div className={`bento-skill-card animate-in`} style={{ animationDelay: '0.2s' }}>
+          <div className="bento-skill-card">
             <div className="bento-skill-icon" style={{ '--skill-color': '#2496ed' }}>
               <i className="fab fa-docker"></i>
             </div>
@@ -69,7 +84,7 @@ export default function Skills() {
           </div>
 
           {/* MySQL */}
-          <div className={`bento-skill-card animate-in`} style={{ animationDelay: '0.25s' }}>
+          <div className="bento-skill-card">
             <div className="bento-skill-icon" style={{ '--skill-color': '#4479a1' }}>
               <i className="fas fa-database"></i>
             </div>
@@ -78,7 +93,7 @@ export default function Skills() {
           </div>
         </div>
 
-        <div className={`secondary-skills animate-in`}>
+        <div className="secondary-skills" ref={secondaryRef}>
           <p className="secondary-label">Also experienced with</p>
           <div className="secondary-skills-list">
             {secondarySkills.map((skill) => (
