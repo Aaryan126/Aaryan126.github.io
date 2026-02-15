@@ -700,9 +700,7 @@ body {
   border-radius: 12px;
   border: 1px solid var(--primary-color);
   padding: 1.5rem;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .bento-tile:hover {
@@ -718,11 +716,7 @@ body {
 
 .bento-tile.holding {
   cursor: grab;
-  transform: translateY(15px) scale(1.02);
-}
-
-.bento-tile.holding {
-  transform: scale(1.02);
+  transform: scale(1.02) !important;
 }
 
 .bento-tile.dragging {

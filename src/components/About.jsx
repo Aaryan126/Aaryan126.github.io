@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, LayoutGroup } from 'framer-motion'
 import { useCountUp } from '../hooks/useCountUp'
 import { useScrollReveal } from '../hooks/useScrollReveal'
@@ -125,14 +126,28 @@ function TileContent({ tile }) {
 export default function About() {
   const [tileOrder, setTileOrder] = useState(DEFAULT_ORDER)
 
-  // Scroll reveal refs
+  // Scroll reveal for section header (GSAP — no conflict, it's a plain div)
   const headerRef = useScrollReveal('fadeUp', { duration: 0.6 })
-  const gridRef = useScrollReveal('fadeUp', {
-    childSelector: '.bento-tile',
-    stagger: 0.06,
-    duration: 0.6,
-    start: 'top 80%',
-  })
+
+  // Framer Motion scroll reveal for bento tiles (avoids GSAP/FM conflict)
+  const [tilesRevealed, setTilesRevealed] = useState(false)
+  const gridObserverRef = useRef(null)
+
+  useEffect(() => {
+    const el = gridObserverRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTilesRevealed(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   // All drag state in refs for synchronous access
   const dragState = useRef({
@@ -303,8 +318,8 @@ export default function About() {
         </div>
 
         <LayoutGroup>
-          <div ref={gridRef} className={`bento-grid ${isDragging ? 'dragging-active' : ''}`}>
-            {tileOrder.map((id) => {
+          <div ref={gridObserverRef} className={`bento-grid ${isDragging ? 'dragging-active' : ''}`}>
+            {tileOrder.map((id, index) => {
               const tile = getTileById(id)
               const isThisDragged = isDragging && draggedId === id
               const isThisHolding = isHolding && !isDragging && draggedId === id
@@ -317,8 +332,14 @@ export default function About() {
                   ref={(el) => { tileRefsMap.current[id] = el }}
                   data-tile-id={id}
                   className={`bento-tile ${tile.className} ${isThisDragged ? 'dragging' : ''} ${isThisHolding ? 'holding' : ''}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={tilesRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   onPointerDown={(e) => handlePointerDown(e, id)}
-                  transition={LAYOUT_SPRING}
+                  transition={{
+                    opacity: { duration: 0.5, delay: tilesRevealed ? index * 0.06 : 0 },
+                    y: { duration: 0.5, delay: tilesRevealed ? index * 0.06 : 0 },
+                    layout: LAYOUT_SPRING,
+                  }}
                 >
                   <TileContent tile={tile} />
                 </motion.div>
@@ -326,26 +347,28 @@ export default function About() {
             })}
           </div>
 
-          {/* Floating dragged tile */}
-          {isDragging && draggedId && dragPosition && (
-            <motion.div
-              className={`floating-tile ${getTileById(draggedId)?.className || ''}`}
-              initial={{ scale: 1 }}
-              animate={{ scale: 1.05 }}
-              style={{
-                position: 'fixed',
-                left: dragPosition.x,
-                top: dragPosition.y,
-                width: state.width,
-                height: state.height,
-                zIndex: 1000,
-                pointerEvents: 'none',
-              }}
-            >
-              <TileContent tile={getTileById(draggedId)} />
-            </motion.div>
-          )}
         </LayoutGroup>
+
+        {/* Floating dragged tile — portaled to body to avoid backdrop-filter containing block */}
+        {isDragging && draggedId && dragPosition && createPortal(
+          <motion.div
+            className={`floating-tile ${getTileById(draggedId)?.className || ''}`}
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.05 }}
+            style={{
+              position: 'fixed',
+              left: dragPosition.x,
+              top: dragPosition.y,
+              width: state.width,
+              height: state.height,
+              zIndex: 1000,
+              pointerEvents: 'none',
+            }}
+          >
+            <TileContent tile={getTileById(draggedId)} />
+          </motion.div>,
+          document.body
+        )}
       </div>
     </section>
   )
