@@ -45,9 +45,9 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       // Blur and fade the hero content as user scrolls away
       gsap.to(content, {
-        filter: 'blur(16px)',
-        scale: 1.08,
-        opacity: 0.7,
+        filter: 'blur(8px)',
+        scale: 1.03,
+        opacity: 0.95,
         ease: 'none',
         scrollTrigger: {
           trigger: hero,

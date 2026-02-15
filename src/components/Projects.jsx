@@ -15,6 +15,7 @@ const personalProjects = [
     link: 'https://chromewebstore.google.com/detail/alphadrop/hbmfofpedlbllenmpnebikhadgkplobj',
     linkLabel: 'Chrome Web Store',
     gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+    badge: '100+ Users',
   },
   {
     title: 'Data Cleaning and Exploratory Data Analysis',
@@ -109,6 +110,12 @@ function ProjectCard({ project }) {
           >
             <i className="fa-solid fa-code"></i>
           </div>
+        )}
+        {project.badge && (
+          <span className="project-badge">
+            <i className="fa-solid fa-users"></i>
+            {project.badge}
+          </span>
         )}
       </div>
 
