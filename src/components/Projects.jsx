@@ -41,15 +41,6 @@ const personalProjects = [
 
 const academicProjects = [
   {
-    title: 'US Traffic Accident Analysis',
-    image: '/projects/traffic-analysis.png',
-    description: 'ML models for predicting accident location and severity using Random Forest classification.',
-    tech: ['Python', 'Scikit-Learn', 'Pandas'],
-    link: 'https://github.com/Aaryan126/AccidentSeverityProject-USA-Analysis',
-    linkLabel: 'View Project',
-    gradient: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-  },
-  {
     title: 'Chest X-Ray Classification',
     image: '/projects/CXR_Classification.png',
     description: 'Multi-label deep learning model to detect multiple thoracic abnormalities in chest X-rays, with Explainable AI (Grad-CAM) for clinical interpretability, achieved AUC Score of 0.845.',
@@ -75,15 +66,6 @@ const academicProjects = [
     link: 'https://github.com/Aaryan126/DimensionalityReduction-for-BrainTumorClassification',
     linkLabel: 'View Project',
     gradient: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
-  },
-  {
-    title: 'Semantic Book Recommendation',
-    image: '/projects/book-recommendation.png',
-    description: 'LLM-powered recommendation system using OpenAI embeddings and vector storage.',
-    tech: ['Python', 'LangChain', 'OpenAI'],
-    link: 'https://github.com/Aaryan126/Semantic-Book-Recommendation',
-    linkLabel: 'View Project',
-    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
   },
 ]
 
