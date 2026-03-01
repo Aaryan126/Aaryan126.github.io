@@ -7,6 +7,17 @@ gsap.registerPlugin(ScrollTrigger)
 
 const personalProjects = [
   {
+    title: 'Research Orchestration System',
+    subtitle: 'Multi-Agent Research Platform',
+    image: '/projects/research-orchestration.png',
+    description: 'Multi-agent system that automates literature reviews and claim verification across academic papers. Three specialized agents search, synthesize, review, and cross-verify findings using Elasticsearch and ES|QL.',
+    tech: ['Elastic Agent Builder', 'Elasticsearch', 'ES|QL', 'FastAPI', 'React', 'MCP'],
+    link: 'https://github.com/Aaryan126/Research_Agent',
+    linkLabel: 'View Project',
+    videoLink: 'https://www.youtube.com/watch?v=KatuxMUNVjU',
+    gradient: 'linear-gradient(135deg, #00bfb3 0%, #1b6b6b 100%)',
+  },
+  {
     title: 'AlphaDrop',
     subtitle: 'Chrome Extension',
     image: '/projects/alphadrop.png',
@@ -15,16 +26,7 @@ const personalProjects = [
     link: 'https://chromewebstore.google.com/detail/alphadrop/hbmfofpedlbllenmpnebikhadgkplobj',
     linkLabel: 'Chrome Web Store',
     gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-    badge: '100+ Users',
-  },
-  {
-    title: 'Data Cleaning and Exploratory Data Analysis',
-    image: '/projects/data-cleaning.png',
-    description: 'Comprehensive data cleaning and exploratory analysis of layoffs dataset.',
-    tech: ['MySQL', 'Data Cleaning', 'Exploratory Data Analysis'],
-    link: 'https://github.com/Aaryan126/Data-cleaning-Exploratory-Data-Analysis-MySQL',
-    linkLabel: 'View Project',
-    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+    badge: '150+ Users',
   },
   {
     title: 'Spotify Streaming History Visualizer',
@@ -129,9 +131,33 @@ function ProjectCard({ project }) {
               <span key={tech}>{tech}</span>
             ))}
           </div>
-          <div className="project-cta">
-            {project.linkLabel}
-            <i className="fa-solid fa-arrow-right"></i>
+          <div className="project-cta-row">
+            <div className="project-cta">
+              {project.linkLabel}
+              <i className="fa-solid fa-arrow-right"></i>
+            </div>
+            {project.videoLink && (
+              <span
+                className="project-video-link"
+                role="link"
+                tabIndex={0}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(project.videoLink, '_blank', 'noopener,noreferrer')
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    window.open(project.videoLink, '_blank', 'noopener,noreferrer')
+                  }
+                }}
+              >
+                <i className="fa-brands fa-youtube"></i>
+                Demo
+              </span>
+            )}
           </div>
         </div>
       </div>

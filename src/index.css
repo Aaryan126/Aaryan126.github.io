@@ -1634,7 +1634,15 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* CTA */
+/* CTA Row */
+.project-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .project-cta {
   display: inline-flex;
   align-items: center;
@@ -1642,8 +1650,6 @@ body {
   color: #ffffff;
   font-size: 0.85rem;
   font-weight: 600;
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .project-cta i {
@@ -1653,6 +1659,29 @@ body {
 
 .project-card:hover .project-cta i {
   transform: translateX(4px);
+}
+
+/* Video Link */
+.project-video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.project-video-link:hover {
+  color: #ff0000;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.project-video-link i {
+  font-size: 0.9rem;
 }
 
 /* Always show title at bottom when not hovered */
