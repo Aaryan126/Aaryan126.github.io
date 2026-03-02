@@ -2,8 +2,6 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTypewriter } from '../hooks/useTypewriter'
-import { getLenis } from '../hooks/useSmoothScroll'
-
 gsap.registerPlugin(ScrollTrigger)
 
 const roles = ['AI Engineer', 'Data Scientist', 'ML Specialist', 'Problem Solver']
@@ -84,12 +82,7 @@ export default function Hero() {
                 </a>
                 <a href="#projects" className="btn btn-secondary" onClick={(e) => {
                   e.preventDefault()
-                  const lenis = getLenis()
-                  if (lenis) {
-                    lenis.scrollTo('#projects')
-                  } else {
-                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
-                  }
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
                 }}>
                   <i className="fas fa-eye"></i>
                   View Projects
