@@ -33,20 +33,18 @@ function WireframeIcosahedron() {
       <mesh renderOrder={0}>
         <icosahedronGeometry args={[1.49, 0]} />
         <meshPhysicalMaterial
-          color="#1a3a6a"
-          metalness={0.1}
-          roughness={0.05}
+          color="#8ab4f8"
+          metalness={0.95}
+          roughness={0.08}
           transparent
-          opacity={0.35}
-          transmission={0.6}
-          thickness={1.5}
-          ior={1.8}
-          reflectivity={0.9}
+          opacity={0.5}
           clearcoat={1}
-          clearcoatRoughness={0.05}
-          side={THREE.FrontSide}
-          depthWrite
-          envMapIntensity={1.5}
+          clearcoatRoughness={0.02}
+          reflectivity={1}
+          specularIntensity={0}
+          side={THREE.DoubleSide}
+          depthWrite={false}
+          envMapIntensity={3}
         />
       </mesh>
 
@@ -76,18 +74,6 @@ function WireframeIcosahedron() {
         />
       </mesh>
 
-      {/* Inner core glow */}
-      <mesh renderOrder={0}>
-        <sphereGeometry args={[0.6, 16, 16]} />
-        <meshBasicMaterial
-          color="#1e40af"
-          transparent
-          opacity={0.08}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
-      </mesh>
-
       {/* Vertex dots */}
       <VertexDots />
     </group>
@@ -113,18 +99,29 @@ function VertexDots() {
   return (
     <group>
       {vertices.map((v, i) => (
-        <mesh key={i} position={v} renderOrder={3}>
-          <sphereGeometry args={[0.045, 8, 8]} />
+        <mesh key={i} position={v} renderOrder={10}>
+          <sphereGeometry args={[0.035, 16, 16]} />
           <meshBasicMaterial
-            color="#93c5fd"
-            transparent
-            opacity={0.95}
+            color="#888888"
             depthTest={false}
           />
         </mesh>
       ))}
     </group>
   )
+}
+
+function OrbitingLight() {
+  const lightRef = useRef()
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime()
+    if (lightRef.current) {
+      lightRef.current.position.x = Math.cos(t * 0.4) * 5
+      lightRef.current.position.y = Math.sin(t * 0.3) * 3
+      lightRef.current.position.z = Math.sin(t * 0.4) * 5
+    }
+  })
+  return <pointLight ref={lightRef} intensity={2} color="#ffffff" distance={15} />
 }
 
 function Scene() {
@@ -139,6 +136,8 @@ function Scene() {
       <pointLight position={[0, 3, -5]} intensity={0.8} color="#60a5fa" />
       {/* Bottom accent */}
       <pointLight position={[0, -5, 2]} intensity={0.3} color="#1d4ed8" />
+      {/* Orbiting white light */}
+      <OrbitingLight />
 
       <Environment preset="night" background={false} />
 
