@@ -8,12 +8,12 @@ const experiences = [
     year: '2025',
     location: 'Singapore',
     description: [
-      'Developed comprehensive AI HVAC chatbot integrating OpenAI, Gemini, and Google Maps APIs with RAG using company documentation, agentic tools for data auto-completion, document synthesis, and deep thinking mode.',
-      'Debugged critical data communication issues across Java backend and React/TypeScript frontend systems, adding chatbot streaming, Mermaid visualizations, and real-time query response capabilities.',
-      'Built Python/Flask client data collection form to streamline site assessment processes and presented AI dashboard to clients showcasing interactive waterfall layout and chatbot capabilities.',
-      'Delivered full-stack AI solutions using Python (FastAPI, Flask), Java, TypeScript, React, and OpenAI/Gemini APIs, optimizing multi-platform integrations.',
+      'Built a full-stack AI Agentic Platform for HVAC optimization serving 7 clients, increasing GTM team productivity by ~25%.',
+      'Developed RAG-based AI agent with VectorDB, multi-modal outputs (optimization recommendations, Mermaid diagrams, Google Maps intelligence), and role-based reasoning.',
+      'Shipped features across Java backend and React/TypeScript frontend processing ~1M data points daily per client across 300+ sensor streams.',
+      'Delivered 2 on-premise AI deployments with local LLM hosting, and built an internal monitoring platform reducing incident response time by 40%.',
     ],
-    skills: ['Agent Orchestration', 'Python', 'FastAPI', 'React', 'Google Cloud'],
+    skills: ['Agentic AI', 'RAG', 'Python', 'FastAPI', 'React', 'TypeScript', 'Java', 'Google Cloud'],
   },
   {
     title: 'Technology Audit Services Intern',

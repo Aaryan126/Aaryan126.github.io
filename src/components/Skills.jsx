@@ -8,6 +8,8 @@ const secondarySkills = [
   'OpenCV',
   'Matplotlib',
   'Pandas',
+  'LangChain',
+  'Vector DB',
 ]
 
 export default function Skills() {

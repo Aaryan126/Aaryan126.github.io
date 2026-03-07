@@ -2,38 +2,17 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTypewriter } from '../hooks/useTypewriter'
+import { useScrollProgress } from '../hooks/useScrollProgress'
+import Icosahedron from './Icosahedron'
 gsap.registerPlugin(ScrollTrigger)
 
 const roles = ['AI Engineer', 'Data Scientist', 'ML Specialist', 'Problem Solver']
-
-const CodeBlock = () => (
-  <>
-    <span className="code-keyword">import</span> torch.nn <span className="code-keyword">as</span> nn{'\n'}
-{'\n'}
-<span className="code-keyword">class</span> <span className="code-class">NeuralNetwork</span>(nn.Module):{'\n'}
-    <span className="code-keyword">def</span> <span className="code-function">__init__</span>(<span className="code-param">self</span>):{'\n'}
-        <span className="code-builtin">super</span>().__init__(){'\n'}
-        <span className="code-param">self</span>.layers = nn.Sequential({'\n'}
-            nn.Linear(<span className="code-number">784</span>, <span className="code-number">256</span>),{'\n'}
-            nn.ReLU(),{'\n'}
-            nn.Dropout(<span className="code-number">0.2</span>),{'\n'}
-            nn.Linear(<span className="code-number">256</span>, <span className="code-number">128</span>),{'\n'}
-            nn.ReLU(),{'\n'}
-            nn.Linear(<span className="code-number">128</span>, <span className="code-number">10</span>){'\n'}
-        ){'\n'}
-{'\n'}
-    <span className="code-keyword">def</span> <span className="code-function">forward</span>(<span className="code-param">self</span>, x):{'\n'}
-        <span className="code-keyword">return</span> <span className="code-param">self</span>.layers(x){'\n'}
-{'\n'}
-model = <span className="code-class">NeuralNetwork</span>(){'\n'}
-<span className="code-builtin">print</span>(model)
-  </>
-)
 
 export default function Hero() {
   const typewriterText = useTypewriter(roles, 100, 50, 2000)
   const heroRef = useRef(null)
   const contentRef = useRef(null)
+  const scrollProgress = useScrollProgress()
 
   useEffect(() => {
     const hero = heroRef.current
@@ -89,18 +68,8 @@ export default function Hero() {
                 </a>
               </div>
             </div>
-            <div className="hero-code">
-              <div className="code-window">
-                <div className="code-header">
-                  <div className="code-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <span className="code-filename">model.py</span>
-                </div>
-                <pre className="code-body"><code><CodeBlock /></code></pre>
-              </div>
+            <div className="hero-visual">
+              <Icosahedron scrollProgress={scrollProgress} />
             </div>
           </div>
         </div>
