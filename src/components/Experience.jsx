@@ -33,7 +33,7 @@ const experiences = [
 export default function Experience() {
   const headerRef = useScrollReveal('fadeUp', { duration: 0.6 })
   const timelineRef = useScrollReveal('slideLeft', {
-    childSelector: '.timeline-item',
+    childSelector: '.alt-timeline-item',
     stagger: 0.2,
     duration: 0.8,
     ease: 'power3.out',
@@ -48,33 +48,30 @@ export default function Experience() {
           <p>My professional journey</p>
         </div>
 
-        <div className="timeline" ref={timelineRef}>
+        <div className="alt-timeline" ref={timelineRef}>
           {experiences.map((exp, index) => (
-            <div key={index} className="timeline-item">
-              <div className="timeline-marker"></div>
-              <div className="timeline-content">
-                <div className="experience-card">
-                  <div className="experience-header">
-                    <div className="experience-title-row">
-                      <h3>{exp.title}</h3>
-                      <span className="experience-period">{exp.period}</span>
-                    </div>
-                    <div className="experience-meta">
-                      <span className="experience-company">{exp.company}</span>
-                      <span className="experience-divider">·</span>
-                      <span className="experience-location">{exp.location}</span>
-                    </div>
+            <div key={index} className={`alt-timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+              <div className="alt-timeline-marker">
+                <span className="alt-timeline-year">{exp.year}</span>
+              </div>
+              <div className="alt-timeline-card">
+                <div className="alt-card-header">
+                  <h3>{exp.title}</h3>
+                  <div className="experience-meta">
+                    <span className="experience-company">{exp.company}</span>
+                    <span className="experience-divider">·</span>
+                    <span className="experience-location">{exp.location}</span>
                   </div>
-                  <div className="experience-description">
-                    {exp.description.map((item, i) => (
-                      <p key={i}>{item}</p>
-                    ))}
-                  </div>
-                  <div className="experience-skills">
-                    {exp.skills.map((skill) => (
-                      <span key={skill} className="skill-tag">{skill}</span>
-                    ))}
-                  </div>
+                </div>
+                <div className="alt-card-body">
+                  {exp.description.map((item, i) => (
+                    <p key={i}>{item}</p>
+                  ))}
+                </div>
+                <div className="experience-skills">
+                  {exp.skills.map((skill) => (
+                    <span key={skill} className="skill-tag">{skill}</span>
+                  ))}
                 </div>
               </div>
             </div>
