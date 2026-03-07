@@ -494,7 +494,7 @@ body {
   align-items: center;
   width: 100%;
   aspect-ratio: 1;
-  max-width: 450px;
+  max-width: 500px;
 }
 
 .icosahedron-canvas {

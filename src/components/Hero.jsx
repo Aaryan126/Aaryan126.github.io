@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTypewriter } from '../hooks/useTypewriter'
-import { useScrollProgress } from '../hooks/useScrollProgress'
 import Icosahedron from './Icosahedron'
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,7 +11,6 @@ export default function Hero() {
   const typewriterText = useTypewriter(roles, 100, 50, 2000)
   const heroRef = useRef(null)
   const contentRef = useRef(null)
-  const scrollProgress = useScrollProgress()
 
   useEffect(() => {
     const hero = heroRef.current
@@ -69,7 +67,7 @@ export default function Hero() {
               </div>
             </div>
             <div className="hero-visual">
-              <Icosahedron scrollProgress={scrollProgress} />
+              <Icosahedron />
             </div>
           </div>
         </div>
