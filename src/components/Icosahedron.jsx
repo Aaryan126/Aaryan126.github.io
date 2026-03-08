@@ -1,160 +1,276 @@
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, useEffect, useCallback } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Float, Environment } from '@react-three/drei'
-import { EffectComposer, Bloom } from '@react-three/postprocessing'
-import { BlendFunction } from 'postprocessing'
+import { Float } from '@react-three/drei'
 import * as THREE from 'three'
 
-function WireframeIcosahedron() {
-  const groupRef = useRef()
-  const frontWireRef = useRef()
-  const { pointer } = useThree()
-  const targetRotation = useRef({ x: 0, y: 0 })
+const RADIUS = 1.2
+const D = 2.0
+const RES_THETA = 60
+const RES_PHI = 30
+const RES_PSI = 15
 
-  useFrame(({ clock }) => {
-    if (!groupRef.current) return
-    const t = clock.getElapsedTime()
+function stereoProject(x, y, z, w) {
+  const denom = 1 - w / D
+  const scale = 1 / Math.max(denom, 0.05)
+  return [x * scale, y * scale, z * scale]
+}
 
-    // Smooth mouse follow
-    targetRotation.current.x += (pointer.y * 0.4 - targetRotation.current.x) * 0.05
-    targetRotation.current.y += (pointer.x * 0.4 - targetRotation.current.y) * 0.05
+function rotate4D(p, angle, plane) {
+  const c = Math.cos(angle)
+  const s = Math.sin(angle)
+  const [x, y, z, w] = p
+  switch (plane) {
+    case 'xw': return [c * x + s * w, y, z, -s * x + c * w]
+    case 'yw': return [x, c * y + s * w, z, -s * y + c * w]
+    case 'zw': return [x, y, c * z + s * w, -s * z + c * w]
+    default: return p
+  }
+}
 
-    groupRef.current.rotation.x = t * 0.05 + targetRotation.current.x
-    groupRef.current.rotation.y = t * 0.15 + targetRotation.current.y
+function generateGridLines() {
+  const lines = []
 
-    // Pulsing
-    const pulse = 0.85 + Math.sin(t * 1.5) * 0.15
-    if (frontWireRef.current) frontWireRef.current.material.opacity = pulse
+  for (let pi = 1; pi < RES_PSI; pi++) {
+    const psi = (pi / RES_PSI) * Math.PI
+    for (let phiI = 1; phiI < RES_PHI; phiI++) {
+      const phi = (phiI / RES_PHI) * Math.PI
+      const pts = []
+      for (let ti = 0; ti <= RES_THETA; ti++) {
+        const theta = (ti / RES_THETA) * Math.PI * 2
+        pts.push([
+          RADIUS * Math.sin(psi) * Math.sin(phi) * Math.cos(theta),
+          RADIUS * Math.sin(psi) * Math.sin(phi) * Math.sin(theta),
+          RADIUS * Math.sin(psi) * Math.cos(phi),
+          RADIUS * Math.cos(psi),
+        ])
+      }
+      lines.push(pts)
+    }
+  }
+
+  for (let pi = 1; pi < RES_PSI; pi++) {
+    const psi = (pi / RES_PSI) * Math.PI
+    for (let ti = 0; ti < RES_THETA; ti += 4) {
+      const theta = (ti / RES_THETA) * Math.PI * 2
+      const pts = []
+      for (let phiI = 0; phiI <= RES_PHI; phiI++) {
+        const phi = (phiI / RES_PHI) * Math.PI
+        pts.push([
+          RADIUS * Math.sin(psi) * Math.sin(phi) * Math.cos(theta),
+          RADIUS * Math.sin(psi) * Math.sin(phi) * Math.sin(theta),
+          RADIUS * Math.sin(psi) * Math.cos(phi),
+          RADIUS * Math.cos(psi),
+        ])
+      }
+      lines.push(pts)
+    }
+  }
+
+  return lines
+}
+
+function generatePoints(count) {
+  const points = []
+  for (let i = 0; i < count; i++) {
+    const psi = Math.acos(1 - 2 * Math.random())
+    const phi = Math.acos(1 - 2 * Math.random())
+    const theta = Math.random() * Math.PI * 2
+    points.push([
+      RADIUS * Math.sin(psi) * Math.sin(phi) * Math.cos(theta),
+      RADIUS * Math.sin(psi) * Math.sin(phi) * Math.sin(theta),
+      RADIUS * Math.sin(psi) * Math.cos(phi),
+      RADIUS * Math.cos(psi),
+    ])
+  }
+  return points
+}
+
+function wToColor(w) {
+  const t = (w / RADIUS + 1) / 2
+  const r = 0.15 + t * 0.15
+  const g = 0.4 + t * 0.4
+  const b = 0.85 + t * 0.15
+  return [r, g, b]
+}
+
+function HypersphereLines() {
+  const linesData = useMemo(() => generateGridLines(), [])
+  const timeRef = useRef(0)
+
+  const geometries = useMemo(() => {
+    return linesData.map((line) => {
+      const geo = new THREE.BufferGeometry()
+      const positions = new Float32Array(line.length * 3)
+      const colors = new Float32Array(line.length * 3)
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+      geo.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+      return { geo, count: line.length }
+    })
+  }, [linesData])
+
+  useFrame((_, delta) => {
+    timeRef.current += delta
+    const t = timeRef.current
+    linesData.forEach((line, li) => {
+      const { geo } = geometries[li]
+      const pos = geo.attributes.position.array
+      const col = geo.attributes.color.array
+
+      for (let j = 0; j < line.length; j++) {
+        let p = [...line[j]]
+        p = rotate4D(p, t * 0.2, 'xw')
+        p = rotate4D(p, t * 0.15, 'yw')
+        p = rotate4D(p, t * 0.1, 'zw')
+
+        const w = p[3]
+        const [px, py, pz] = stereoProject(p[0], p[1], p[2], w)
+        pos[j * 3] = px
+        pos[j * 3 + 1] = py
+        pos[j * 3 + 2] = pz
+
+        const [cr, cg, cb] = wToColor(w)
+        col[j * 3] = cr
+        col[j * 3 + 1] = cg
+        col[j * 3 + 2] = cb
+      }
+
+      geo.attributes.position.needsUpdate = true
+      geo.attributes.color.needsUpdate = true
+    })
   })
 
   return (
-    <group ref={groupRef}>
-      {/* Solid front faces — lit shading for depth and realism */}
-      <mesh renderOrder={0}>
-        <icosahedronGeometry args={[1.49, 0]} />
-        <meshPhysicalMaterial
-          color="#8ab4f8"
-          metalness={0.95}
-          roughness={0.08}
-          transparent
-          opacity={0.5}
-          clearcoat={1}
-          clearcoatRoughness={0.02}
-          reflectivity={1}
-          specularIntensity={0}
-          side={THREE.DoubleSide}
-          depthWrite={false}
-          envMapIntensity={3}
-        />
-      </mesh>
-
-      {/* Wireframe — single pass, back edges dimmed by solid faces */}
-      <mesh renderOrder={2} ref={frontWireRef}>
-        <icosahedronGeometry args={[1.5, 0]} />
-        <meshBasicMaterial
-          color="#3b82f6"
-          wireframe
-          transparent
-          opacity={0.9}
-          side={THREE.DoubleSide}
-          depthTest={false}
-        />
-      </mesh>
-
-      {/* Outer glow shell */}
-      <mesh renderOrder={0}>
-        <icosahedronGeometry args={[1.58, 0]} />
-        <meshBasicMaterial
-          color="#3b82f6"
-          transparent
-          opacity={0.03}
-          side={THREE.BackSide}
-          depthWrite={false}
-          blending={THREE.AdditiveBlending}
-        />
-      </mesh>
-
-      {/* Vertex dots */}
-      <VertexDots />
-    </group>
-  )
-}
-
-function VertexDots() {
-  const geo = useMemo(() => new THREE.IcosahedronGeometry(1.5, 0), [])
-  const vertices = useMemo(() => {
-    const pos = geo.attributes.position
-    const verts = []
-    const seen = new Set()
-    for (let i = 0; i < pos.count; i++) {
-      const key = `${pos.getX(i).toFixed(3)},${pos.getY(i).toFixed(3)},${pos.getZ(i).toFixed(3)}`
-      if (!seen.has(key)) {
-        seen.add(key)
-        verts.push(new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)))
-      }
-    }
-    return verts
-  }, [geo])
-
-  return (
     <group>
-      {vertices.map((v, i) => (
-        <mesh key={i} position={v} renderOrder={10}>
-          <sphereGeometry args={[0.035, 16, 16]} />
-          <meshBasicMaterial
-            color="#888888"
+      {geometries.map(({ geo }, i) => (
+        <line key={i} geometry={geo} renderOrder={2}>
+          <lineBasicMaterial
+            vertexColors
+            transparent
+            opacity={0.5}
             depthTest={false}
           />
-        </mesh>
+        </line>
       ))}
     </group>
   )
 }
 
-function OrbitingLight() {
-  const lightRef = useRef()
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime()
-    if (lightRef.current) {
-      lightRef.current.position.x = Math.cos(t * 0.4) * 5
-      lightRef.current.position.y = Math.sin(t * 0.3) * 3
-      lightRef.current.position.z = Math.sin(t * 0.4) * 5
+function HyperspherePoints() {
+  const points4D = useMemo(() => generatePoints(2000), [])
+  const timeRef = useRef(0)
+
+  const geometry = useMemo(() => {
+    const geo = new THREE.BufferGeometry()
+    const positions = new Float32Array(points4D.length * 3)
+    const colors = new Float32Array(points4D.length * 3)
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+    return geo
+  }, [points4D])
+
+  useFrame((_, delta) => {
+    timeRef.current += delta
+    const t = timeRef.current
+    const pos = geometry.attributes.position.array
+    const col = geometry.attributes.color.array
+
+    for (let i = 0; i < points4D.length; i++) {
+      let p = [...points4D[i]]
+      p = rotate4D(p, t * 0.2, 'xw')
+      p = rotate4D(p, t * 0.15, 'yw')
+      p = rotate4D(p, t * 0.1, 'zw')
+
+      const w = p[3]
+      const [px, py, pz] = stereoProject(p[0], p[1], p[2], w)
+      pos[i * 3] = px
+      pos[i * 3 + 1] = py
+      pos[i * 3 + 2] = pz
+
+      const [cr, cg, cb] = wToColor(w)
+      col[i * 3] = cr
+      col[i * 3 + 1] = cg
+      col[i * 3 + 2] = cb
     }
+
+    geometry.attributes.position.needsUpdate = true
+    geometry.attributes.color.needsUpdate = true
   })
-  return <pointLight ref={lightRef} intensity={2} color="#ffffff" distance={15} />
+
+  return (
+    <points geometry={geometry} renderOrder={3}>
+      <pointsMaterial
+        size={0.02}
+        vertexColors
+        transparent
+        opacity={0.8}
+        depthTest={false}
+        sizeAttenuation
+      />
+    </points>
+  )
+}
+
+function HypersphereShape() {
+  const groupRef = useRef()
+  const isDragging = useRef(false)
+  const lastMouse = useRef({ x: 0, y: 0 })
+  const dragRotation = useRef({ x: Math.PI / 2, y: 0 })
+  const { gl } = useThree()
+
+  const onPointerDown = useCallback((e) => {
+    isDragging.current = true
+    lastMouse.current = { x: e.clientX, y: e.clientY }
+    gl.domElement.style.cursor = 'grabbing'
+  }, [gl])
+
+  const onPointerUp = useCallback(() => {
+    isDragging.current = false
+    gl.domElement.style.cursor = 'grab'
+  }, [gl])
+
+  const onPointerMove = useCallback((e) => {
+    if (!isDragging.current) return
+    const dx = e.clientX - lastMouse.current.x
+    const dy = e.clientY - lastMouse.current.y
+    dragRotation.current.y += dx * 0.005
+    dragRotation.current.x += dy * 0.005
+    lastMouse.current = { x: e.clientX, y: e.clientY }
+  }, [])
+
+  useEffect(() => {
+    const el = gl.domElement
+    el.style.cursor = 'grab'
+    el.addEventListener('pointerdown', onPointerDown)
+    el.addEventListener('pointerup', onPointerUp)
+    el.addEventListener('pointermove', onPointerMove)
+    el.addEventListener('pointerleave', onPointerUp)
+    return () => {
+      el.removeEventListener('pointerdown', onPointerDown)
+      el.removeEventListener('pointerup', onPointerUp)
+      el.removeEventListener('pointermove', onPointerMove)
+      el.removeEventListener('pointerleave', onPointerUp)
+    }
+  }, [gl, onPointerDown, onPointerUp, onPointerMove])
+
+  useFrame(() => {
+    if (!groupRef.current) return
+    groupRef.current.rotation.x = dragRotation.current.x
+    groupRef.current.rotation.y = dragRotation.current.y
+  })
+
+  return (
+    <group ref={groupRef}>
+      <HypersphereLines />
+      <HyperspherePoints />
+    </group>
+  )
 }
 
 function Scene() {
   return (
-    <>
-      <ambientLight intensity={0.08} />
-      {/* Key light — strong top-right */}
-      <directionalLight position={[4, 4, 5]} intensity={1.5} color="#ffffff" />
-      {/* Fill light — softer blue from left */}
-      <directionalLight position={[-5, -1, 3]} intensity={0.5} color="#3b82f6" />
-      {/* Rim light — behind for edge highlight */}
-      <pointLight position={[0, 3, -5]} intensity={0.8} color="#60a5fa" />
-      {/* Bottom accent */}
-      <pointLight position={[0, -5, 2]} intensity={0.3} color="#1d4ed8" />
-      {/* Orbiting white light */}
-      <OrbitingLight />
-
-      <Environment preset="night" background={false} />
-
-      <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
-        <WireframeIcosahedron />
-      </Float>
-
-      <EffectComposer multisampling={0}>
-        <Bloom
-          luminanceThreshold={0.12}
-          luminanceSmoothing={0.9}
-          intensity={1.3}
-          radius={0.85}
-          blendFunction={BlendFunction.ADD}
-        />
-      </EffectComposer>
-    </>
+    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
+      <HypersphereShape />
+    </Float>
   )
 }
 
