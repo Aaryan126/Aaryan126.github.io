@@ -483,6 +483,7 @@ body {
 
 .hero-description {
   font-size: 1rem;
+  font-weight: 300;
   line-height: 1.7;
   margin-bottom: 2rem;
   color: rgba(255, 255, 255, 0.5);
@@ -956,6 +957,21 @@ body {
 
 .bento-facts {
   grid-column: span 4;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-facts::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(59, 130, 246, 0.22);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+[data-theme="dark"] .bento-facts::before {
+  background: rgba(59, 130, 246, 0.28);
 }
 
 .bento-current {

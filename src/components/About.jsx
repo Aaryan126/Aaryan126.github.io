@@ -176,9 +176,9 @@ function TileContent({ tile }) {
     case 'facts':
       return (
         <>
-          <div className="fact-item"><span className="fact-label">Location</span><span className="fact-value">Singapore</span></div>
-          <div className="fact-item"><span className="fact-label">University</span><span className="fact-value">NTU</span></div>
-          <div className="fact-item"><span className="fact-label">Graduated</span><span className="fact-value">Dec 2025</span></div>
+          <div className="fact-item"><span className="fact-label">Postgraduate Education</span><span className="fact-value">NUS</span></div>
+          <div className="fact-item"><span className="fact-label">University</span><span className="fact-value">National University of Singapore</span></div>
+          <div className="fact-item"><span className="fact-label">Commencing</span><span className="fact-value">Aug 2026</span></div>
         </>
       )
     case 'current':
