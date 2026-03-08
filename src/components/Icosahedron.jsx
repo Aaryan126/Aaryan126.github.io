@@ -146,7 +146,7 @@ function HypersphereLines() {
           <lineBasicMaterial
             vertexColors
             transparent
-            opacity={0.5}
+            opacity={0.7}
             depthTest={false}
           />
         </line>
@@ -278,6 +278,7 @@ export default function Icosahedron() {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 45 }}
+      dpr={[1, 2]}
       gl={{ antialias: true, alpha: true, premultipliedAlpha: false }}
       onCreated={({ gl, scene }) => {
         gl.setClearColor(0x000000, 0)
