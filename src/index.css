@@ -1942,7 +1942,9 @@ body {
     right: 1.5rem;
     top: 100%;
     flex-direction: column;
-    background-color: var(--navbar-bg);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     width: auto;
     min-width: 180px;
     text-align: left;
@@ -1974,6 +1976,10 @@ body {
 
   .nav-menu li a:hover {
     background-color: var(--border-color);
+  }
+
+  [data-theme="dark"] .nav-menu {
+    background-color: rgba(9, 9, 11, 0.85);
   }
 
   .hero {
@@ -2052,7 +2058,7 @@ body {
   .alt-timeline-item,
   .alt-timeline-item.right {
     flex-direction: row;
-    padding-left: 2.5rem;
+    padding-left: 3.25rem;
   }
 
   .alt-timeline-marker {
@@ -2088,6 +2094,11 @@ body {
   .project-card {
     max-width: 100%;
     aspect-ratio: 16 / 10;
+  }
+
+  .cert-info-btn {
+    top: -1.5rem;
+    right: -1.5rem;
   }
 
   .project-overlay {

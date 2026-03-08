@@ -334,6 +334,9 @@ export default function About() {
   const handlePointerDown = useCallback((e, id) => {
     e.preventDefault()
 
+    // Disable drag on mobile
+    if (window.innerWidth <= 768) return
+
     const tileEl = tileRefsMap.current[id]
     if (!tileEl) return
 
