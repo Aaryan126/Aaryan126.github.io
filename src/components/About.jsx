@@ -18,7 +18,7 @@ const HOLD_THRESHOLD = 0 // ms to hold before drag activates (instant)
 const TILES = [
   { id: 'intro', className: 'bento-intro', type: 'intro' },
   { id: 'projects', className: 'bento-stat bento-projects-stat', type: 'projectsStat' },
-  { id: 'tools', className: 'bento-stat', type: 'stat', props: { end: 15, suffix: '+', label: 'Tools' } },
+  { id: 'clients', className: 'bento-stat', type: 'stat', props: { end: 7, suffix: '+', label: 'Clients Served' } },
   { id: 'certifications', className: 'bento-stat bento-certifications', type: 'certifications' },
   { id: 'education', className: 'bento-education', type: 'education' },
   { id: 'experience', className: 'bento-experience', type: 'experience' },
@@ -80,7 +80,7 @@ function CertificationsTile() {
         <i className="fas fa-chevron-up"></i>
       </button>
       <div className="stat-content">
-        <span className="stat-value">{count}+</span>
+        <span className="stat-value">{count}</span>
         <span className="stat-label">Certifications</span>
       </div>
       <div
@@ -100,7 +100,7 @@ function CertificationsTile() {
 }
 
 function ProjectsStatTile() {
-  const { count } = useCountUp(8, 2000, false)
+  const { count } = useCountUp(12, 2000, false)
   return (
     <div className="cert-tile">
       <a
@@ -113,7 +113,7 @@ function ProjectsStatTile() {
         <i className="fab fa-github"></i>
       </a>
       <div className="stat-content">
-        <span className="stat-value">{count}+</span>
+        <span className="stat-value">{count}</span>
         <span className="stat-label">Projects</span>
       </div>
     </div>

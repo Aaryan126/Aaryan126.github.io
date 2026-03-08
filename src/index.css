@@ -772,6 +772,32 @@ body {
   font-size: 0.7rem !important;
 }
 
+.projects-github-btn::after {
+  content: 'View GitHub';
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  background: #18181b;
+  color: #ffffff;
+  font-size: 0.55rem;
+  font-weight: 500;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.projects-github-btn:hover::after {
+  opacity: 1;
+}
+
+[data-theme="dark"] .projects-github-btn::after {
+  background: #fafafa;
+  color: #18181b;
+}
+
 .cert-info-btn {
   position: absolute;
   top: -1.75rem;
