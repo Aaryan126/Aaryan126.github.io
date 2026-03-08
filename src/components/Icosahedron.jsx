@@ -95,7 +95,7 @@ function wToColor(w) {
 
 function HypersphereLines() {
   const linesData = useMemo(() => generateGridLines(), [])
-  const timeRef = useRef(0)
+  const timeRef = useRef(4)
 
   const geometries = useMemo(() => {
     return linesData.map((line) => {
@@ -157,7 +157,7 @@ function HypersphereLines() {
 
 function HyperspherePoints() {
   const points4D = useMemo(() => generatePoints(2000), [])
-  const timeRef = useRef(0)
+  const timeRef = useRef(4)
 
   const geometry = useMemo(() => {
     const geo = new THREE.BufferGeometry()
@@ -214,7 +214,7 @@ function HypersphereShape() {
   const groupRef = useRef()
   const isDragging = useRef(false)
   const lastMouse = useRef({ x: 0, y: 0 })
-  const dragRotation = useRef({ x: Math.PI / 2, y: 0 })
+  const dragRotation = useRef({ x: Math.PI * 2, y: 0 })
   const { gl } = useThree()
 
   const onPointerDown = useCallback((e) => {
