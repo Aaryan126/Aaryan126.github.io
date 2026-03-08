@@ -17,9 +17,9 @@ const HOLD_THRESHOLD = 0 // ms to hold before drag activates (instant)
 // Tile configuration
 const TILES = [
   { id: 'intro', className: 'bento-intro', type: 'intro' },
-  { id: 'projects', className: 'bento-stat', type: 'stat', props: { end: 8, suffix: '+', label: 'Projects' } },
+  { id: 'projects', className: 'bento-stat bento-projects-stat', type: 'projectsStat' },
   { id: 'tools', className: 'bento-stat', type: 'stat', props: { end: 15, suffix: '+', label: 'Tools' } },
-  { id: 'certifications', className: 'bento-stat', type: 'stat', props: { end: 5, suffix: '+', label: 'Certifications' } },
+  { id: 'certifications', className: 'bento-stat bento-certifications', type: 'certifications' },
   { id: 'education', className: 'bento-education', type: 'education' },
   { id: 'experience', className: 'bento-experience', type: 'experience' },
   { id: 'technical', className: 'bento-technical', type: 'technical' },
@@ -42,6 +42,84 @@ function StatTileContent({ end, suffix = '', label }) {
   )
 }
 
+const CERTIFICATIONS = [
+  { name: 'AWS Certified AI Practitioner', issuer: 'Amazon Web Services (AWS)' },
+  { name: 'Google Advanced Data Analytics Certificate', issuer: 'Google' },
+  { name: 'AI For Everyone', issuer: 'DeepLearning.AI' },
+  { name: 'Machine Learning with Python', issuer: 'IBM' },
+  { name: 'SQL (Advanced) Certificate', issuer: 'HackerRank' },
+  { name: 'Object Oriented Programming in Java', issuer: 'UC San Diego' },
+  { name: 'Python for Everybody Specialization', issuer: 'University of Michigan' },
+]
+
+function CertificationsTile() {
+  const { count } = useCountUp(7, 2000, false)
+  const [showCerts, setShowCerts] = useState(false)
+  const hideTimerRef = useRef(null)
+
+  const handleEnter = () => {
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current)
+      hideTimerRef.current = null
+    }
+    setShowCerts(true)
+  }
+
+  const handleLeave = () => {
+    hideTimerRef.current = setTimeout(() => setShowCerts(false), 50)
+  }
+
+  return (
+    <div className="cert-tile">
+      <button
+        className="cert-info-btn"
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+        aria-label="Show certifications"
+      >
+        <i className="fas fa-chevron-up"></i>
+      </button>
+      <div className="stat-content">
+        <span className="stat-value">{count}+</span>
+        <span className="stat-label">Certifications</span>
+      </div>
+      <div
+        className={`cert-hover-list ${showCerts ? 'cert-visible' : ''}`}
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+      >
+        {CERTIFICATIONS.map((cert) => (
+          <div key={cert.name} className="cert-hover-item">
+            <span className="cert-name">{cert.name}</span>
+            <span className="cert-issuer">{cert.issuer}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function ProjectsStatTile() {
+  const { count } = useCountUp(8, 2000, false)
+  return (
+    <div className="cert-tile">
+      <a
+        href="https://github.com/Aaryan126?tab=repositories"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="cert-info-btn projects-github-btn"
+        aria-label="View GitHub repositories"
+      >
+        <i className="fab fa-github"></i>
+      </a>
+      <div className="stat-content">
+        <span className="stat-value">{count}+</span>
+        <span className="stat-label">Projects</span>
+      </div>
+    </div>
+  )
+}
+
 // Render tile content based on type
 function TileContent({ tile }) {
   switch (tile.type) {
@@ -54,6 +132,10 @@ function TileContent({ tile }) {
       )
     case 'stat':
       return <StatTileContent {...tile.props} />
+    case 'projectsStat':
+      return <ProjectsStatTile />
+    case 'certifications':
+      return <CertificationsTile />
     case 'education':
       return (
         <>
