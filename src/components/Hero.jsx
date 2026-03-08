@@ -53,7 +53,7 @@ export default function Hero() {
                 Currently pursuing Electrical and Electronic Engineering at NTU, specializing in Data Analysis and Machine Learning.
               </p>
               <div className="hero-buttons">
-                <a href="/Aaryan_Kandiah_Resume.docx" download className="btn btn-primary">
+                <a href="/Aaryan_Kandiah_Resume.docx" download="Aaryan_Kandiah_Resume.docx" className="btn btn-primary">
                   <i className="fas fa-download"></i>
                   Download Resume
                 </a>
@@ -61,7 +61,6 @@ export default function Hero() {
                   e.preventDefault()
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
                 }}>
-                  <i className="fas fa-eye"></i>
                   View Projects
                 </a>
               </div>
