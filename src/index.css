@@ -2108,9 +2108,9 @@ body {
   }
 
   .project-card p {
-    font-size: 0.7rem;
+    font-size: 0.62rem;
     margin-bottom: 0.5rem;
-    line-height: 1.4;
+    line-height: 1.35;
   }
 
   .project-tech span {
