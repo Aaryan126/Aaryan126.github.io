@@ -104,7 +104,7 @@ function TileContent({ tile }) {
         <>
           <h4>Current Role</h4>
           <span className="current-role">AI Innovation Engineer Intern</span>
-          <p>Developing multi-model AI chatbot for HVAC industry and secure survey tools with automated reporting.</p>
+          <p>Built a full-stack AI Agentic Platform for HVAC optimization serving 7 clients, boosting GTM productivity by ~25%. Developed RAG-based agents with VectorDB and multi-modal outputs, processing ~1M data points daily across 300+ sensor streams.</p>
         </>
       )
     case 'interests':
@@ -112,7 +112,7 @@ function TileContent({ tile }) {
         <>
           <h4>Interests</h4>
           <div className="interest-tags">
-            {['ML', 'Agentic AI', 'CV', 'Data Science', 'Basketball', 'Travel'].map(interest => (
+            {['ML', 'Agentic AI', 'Computer Vision', 'Data Science', 'Programming', 'Basketball', 'Travel'].map(interest => (
               <span key={interest} className="interest-tag">{interest}</span>
             ))}
           </div>
