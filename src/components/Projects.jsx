@@ -5,7 +5,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const personalProjects = [
+const projects = [
   {
     title: 'Research Orchestration System',
     subtitle: 'Multi-Agent Research Platform',
@@ -37,9 +37,6 @@ const personalProjects = [
     linkLabel: 'Live Demo',
     gradient: 'linear-gradient(135deg, #1db954 0%, #191414 100%)',
   },
-]
-
-const academicProjects = [
   {
     title: 'Chest X-Ray Classification',
     image: '/projects/CXR_Classification.png',
@@ -148,15 +145,9 @@ function ProjectCard({ project }) {
 }
 
 export default function Projects() {
-  const [activeTab, setActiveTab] = useState('personal')
-  const projects = activeTab === 'personal' ? personalProjects : academicProjects
-
   const headerRef = useScrollReveal('fadeUp', { duration: 0.6 })
-  const tabsRef = useScrollReveal('fadeUp', { duration: 0.5, delay: 0.1 })
 
-  // Animate project cards on tab change and initial scroll reveal
   const galleryRef = useRef(null)
-  const hasRevealedRef = useRef(false)
 
   useEffect(() => {
     const el = galleryRef.current
@@ -165,43 +156,26 @@ export default function Projects() {
     const cards = el.querySelectorAll('.project-card')
     if (!cards.length) return
 
-    // If this is the first reveal, use ScrollTrigger
-    if (!hasRevealedRef.current) {
-      const ctx = gsap.context(() => {
-        gsap.fromTo(cards,
-          { opacity: 0, y: 50, scale: 0.92 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 80%',
-              once: true,
-              onEnter: () => { hasRevealedRef.current = true },
-            },
-          }
-        )
-      }, el)
-      return () => ctx.revert()
-    }
-
-    // For tab switches after initial reveal, animate immediately
-    gsap.fromTo(cards,
-      { opacity: 0, y: 30, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.5,
-        stagger: 0.08,
-        ease: 'power2.out',
-      }
-    )
-  }, [activeTab])
+    const ctx = gsap.context(() => {
+      gsap.fromTo(cards,
+        { opacity: 0, y: 50, scale: 0.92 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 80%',
+            once: true,
+          },
+        }
+      )
+    }, el)
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section id="projects" className="projects">
@@ -209,25 +183,6 @@ export default function Projects() {
         <div className="section-header" ref={headerRef}>
           <h2>Projects</h2>
           <p>A selection of my work</p>
-        </div>
-
-        <div className="projects-tabs" ref={tabsRef}>
-          <button
-            className={`tab-btn ${activeTab === 'personal' ? 'active' : ''}`}
-            onClick={() => setActiveTab('personal')}
-          >
-            Personal
-          </button>
-          <button
-            className={`tab-btn ${activeTab === 'academic' ? 'active' : ''}`}
-            onClick={() => setActiveTab('academic')}
-          >
-            Academic
-          </button>
-          <div
-            className="tab-indicator"
-            style={{ transform: activeTab === 'personal' ? 'translateX(0)' : 'translateX(100%)' }}
-          />
         </div>
 
         <div className="projects-gallery" ref={galleryRef}>
