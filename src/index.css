@@ -525,7 +525,6 @@ body {
 
 .btn-primary:hover {
   background: var(--secondary-color);
-  transform: translateY(-1px);
 }
 
 .btn-secondary {
