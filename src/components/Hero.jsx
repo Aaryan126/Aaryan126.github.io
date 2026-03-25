@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTypewriter } from '../hooks/useTypewriter'
-import Icosahedron from './Icosahedron'
+import AnimatedGradientBackground from './ui/AnimatedGradientBackground'
 gsap.registerPlugin(ScrollTrigger)
 
 const roles = ['AI Engineer', 'Data Scientist', 'ML Specialist', 'Problem Solver']
@@ -18,7 +18,6 @@ export default function Hero() {
     if (!hero || !content) return
 
     const ctx = gsap.context(() => {
-      // Blur and fade the hero content as user scrolls away
       gsap.to(content, {
         filter: 'blur(8px)',
         scale: 1.03,
@@ -39,6 +38,23 @@ export default function Hero() {
   return (
     <>
       <section id="home" className="hero" ref={heroRef}>
+        <AnimatedGradientBackground
+          Breathing={true}
+          animationSpeed={0.03}
+          breathingRange={4}
+          startingGap={120}
+          topOffset={0}
+          gradientColors={[
+            "#0A0A0A",
+            "#1a1a2e",
+            "#16213e",
+            "#0f3460",
+            "#533483",
+            "#2979FF",
+            "#1a1a2e"
+          ]}
+          gradientStops={[10, 22, 35, 45, 55, 70, 100]}
+        />
         <div className="hero-container" ref={contentRef}>
           <div className="hero-content">
             <div className="hero-text">
@@ -64,13 +80,9 @@ export default function Hero() {
                 </a>
               </div>
             </div>
-            <div className="hero-visual">
-              <Icosahedron />
-            </div>
           </div>
         </div>
       </section>
-      {/* Spacer to account for the fixed hero not being in document flow */}
       <div className="hero-spacer" />
     </>
   )
