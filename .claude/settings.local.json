@@ -4,7 +4,21 @@
       "WebFetch(domain:github.com)",
       "Bash(dir:*)",
       "Bash(copy \"C:\\\\Users\\\\aaryan.kandiah\\\\Desktop\\\\AK_logo.png\" \"C:\\\\Users\\\\aaryan.kandiah\\\\Desktop\\\\Aaryan126.github.io\\\\public\\\\favicon.png\")",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(grep -E \"\\\\.json$|\\\\.md$\")",
+      "WebSearch",
+      "WebFetch(domain:macosicons.com)",
+      "WebFetch(domain:icons8.com)",
+      "WebFetch(domain:gist.github.com)",
+      "WebFetch(domain:docs.macosicons.com)",
+      "WebFetch(domain:img.icons8.com)",
+      "Bash(ls:*)",
+      "Bash(sips -s format png \"/System/Applications/Notes.app/Contents/Resources/AppIcon.icns\" --out /tmp/test_notes_icon.png -z 256 256)",
+      "Bash(curl:*)",
+      "Bash(sips:*)",
+      "WebFetch(domain:512pixels.net)",
+      "WebFetch(domain:archive.org)",
+      "WebFetch(domain:4kwallpapers.com)"
     ]
   }
 }

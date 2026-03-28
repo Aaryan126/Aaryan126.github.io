@@ -36,7 +36,7 @@ function getSectionAtY(y) {
   return null
 }
 
-export default function Navbar() {
+export default function Navbar({ onDesktopMode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
   const [onDarkBg, setOnDarkBg] = useState(true)
@@ -134,6 +134,11 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-actions">
+          {onDesktopMode && (
+            <button className="nav-desktop-btn" onClick={onDesktopMode} title="Desktop Mode" aria-label="Desktop Mode">
+              <i className="fas fa-laptop"></i>
+            </button>
+          )}
           <div
             className={`hamburger ${isMenuOpen ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}

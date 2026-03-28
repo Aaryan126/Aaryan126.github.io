@@ -123,7 +123,6 @@
   border-color: #fafafa;
 }
 
-[data-theme="dark"] .bento-tile:hover,
 [data-theme="dark"] .alt-timeline-card:hover {
   border-color: #3f3f46;
 }
@@ -338,6 +337,25 @@ body {
   gap: 1rem;
 }
 
+.nav-desktop-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.nav-desktop-btn:hover {
+  opacity: 1;
+}
+
 .theme-toggle {
   background: transparent;
   border: 1px solid var(--border-color);
@@ -539,6 +557,20 @@ body {
 }
 
 
+.btn-desktop {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-desktop:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 /* Section Headers */
 .section-header {
   text-align: left;
@@ -593,16 +625,49 @@ body {
 /* Initial hidden state - GSAP scroll reveal handles animation */
 
 .bento-tile {
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 14px;
   border: 1px solid var(--border-color);
   padding: 1.75rem;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.25s ease;
+  position: relative;
+}
+
+[data-theme="dark"] .bento-tile {
+  background: rgba(24, 24, 27, 0.55);
+}
+
+.bento-tile::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(59, 130, 246, 0.4) 50%,
+    rgba(168, 85, 247, 0.4) 70%,
+    transparent 90%
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bento-tile:hover::after {
+  opacity: 1;
 }
 
 .bento-tile:hover {
   box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
 }
 
 /* Drag and drop states */
@@ -627,7 +692,9 @@ body {
 }
 
 .floating-tile {
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 14px;
   border: 1px solid var(--border-color);
   padding: 1.75rem;
@@ -635,6 +702,10 @@ body {
   cursor: grabbing;
   overflow: hidden;
   box-sizing: border-box;
+}
+
+[data-theme="dark"] .floating-tile {
+  background: rgba(24, 24, 27, 0.55);
 }
 
 .floating-tile .stat-content {
@@ -944,6 +1015,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-goals::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 184, 166, 0.12);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+[data-theme="dark"] .bento-goals::before {
+  background: rgba(20, 184, 166, 0.16);
 }
 
 .bento-facts {
@@ -975,13 +1061,13 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(59, 130, 246, 0.22);
+  background: rgba(168, 85, 247, 0.15);
   pointer-events: none;
   border-radius: inherit;
 }
 
 [data-theme="dark"] .bento-current::before {
-  background: rgba(59, 130, 246, 0.28);
+  background: rgba(168, 85, 247, 0.2);
 }
 
 .bento-interests {
@@ -1102,20 +1188,20 @@ body {
 
 .current-role {
   display: block;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 500;
   color: var(--primary-color);
   margin-bottom: 0.25rem;
 }
 
 .bento-current p {
-  font-size: 0.8rem;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .bento-goals p {
-  font-size: 0.78rem;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  line-height: 1.65;
 }
 
 .bento-goals p strong {
