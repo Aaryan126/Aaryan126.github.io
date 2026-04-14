@@ -7,6 +7,24 @@ gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
   {
+    title: 'ADapt',
+    subtitle: 'AI-Powered Ad Localization',
+    image: '/projects/adapt.png',
+    description: 'AI-powered pipeline that localizes advertisements for 6 Southeast Asian markets. Won 1st place out of 20+ teams. Chains GPT-5.4, GLM-5.1, and Gemini 3.1 Flash for culturally adapted strategies, multilingual copy, and localized imagery.',
+    tech: ['FastAPI', 'React', 'GPT-5.4', 'GLM-5.1', 'Gemini 3.1 Flash', 'Publer API'],
+    link: 'https://github.com/Aaryan126/ADapt',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+    badge: '1st Place Winner',
+    badgeIcon: 'fa-solid fa-trophy',
+    award: {
+      event: 'Agent Forge AI Hackathon',
+      sponsors: 'Sponsored by Z.ai & GMI Cloud',
+      issuedBy: 'AI Builders, Z.ai & GMI',
+      date: 'Apr 2026',
+    },
+  },
+  {
     title: 'Research Orchestration System',
     subtitle: 'Multi-Agent Research Platform',
     image: '/projects/research-orchestration.png',
@@ -26,7 +44,7 @@ const projects = [
     link: 'https://chromewebstore.google.com/detail/alphadrop/hbmfofpedlbllenmpnebikhadgkplobj',
     linkLabel: 'Chrome Web Store',
     gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-    badge: '150+ Users',
+    badge: '200+ Users',
   },
   {
     title: 'Spotify Streaming History Visualizer',
@@ -93,10 +111,21 @@ function ProjectCard({ project }) {
           </div>
         )}
         {project.badge && (
-          <span className="project-badge">
-            <i className="fa-solid fa-users"></i>
+          <span className={`project-badge${project.badgeIcon ? ' project-badge--winner' : ''}`}>
+            <i className={project.badgeIcon || 'fa-solid fa-users'}></i>
             {project.badge}
           </span>
+        )}
+        {project.award && (
+          <div className="project-award">
+            <div className="project-award-event">
+              <i className="fa-solid fa-trophy"></i>
+              {project.award.event}
+            </div>
+            <div className="project-award-details">
+              {project.award.sponsors} &middot; {project.award.date}
+            </div>
+          </div>
         )}
       </div>
 
