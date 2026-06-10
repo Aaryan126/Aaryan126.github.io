@@ -7,6 +7,25 @@ gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
   {
+    title: 'BOLDR SignalDesk',
+    subtitle: 'Approval-First Customer Intelligence',
+    image: '/projects/boldr-signaldesk-echelon.png',
+    imagePosition: 'center 42%',
+    description: 'Winner of the AI Workflow Competition at Echelon Singapore 2026, selected from 147 builders and awarded $16,000 in prizes and credits. Built an evidence-grounded workflow that drafts customer replies, blocks unsupported claims, captures knowledge gaps, and turns recurring enquiries into FAQ and marketing insights.',
+    tech: ['FastAPI', 'Next.js', 'React', 'TypeScript', 'GLM-5.1', 'Responsible AI'],
+    link: 'https://github.com/Aaryan126/BOLDR_Aaryan',
+    linkLabel: 'View Project',
+    gradient: 'linear-gradient(135deg, #17134f 0%, #ef4b43 100%)',
+    badge: '1st Place Winner',
+    badgeIcon: 'fa-solid fa-trophy',
+    award: {
+      event: 'AI Workflow Competition',
+      sponsors: 'Echelon Singapore · $16,000 in prizes & credits',
+      issuedBy: 'e27',
+      date: 'Jun 2026',
+    },
+  },
+  {
     title: 'ADapt',
     subtitle: 'AI-Powered Ad Localization',
     image: '/projects/adapt.png',
@@ -100,6 +119,7 @@ function ProjectCard({ project }) {
           <img
             src={project.image}
             alt={project.title}
+            style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
             onError={() => setImageError(true)}
           />
         ) : (

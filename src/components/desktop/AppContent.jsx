@@ -2,6 +2,15 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 
 const PROJECTS = [
   {
+    title: 'BOLDR SignalDesk',
+    subtitle: 'AI Workflow Competition Winner',
+    image: '/projects/boldr-signaldesk-echelon.png',
+    description: 'Winner at Echelon Singapore 2026 among 147 builders, earning $16,000 in prizes and credits. An approval-first, evidence-grounded workflow for customer replies, knowledge gaps, FAQ updates, and marketing intelligence.',
+    tech: ['FastAPI', 'Next.js', 'React', 'TypeScript', 'GLM-5.1'],
+    link: 'https://github.com/Aaryan126/BOLDR_Aaryan',
+    badge: '1st Place Winner',
+  },
+  {
     title: 'Research Orchestration System',
     subtitle: 'Multi-Agent Research Platform',
     image: '/projects/research-orchestration.png',

@@ -1702,23 +1702,26 @@ body {
   border-color: #92400e transparent transparent transparent;
 }
 
-/* Award banner at bottom of project image */
+/* Compact award label at top-left of project image */
 .project-award {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.6rem 0.85rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+  top: 1rem;
+  left: 1rem;
+  max-width: calc(100% - 12rem);
+  padding: 0.55rem 0.7rem;
+  background: rgba(8, 8, 18, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 9px;
+  backdrop-filter: blur(10px);
   z-index: 2;
   pointer-events: none;
-  text-align: right;
+  text-align: left;
 }
 
 .project-award-event {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 0.4rem;
   font-size: 0.75rem;
   font-weight: 600;
@@ -1734,6 +1737,7 @@ body {
   font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 0.15rem;
+  line-height: 1.3;
 }
 
 /* Overlay */
