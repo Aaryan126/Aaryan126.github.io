@@ -65,7 +65,7 @@ export default function Hero() {
                 <span className="cursor">|</span>
               </p>
               <p className="hero-description">
-                Currently building agentic AI systems at Univers. Recent NTU graduate specializing in Data Analysis & Machine Learning. Interested in multi-agent pipelines, computer vision, and deep learning.
+                Incoming Master of Computing (Artificial Intelligence) student at NUS and recent NTU graduate. Seeking internships in AI and Forward Deployed Engineering, with interests spanning agentic AI systems, machine learning, computer vision, and deep learning.
               </p>
               <div className="hero-buttons">
                 <a href="/Aaryan_Kandiah_Resume.docx" download="Aaryan_Kandiah_Resume.docx" className="btn btn-primary">

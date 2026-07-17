@@ -24,9 +24,9 @@ export default function Contact() {
 
           <div className="contact-right" ref={rightRef}>
             <div className="contact-links">
-              <a href="mailto:aaryan001@e.ntu.edu.sg" className="contact-link">
+              <a href="mailto:aaryan.kandiah@u.nus.edu" className="contact-link">
                 <i className="fas fa-envelope"></i>
-                aaryan001@e.ntu.edu.sg
+                aaryan.kandiah@u.nus.edu
               </a>
               <span className="contact-link">
                 <i className="fas fa-map-marker-alt"></i>
