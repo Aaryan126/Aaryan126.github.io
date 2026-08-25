@@ -1,5 +1,5 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useState, useCallback, useEffect, useRef } from 'react'
+import { AnimatePresence, motion as Motion } from 'framer-motion'
 import Window from './Window'
 import AppContent from './AppContent'
 import './desktop.css'
@@ -108,7 +108,7 @@ function TopBar({ time, onExit }) {
   }
 
   const renderDropdown = (items) => (
-    <motion.div
+    <Motion.div
       className="topbar-dropdown"
       initial={{ opacity: 0, y: -4, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -131,7 +131,7 @@ function TopBar({ time, onExit }) {
           </div>
         )
       })}
-    </motion.div>
+    </Motion.div>
   )
 
   return (
@@ -233,7 +233,7 @@ export default function DesktopView({ onExit }) {
   }, [])
 
   return (
-    <motion.div
+    <Motion.div
       className="desktop-mode"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -315,6 +315,6 @@ export default function DesktopView({ onExit }) {
         </div>
       </div>
 
-    </motion.div>
+    </Motion.div>
   )
 }

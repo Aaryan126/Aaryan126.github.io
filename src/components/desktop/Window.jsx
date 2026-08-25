@@ -1,5 +1,5 @@
 import { useRef, useCallback, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 
 export default function Window({ id, title, x, y, width, height, zIndex, onClose, onFocus, onMinimize, onDragEnd, children }) {
   const windowRef = useRef(null)
@@ -59,7 +59,7 @@ export default function Window({ id, title, x, y, width, height, zIndex, onClose
   }, [id, onFocus, size])
 
   return (
-    <motion.div
+    <Motion.div
       ref={windowRef}
       className="desktop-window"
       style={{ left: x, top: y, width: size.w, height: size.h, zIndex }}
@@ -86,6 +86,6 @@ export default function Window({ id, title, x, y, width, height, zIndex, onClose
         {children}
       </div>
       <div className="desktop-window-resize" onMouseDown={handleResizeMouseDown} />
-    </motion.div>
+    </Motion.div>
   )
 }

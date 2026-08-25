@@ -1,16 +1,28 @@
-# React + Vite
+# Aaryan Kandiah — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A design-first portfolio covering interaction design, responsible AI, and product engineering. The main experience is an editorial case-study site; AaryanOS is an optional interactive desktop playground.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+The Vite server runs at `http://localhost:5173` by default.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Quality checks
 
-## Expanding the ESLint configuration
+```bash
+npm run lint
+npm run test
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Content model
+
+Portfolio facts and project case studies are maintained in `src/data/portfolio.js`. Both the main site and AaryanOS consume the shared project records so outcomes, links, and descriptions stay consistent.
+
+## Deployment
+
+Pushes to `main` build and deploy `dist/` to the `gh-pages` branch through the GitHub Actions workflow in `.github/workflows/deploy.yml`.

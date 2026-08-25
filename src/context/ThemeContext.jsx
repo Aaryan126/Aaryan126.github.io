@@ -1,9 +1,12 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-
-const ThemeContext = createContext()
+import { useState, useEffect } from 'react'
+import { ThemeContext } from './theme-context'
 
 export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme')
+    if (saved) return saved === 'dark'
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  })
 
   useEffect(() => {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
@@ -18,5 +21,3 @@ export function ThemeProvider({ children }) {
     </ThemeContext.Provider>
   )
 }
-
-export const useTheme = () => useContext(ThemeContext)

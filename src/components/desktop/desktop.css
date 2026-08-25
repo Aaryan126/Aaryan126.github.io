@@ -13,7 +13,7 @@
 .desktop-bg {
   position: absolute;
   inset: 0;
-  background: url('/desktop-icons/wallpaper.jpg') center/cover no-repeat;
+  background: url('/desktop-icons/wallpaper.webp') center/cover no-repeat;
   z-index: 0;
 }
 

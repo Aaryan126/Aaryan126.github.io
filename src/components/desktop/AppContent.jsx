@@ -1,62 +1,18 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { projects as portfolioProjects, profile } from '../../data/portfolio'
 
-const PROJECTS = [
-  {
-    title: 'BOLDR SignalDesk',
-    subtitle: 'AI Workflow Competition Winner',
-    image: '/projects/boldr-signaldesk-echelon.png',
-    description: 'Winner at Echelon Singapore 2026 among 147 builders, earning $16,000 in prizes and credits. An approval-first, evidence-grounded workflow for customer replies, knowledge gaps, FAQ updates, and marketing intelligence.',
-    tech: ['FastAPI', 'Next.js', 'React', 'TypeScript', 'GLM-5.1'],
-    link: 'https://github.com/Aaryan126/BOLDR_Aaryan',
-    badge: '1st Place Winner',
-  },
-  {
-    title: 'Research Orchestration System',
-    subtitle: 'Multi-Agent Research Platform',
-    image: '/projects/research-orchestration.png',
-    description: 'Multi-agent system that automates literature reviews and claim verification across academic papers.',
-    tech: ['Elastic Agent Builder', 'Elasticsearch', 'FastAPI', 'React', 'MCP'],
-    link: 'https://github.com/Aaryan126/Research_Agent',
-    video: 'https://www.youtube.com/watch?v=KatuxMUNVjU',
-  },
-  {
-    title: 'AlphaDrop',
-    subtitle: 'Chrome Extension',
-    image: '/projects/alphadrop.png',
-    description: 'AI-powered background removal that runs entirely in your browser. Fast, private, and free.',
-    tech: ['JavaScript', 'ONNX', 'Canvas API'],
-    link: 'https://chromewebstore.google.com/detail/alphadrop/hbmfofpedlbllenmpnebikhadgkplobj',
-    badge: '150+ Users',
-  },
-  {
-    title: 'Spotify History Visualizer',
-    image: '/projects/spotify_viz.png',
-    description: 'Interactive dashboard transforming Spotify streaming history into insightful visualizations.',
-    tech: ['React', 'Recharts', 'Tailwind CSS'],
-    link: 'https://startling-marshmallow-c649ed.netlify.app/',
-  },
-  {
-    title: 'Chest X-Ray Classification',
-    image: '/projects/CXR_Classification.png',
-    description: 'Multi-label deep learning model to detect thoracic abnormalities with Explainable AI. AUC: 0.845.',
-    tech: ['PyTorch', 'DenseNet', 'Grad-CAM'],
-    link: 'https://github.com/Aaryan126/FYP_Website',
-  },
-  {
-    title: 'Ship Navigation System',
-    image: '/projects/ship-navigation.png',
-    description: 'Global and local path planning with obstacle avoidance using PyQt5 interface.',
-    tech: ['Python', 'PyQt5', 'A*', 'DWA'],
-    link: 'https://github.com/Aaryan126/Ship-Navigation-System',
-  },
-  {
-    title: 'Brain Tumor Detection',
-    image: '/projects/brain-tumor.png',
-    description: 'Enhanced classification using dimensionality reduction and computer vision. Accuracy: 94.35%.',
-    tech: ['Scikit-learn', 'TensorFlow', 'Pandas'],
-    link: 'https://github.com/Aaryan126/DimensionalityReduction-for-BrainTumorClassification',
-  },
-]
+const PROJECTS = portfolioProjects.map((project) => ({
+  title: project.title,
+  subtitle: project.subtitle,
+  image: project.image,
+  description: project.summary,
+  tech: project.tech,
+  link: project.link,
+  video: project.video,
+  badge: project.title === 'BOLDR SignalDesk' || project.title === 'ADapt'
+    ? '1st Place Winner'
+    : project.title === 'AlphaDrop' ? '200+ Users' : undefined,
+}))
 
 const CERTIFICATIONS = [
   { name: 'AWS Certified AI Practitioner', issuer: 'AWS' },
@@ -130,7 +86,7 @@ function AboutApp() {
 
           <div className="contacts-field">
             <span className="contacts-label">email</span>
-            <a href="mailto:aaryan001@e.ntu.edu.sg" className="contacts-value contacts-link">aaryan001@e.ntu.edu.sg</a>
+            <a href={`mailto:${profile.email}`} className="contacts-value contacts-link">{profile.email}</a>
           </div>
           <div className="contacts-field">
             <span className="contacts-label">GitHub</span>
@@ -305,7 +261,7 @@ function AlphaDropPage() {
             <i className="fas fa-star"></i>
             <i className="fas fa-star"></i>
             <i className="fas fa-star-half-alt"></i>
-            <span>150+ Users</span>
+            <span>200+ Users</span>
           </div>
         </div>
       </div>
@@ -537,7 +493,7 @@ const DEFAULT_NOTES = [
     body: `AI Innovation Engineer Intern
 Univers | May 2025 - Present | Singapore
 
-Developed enterprise AI Systems for HVAC Optimization serving 8 clients, spanning agentic AI architecture, full-stack integration and production deployments.
+Developed enterprise AI Systems for HVAC Optimization serving 7 clients, spanning agentic AI architecture, full-stack integration and production deployments.
 
 AI Agentic HVAC System Development:
 - Built a full-stack HVAC AI Agentic Platform to help GTM and Engineering teams understand, optimize, and make decisions on complex HVAC systems, increasing GTM team productivity by ~25%.
@@ -635,14 +591,6 @@ function ExperienceApp() {
       const preview = lines[1] || 'No additional text'
       return { ...n, body: value, title, preview }
     }))
-  }
-
-  const deleteNote = (id) => {
-    setNotes(prev => {
-      const next = prev.filter(n => n.id !== id)
-      if (selectedId === id && next.length > 0) setSelectedId(next[0].id)
-      return next
-    })
   }
 
   return (
@@ -918,7 +866,7 @@ const TERMINAL_COMMANDS = {
   contact: () => [
     '\x1b[1mContact\x1b[0m',
     '',
-    '  Email:    aaryan001@e.ntu.edu.sg',
+    `  Email:    ${profile.email}`,
     '  GitHub:   github.com/Aaryan126',
     '  LinkedIn: linkedin.com/in/aaryan-kandiah-b2a719213',
     '  Location: Singapore',
@@ -992,7 +940,7 @@ const TERMINAL_COMMANDS = {
     '',
     '  GitHub:   https://github.com/Aaryan126',
     '  LinkedIn: https://www.linkedin.com/in/aaryan-kandiah-b2a719213',
-    '  Email:    mailto:aaryan001@e.ntu.edu.sg',
+    `  Email:    mailto:${profile.email}`,
     '  Resume:   Type "open resume.docx" to download',
   ],
   whoami: () => ['aaryan'],
@@ -1198,7 +1146,7 @@ const TERMINAL_COMMANDS = {
     '  Sending interview invite...',
     '',
     '  Just kidding. But seriously, let\'s talk!',
-    '  Email: aaryan001@e.ntu.edu.sg',
+    `  Email: ${profile.email}`,
     '',
   ],
   'rm -rf /': () => [
@@ -1419,7 +1367,7 @@ const EMAILS = [
   {
     id: 'welcome',
     from: 'Aaryan Kandiah',
-    email: 'aaryan001@e.ntu.edu.sg',
+    email: profile.email,
     subject: 'Welcome to my Portfolio',
     date: 'Today',
     preview: 'Thanks for visiting! Here you can learn more about...',
@@ -1435,7 +1383,7 @@ Feel free to explore around and reach out if you'd like to connect!
 
 Best regards,
 Aaryan Kandiah
-aaryan001@e.ntu.edu.sg`,
+${profile.email}`,
     read: true,
   },
   {
@@ -1450,7 +1398,7 @@ aaryan001@e.ntu.edu.sg`,
 1. Research Orchestration System
    Multi-agent system for automated literature reviews using Elasticsearch and ES|QL. Three specialized agents search, synthesize, and cross-verify findings.
 
-2. AlphaDrop (150+ Users)
+2. AlphaDrop (200+ Users)
    AI-powered background removal Chrome extension. Runs entirely in-browser using ONNX runtime. Fast, private, and free.
 
 3. Chest X-Ray Classification
@@ -1497,7 +1445,7 @@ May - Jul 2023 | Singapore
     preview: 'Here are the best ways to reach me...',
     body: `Let's Connect!
 
-Email: aaryan001@e.ntu.edu.sg
+Email: ${profile.email}
 GitHub: github.com/Aaryan126
 LinkedIn: linkedin.com/in/aaryan-kandiah-b2a719213
 Location: Singapore
