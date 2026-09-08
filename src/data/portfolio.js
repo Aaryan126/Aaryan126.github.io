@@ -3,7 +3,7 @@ export const profile = {
   eyebrow: 'AI engineer · product-minded maker · Singapore',
   headline: 'I design and build intelligent tools for messy, real-world problems.',
   introduction:
-    'I work where interaction design, AI systems, and frontend engineering meet—turning complex workflows into products people can understand, trust, and use.',
+    'I work where interaction design, AI systems, and frontend engineering meet, turning complex workflows into products people can understand, trust, and use.',
   email: 'aaryan.kandiah@u.nus.edu',
   location: 'Singapore',
   github: 'https://github.com/Aaryan126',
@@ -28,7 +28,7 @@ export const projects = [
     summary:
       'An approval-first customer-intelligence workflow that drafts replies, blocks unsupported claims, captures knowledge gaps, and turns recurring enquiries into useful business insight.',
     challenge:
-      'Customer-facing AI can move quickly while quietly introducing risk. The experience needed to help teams draft useful answers without presenting unsupported claims as fact—and make every intervention easy to review.',
+      'Customer-facing AI can move quickly while quietly introducing risk. The experience needed to help teams draft useful answers without presenting unsupported claims as fact, and make every intervention easy to review.',
     constraints: [
       'Keep a human responsible for the final customer response.',
       'Ground generated claims in available evidence instead of model confidence.',
@@ -114,7 +114,7 @@ export const projects = [
     timeline: 'Independent shipped product',
     outcome: '200+ users · processing stays in the browser',
     summary:
-      'A focused Chrome extension that removes image backgrounds locally with ONNX—fast, private, and free, with no upload step or server dependency.',
+      'A focused Chrome extension that removes image backgrounds locally with ONNX. Fast, private, and free, with no upload step or server dependency.',
     challenge:
       'Background-removal tools often add account creation, upload delays, and privacy uncertainty to a very small task. AlphaDrop needed to make the path from source image to usable cutout feel immediate.',
     constraints: [
@@ -216,7 +216,7 @@ export const projects = [
 
 export const experiences = [
   {
-    period: '2025—Now',
+    period: '2025 to present',
     title: 'AI Innovation Engineer Intern',
     company: 'Univers',
     location: 'Singapore',
@@ -238,11 +238,11 @@ export const experiences = [
 export const credentials = [
   'AWS Certified AI Practitioner',
   'Google Advanced Data Analytics Certificate',
-  'AI For Everyone — DeepLearning.AI',
-  'Machine Learning with Python — IBM',
-  'SQL (Advanced) — HackerRank',
-  'Object Oriented Programming in Java — UC San Diego',
-  'Python for Everybody — University of Michigan',
+  'AI For Everyone · DeepLearning.AI',
+  'Machine Learning with Python · IBM',
+  'SQL (Advanced) · HackerRank',
+  'Object Oriented Programming in Java · UC San Diego',
+  'Python for Everybody · University of Michigan',
 ]
 
 export const capabilities = [
@@ -254,7 +254,7 @@ export const capabilities = [
   {
     number: '02',
     title: 'Design trust explicitly',
-    text: 'For AI products, evidence, uncertainty, review, and failure states are part of the experience—not edge cases.',
+    text: 'For AI products, evidence, uncertainty, review, and failure states are part of the core experience.',
   },
   {
     number: '03',

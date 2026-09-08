@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTheme } from '../context/useTheme'
 import {
   capabilities,
@@ -15,15 +15,17 @@ function Arrow({ diagonal = false }) {
 }
 
 function ThemeToggle() {
-  const { isDark, toggleTheme } = useTheme()
+  const { isDark, shutterOpen, setShutterOpen } = useTheme()
 
   return (
     <button
       type="button"
       className="pf-icon-button"
-      onClick={toggleTheme}
-      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
-      title={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      onClick={() => setShutterOpen(!shutterOpen)}
+      aria-label={shutterOpen ? 'Close theme shutter' : 'Open light and dark theme shutter'}
+      aria-expanded={shutterOpen}
+      aria-controls="theme-shutter"
+      title="Drag between light and dark"
     >
       <span aria-hidden="true">{isDark ? '☼' : '◐'}</span>
     </button>
@@ -33,6 +35,7 @@ function ThemeToggle() {
 export function SiteHeader({ onDesktopMode, compact = false }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   const goToSection = (id) => {
     setMenuOpen(false)
@@ -40,15 +43,14 @@ export function SiteHeader({ onDesktopMode, compact = false }) {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
       return
     }
-    window.location.hash = `/#/?section=${id}`
+    navigate(`/?section=${id}`)
   }
 
   return (
     <header className={`pf-header ${compact ? 'pf-header--compact' : ''}`}>
       <div className="pf-header__inner">
-        <Link to="/" className="pf-mark" aria-label="Aaryan Kandiah — home" onClick={() => setMenuOpen(false)}>
+        <Link to="/" className="pf-mark" aria-label="Aaryan Kandiah home" onClick={() => setMenuOpen(false)}>
           <span>AK</span>
-          <span className="pf-mark__signal" aria-hidden="true" />
         </Link>
 
         <button
@@ -63,16 +65,16 @@ export function SiteHeader({ onDesktopMode, compact = false }) {
 
         <nav id="portfolio-navigation" className={`pf-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
           <button type="button" onClick={() => goToSection('work')}>Work</button>
+          <button type="button" onClick={() => goToSection('experience')}>Experience</button>
           <button type="button" onClick={() => goToSection('about')}>About</button>
           <button type="button" onClick={() => goToSection('playground')}>Playground</button>
-          <a href={profile.resumePdf} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>Résumé</a>
+          <button type="button" onClick={() => goToSection('contact')}>Contact</button>
         </nav>
 
         <div className="pf-header__actions">
           <ThemeToggle />
           {onDesktopMode && (
             <button type="button" className="pf-playground-button" onClick={onDesktopMode}>
-              <span className="pf-playground-button__dot" aria-hidden="true" />
               AaryanOS
             </button>
           )}
@@ -149,7 +151,7 @@ export default function PortfolioSite({ onDesktopMode }) {
         <section className="pf-hero" aria-labelledby="hero-title">
           <div className="pf-hero__grid" aria-hidden="true" />
           <div className="pf-shell pf-hero__inner">
-            <p className="pf-eyebrow"><span /> {profile.eyebrow}</p>
+            <p className="pf-eyebrow">{profile.eyebrow}</p>
             <h1 id="hero-title">{profile.headline}</h1>
             <div className="pf-hero__footer">
               <p>{profile.introduction}</p>
@@ -160,6 +162,9 @@ export default function PortfolioSite({ onDesktopMode }) {
                 <button type="button" className="pf-secondary-link" onClick={onDesktopMode}>
                   Explore AaryanOS <Arrow diagonal />
                 </button>
+                <a className="pf-secondary-link" href={profile.resumePdf} target="_blank" rel="noreferrer">
+                  Resume <Arrow diagonal />
+                </a>
               </div>
             </div>
           </div>
@@ -201,7 +206,7 @@ export default function PortfolioSite({ onDesktopMode }) {
           </div>
         </section>
 
-        <section className="pf-section pf-evidence">
+        <section id="experience" className="pf-section pf-evidence">
           <div className="pf-shell">
             <SectionHeading
               eyebrow="03 / Evidence"
@@ -297,7 +302,7 @@ export default function PortfolioSite({ onDesktopMode }) {
               <p className="pf-kicker">Interactive playground · desktop recommended</p>
               <h2>AaryanOS</h2>
               <p>
-                The same portfolio reimagined as a working desktop—with Finder, Notes, Terminal, Mail, Safari, Preview, draggable windows, and small details waiting to be discovered.
+                The same portfolio reimagined as a working desktop with Finder, Notes, Terminal, Mail, Safari, Preview, draggable windows, and small details waiting to be discovered.
               </p>
               <button type="button" className="pf-primary-link" onClick={onDesktopMode}>
                 Launch the playground <Arrow diagonal />
@@ -314,7 +319,7 @@ export default function PortfolioSite({ onDesktopMode }) {
 
         <section id="contact" className="pf-contact">
           <div className="pf-shell">
-            <p className="pf-eyebrow"><span /> Available for thoughtful collaborations</p>
+            <p className="pf-eyebrow">Available for thoughtful collaborations</p>
             <h2>Have a difficult idea worth making clear?</h2>
             <a className="pf-contact__email" href={`mailto:${profile.email}`}>
               {profile.email} <Arrow diagonal />
@@ -324,8 +329,7 @@ export default function PortfolioSite({ onDesktopMode }) {
               <div>
                 <a href={profile.github} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
                 <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
-                <a href={profile.resumePdf} target="_blank" rel="noreferrer">Résumé PDF <Arrow diagonal /></a>
-                <a href={profile.resumeDocx} download>DOCX <Arrow diagonal /></a>
+                <a href={profile.resumePdf} target="_blank" rel="noreferrer">Resume <Arrow diagonal /></a>
               </div>
             </div>
           </div>

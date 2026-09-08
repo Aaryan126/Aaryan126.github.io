@@ -14,6 +14,7 @@
   position: absolute;
   inset: 0;
   background: url('/desktop-icons/wallpaper.webp') center/cover no-repeat;
+  filter: grayscale(1);
   z-index: 0;
 }
 
@@ -165,7 +166,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #30d158;
+  background: #b8bab6;
   margin-left: auto;
 }
 
@@ -297,7 +298,7 @@
 }
 
 .desktop-window-btn.maximize {
-  background: #28c840;
+  background: #b8bab6;
 }
 
 .desktop-window:hover .desktop-window-btn.close {
@@ -516,7 +517,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #3b82f6, #64748b);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1325,7 +1326,7 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #3b82f6, #64748b);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2202,7 +2203,7 @@
   width: 64px;
   height: 64px;
   border-radius: 16px;
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(100, 116, 139, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;

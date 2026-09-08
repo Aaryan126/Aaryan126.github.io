@@ -1,0 +1,229 @@
+.theme-stage {
+  position: relative;
+  min-height: 100vh;
+}
+
+.theme-preview {
+  position: absolute;
+  inset: 0;
+  z-index: 1300;
+  pointer-events: none;
+  user-select: none;
+  background: var(--pf-bg);
+  color: var(--pf-ink);
+}
+
+.theme-preview * {
+  pointer-events: none !important;
+}
+
+.theme-shutter {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  pointer-events: none;
+}
+
+.theme-shutter__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #9297ac;
+  box-shadow: -1px 0 0 rgb(255 255 255 / 16%), 1px 0 12px rgb(0 0 0 / 12%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.theme-shutter.is-open .theme-shutter__line {
+  opacity: 1;
+}
+
+.theme-shutter__control {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 48px;
+  transform: translate(-50%, -50%);
+}
+
+.theme-shutter__handle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 56px;
+  padding: 0;
+  color: #f4f2ec;
+  background: transparent;
+  border: 0;
+  border-radius: 100px;
+  cursor: ew-resize;
+  touch-action: none;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.theme-shutter__glass {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(255 255 255 / 3%);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 12%), 0 8px 20px rgb(0 0 0 / 12%);
+  pointer-events: none;
+  transition: box-shadow 220ms ease;
+}
+
+.theme-glass-lens {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.theme-glass-lens__sample {
+  position: absolute;
+  inset: -20px;
+  display: block;
+  overflow: hidden;
+}
+
+/* Blur the painted refraction output, then clip it with the outer lens. Keep
+   this off the outer lens: an ancestor filter would block backdrop sampling. */
+.theme-glass-lens__surface {
+  position: absolute;
+  inset: 0;
+  display: block;
+  filter: blur(1.4px);
+}
+
+.theme-glass-lens[data-renderer='backdrop'] .theme-glass-lens__surface {
+  inset: -4px;
+}
+
+.theme-glass-lens__world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  text-align: start;
+  font: 400 1rem / normal var(--pf-body);
+  pointer-events: none;
+  user-select: none;
+}
+
+.theme-glass-lens__world * {
+  pointer-events: none !important;
+}
+
+.theme-glass-lens__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* A light tint above the softened refraction, below the sharp highlights. */
+.theme-shutter__frost {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: rgb(255 255 255 / 6%);
+  pointer-events: none;
+}
+
+.theme-shutter__glass::before,
+.theme-shutter__glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.theme-shutter__glass::before {
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 60% 42% at var(--glass-highlight, 50%) 0%, rgb(255 255 255 / 64%), transparent 88%),
+    radial-gradient(ellipse 70% 28% at 72% 100%, rgb(255 255 255 / 30%), transparent 90%),
+    linear-gradient(var(--glass-reflection, -24deg),
+      transparent 24%, rgb(255 255 255 / 4%) 34%,
+      rgb(255 255 255 / 24%) 43%, rgb(255 255 255 / 8%) 49%,
+      transparent 58%);
+  box-shadow:
+    inset 0 1px 1px rgb(255 255 255 / 70%),
+    inset 0 -1px 2px rgb(255 255 255 / 28%),
+    inset 1px 0 3px rgb(255 255 255 / 16%);
+}
+
+.theme-shutter__glass::after {
+  z-index: 3;
+  padding: 1px;
+  background: conic-gradient(from 215deg at var(--glass-highlight, 50%) 50%,
+    rgb(255 255 255 / 95%), rgb(255 255 255 / 15%) 20%,
+    rgb(255 255 255 / 76%) 45%, rgb(255 255 255 / 10%) 68%,
+    rgb(255 255 255 / 95%));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.theme-shutter__handle > svg {
+  position: relative;
+  z-index: 1;
+  color: #f4f2ec;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.theme-shutter__handle:focus-visible {
+  outline: 2px solid var(--pf-muted);
+  outline-offset: 5px;
+}
+
+.theme-shutter__handle:hover .theme-shutter__glass,
+.theme-shutter__handle:focus-visible .theme-shutter__glass,
+.is-dragging .theme-shutter__glass {
+  box-shadow: 0 3px 7px rgb(0 0 0 / 14%), 0 12px 24px rgb(0 0 0 / 16%);
+}
+
+.theme-shutter__caption {
+  position: absolute;
+  top: calc(100% + 12px);
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--pf-muted);
+}
+
+.is-dragging-theme,
+.is-dragging-theme * {
+  cursor: ew-resize !important;
+  user-select: none !important;
+}
+
+.theme-shutter__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-shutter * {
+    transition: none !important;
+  }
+}

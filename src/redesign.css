@@ -1,17 +1,20 @@
 /* Design-first portfolio layer */
-:root {
+:root,
+[data-theme='light'] {
   --pf-bg: #f4f2ec;
   --pf-surface: #ebe8df;
   --pf-surface-strong: #dedbd1;
   --pf-ink: #111216;
   --pf-muted: #62636a;
   --pf-line: rgba(17, 18, 22, 0.17);
-  --pf-accent: #4f62ff;
-  --pf-accent-ink: #f7f7ff;
+  --pf-accent: #252622;
+  --pf-accent-ink: #f4f2ec;
+  --pf-contact-bg: #252622;
+  --pf-contact-ink: #f4f2ec;
   --pf-dark: #101116;
   --pf-dark-muted: #a9abb5;
   --pf-header: rgba(244, 242, 236, 0.86);
-  --pf-display: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --pf-display: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --pf-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --pf-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', monospace;
 }
@@ -23,8 +26,10 @@
   --pf-ink: #f1f0ea;
   --pf-muted: #a1a2aa;
   --pf-line: rgba(241, 240, 234, 0.17);
-  --pf-accent: #7583ff;
-  --pf-accent-ink: #0c0d12;
+  --pf-accent: #e5e2d9;
+  --pf-accent-ink: #171815;
+  --pf-contact-bg: #f4f2ec;
+  --pf-contact-ink: #252622;
   --pf-dark: #07080b;
   --pf-dark-muted: #a9abb5;
   --pf-header: rgba(15, 16, 20, 0.86);
@@ -60,12 +65,17 @@ summary:focus-visible {
   color: var(--pf-ink);
 }
 
+.pf-site :is(h1, h2, h3) {
+  font-family: var(--pf-display);
+}
+
 .pf-shell {
   width: min(1280px, calc(100% - 96px));
   margin: 0 auto;
 }
 
 .pf-header {
+  font-family: var(--pf-display);
   position: fixed;
   inset: 0 0 auto;
   z-index: 1200;
@@ -100,17 +110,6 @@ summary:focus-visible {
   font-weight: 700;
   letter-spacing: -0.04em;
   position: relative;
-}
-
-.pf-mark__signal {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 8px;
-  height: 8px;
-  border: 2px solid var(--pf-bg);
-  border-radius: 50%;
-  background: #39c873;
 }
 
 .pf-nav {
@@ -185,14 +184,6 @@ summary:focus-visible {
   color: var(--pf-bg);
 }
 
-.pf-playground-button__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #39c873;
-  box-shadow: 0 0 0 4px rgba(57, 200, 115, 0.12);
-}
-
 .pf-menu-trigger {
   display: none;
 }
@@ -221,11 +212,11 @@ summary:focus-visible {
 .pf-hero__inner {
   position: relative;
   flex: 1;
-  padding: clamp(104px, 16vh, 190px) 0 88px;
+  padding: clamp(24px, 4svh, 48px) 0 clamp(24px, 4svh, 40px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 96px;
+  gap: clamp(18px, 3svh, 32px);
 }
 
 .pf-eyebrow,
@@ -245,17 +236,10 @@ summary:focus-visible {
   gap: 10px;
 }
 
-.pf-eyebrow > span {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #39c873;
-}
-
 .pf-hero h1 {
   max-width: 1120px;
   font-family: var(--pf-display);
-  font-size: clamp(3.7rem, 8vw, 8.1rem);
+  font-size: clamp(3rem, min(7vw, 10svh), 7.2rem);
   font-weight: 560;
   line-height: 0.92;
   letter-spacing: -0.072em;
@@ -284,10 +268,28 @@ summary:focus-visible {
 
 .pf-hero__actions {
   grid-column: 9 / -1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   align-items: stretch;
-  gap: 10px;
+  gap: 8px 20px;
+}
+
+.pf-hero__actions .pf-primary-link {
+  grid-column: 1 / -1;
+}
+
+.pf-hero__actions .pf-secondary-link {
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 0.8rem;
+  gap: 8px;
+}
+
+.pf-hero__actions .pf-secondary-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
 .pf-primary-link,
@@ -564,7 +566,7 @@ summary:focus-visible {
 }
 
 .pf-principle > span {
-  color: #7f8cff;
+  color: #d2d0c8;
   font-family: var(--pf-mono);
   font-size: 0.72rem;
 }
@@ -820,7 +822,7 @@ summary:focus-visible {
   border-radius: 24px;
   color: #f4f3ee;
   background:
-    radial-gradient(circle at 80% 20%, rgba(79, 98, 255, 0.55), transparent 32%),
+    radial-gradient(circle at 80% 20%, rgba(176, 179, 165, 0.22), transparent 32%),
     linear-gradient(145deg, #161822, #090a0e 70%);
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.22);
 }
@@ -842,7 +844,7 @@ summary:focus-visible {
 }
 
 .pf-playground__chrome span:nth-child(2) { background: #febc2e; }
-.pf-playground__chrome span:nth-child(3) { background: #28c840; }
+.pf-playground__chrome span:nth-child(3) { background: #b8bab6; }
 
 .pf-playground__content {
   width: 52%;
@@ -894,7 +896,7 @@ summary:focus-visible {
 }
 
 .pf-playground__terminal span {
-  color: #8b97ff;
+  color: #d2d0c8;
 }
 
 .pf-terminal-cursor {
@@ -905,8 +907,12 @@ summary:focus-visible {
 .pf-contact {
   margin-top: clamp(96px, 12vw, 168px);
   padding: clamp(96px, 12vw, 160px) 0 38px;
-  background: var(--pf-accent);
-  color: var(--pf-accent-ink);
+  background: var(--pf-contact-bg);
+  color: var(--pf-contact-ink);
+}
+
+.pf-contact a:focus-visible {
+  outline-color: currentColor;
 }
 
 .pf-contact .pf-eyebrow {
@@ -1132,7 +1138,7 @@ summary:focus-visible {
 }
 
 .pf-decision-list article > span {
-  color: #7f8cff;
+  color: #d2d0c8;
   font-size: 0.7rem;
 }
 
@@ -1335,7 +1341,7 @@ summary:focus-visible {
   }
 
   .pf-hero__inner {
-    gap: 80px;
+    gap: clamp(18px, 3svh, 28px);
   }
 
   .pf-hero__footer > p {
@@ -1450,12 +1456,12 @@ summary:focus-visible {
   }
 
   .pf-hero__inner {
-    padding: 96px 0 58px;
-    gap: 78px;
+    padding: clamp(20px, 3svh, 32px) 0 24px;
+    gap: clamp(18px, 3svh, 26px);
   }
 
   .pf-hero h1 {
-    font-size: clamp(3.1rem, 16vw, 5rem);
+    font-size: clamp(2rem, min(12.5vw, 8svh), 4rem);
     line-height: 0.94;
   }
 
@@ -1468,7 +1474,7 @@ summary:focus-visible {
   }
 
   .pf-hero__actions {
-    margin-top: 36px;
+    margin-top: 18px;
   }
 
   .pf-hero__marquee {
@@ -1705,6 +1711,30 @@ summary:focus-visible {
 
   .pf-next-project a > span:first-child {
     grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) and (max-height: 700px) {
+  .pf-hero__inner {
+    padding: 16px 0;
+    gap: 14px;
+  }
+
+  .pf-hero h1 {
+    font-size: clamp(1.75rem, min(10.5vw, 6.5svh), 2.75rem);
+  }
+
+  .pf-hero__footer > p {
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .pf-hero__actions {
+    margin-top: 12px;
+  }
+
+  .pf-hero__marquee {
+    display: none;
   }
 }
 

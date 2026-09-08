@@ -8,7 +8,7 @@ const APPS = [
   { id: 'about', title: 'Contacts', icon: '/desktop-icons/contacts.png', pos: { x: 120, y: 80 }, size: { w: 620, h: 530 }, dockOnly: true },
   { id: 'projects', title: 'Projects', icon: '/desktop-icons/folder.png', pos: { x: 180, y: 60 }, size: { w: 760, h: 560 } },
   { id: 'experience', title: 'Notes', icon: '/desktop-icons/notes.png', pos: { x: 100, y: 40 }, size: { w: 900, h: 620 } },
-  { id: 'skills', title: 'aaryan \u2014 -zsh \u2014 120\u00d730', icon: '/desktop-icons/terminal.png', pos: { x: 100, y: 70 }, size: { w: 720, h: 480 }, dockOnly: true },
+  { id: 'skills', title: 'aaryan - -zsh - 120\u00d730', icon: '/desktop-icons/terminal.png', pos: { x: 100, y: 70 }, size: { w: 720, h: 480 }, dockOnly: true },
   { id: 'contact', title: 'Mail', icon: '/desktop-icons/mail.png', pos: { x: 80, y: 50 }, size: { w: 920, h: 580 }, dockOnly: true },
   { id: 'resume', title: 'Aaryan_Kandiah_Resume.pdf - Preview', icon: '/desktop-icons/preview.png', pos: { x: 200, y: 50 }, size: { w: 700, h: 600 } },
   { id: 'commands', title: 'Terminal Commands', icon: '/desktop-icons/textedit.png', pos: { x: 260, y: 80 }, size: { w: 480, h: 520 } },

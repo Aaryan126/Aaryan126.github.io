@@ -30,9 +30,9 @@ const SKILLS = {
     { name: 'TensorFlow', color: '#ff6f00' },
     { name: 'Scikit-Learn', color: '#f7931e' },
     { name: 'LangChain', color: '#1c3c3c' },
-    { name: 'OpenCV', color: '#5c3ee8' },
+    { name: 'OpenCV', color: '#357c91' },
     { name: 'NumPy', color: '#4dabcf' },
-    { name: 'Pandas', color: '#150458' },
+    { name: 'Pandas', color: '#334155' },
   ],
   'Backend & APIs': [
     { name: 'Python', color: '#3776ab' },
@@ -46,7 +46,7 @@ const SKILLS = {
   ],
   'Data & DevOps': [
     { name: 'MySQL', color: '#4479a1' },
-    { name: 'Vector DB', color: '#7c3aed' },
+    { name: 'Vector DB', color: '#64748b' },
     { name: 'Docker', color: '#2496ed' },
     { name: 'Kubernetes', color: '#326ce5' },
     { name: 'Matplotlib', color: '#11557c' },
@@ -250,7 +250,7 @@ function AlphaDropPage() {
     <div className="ad-page">
       <div className="ad-header">
         <div className="ad-icon">
-          <i className="fas fa-magic" style={{ fontSize: 32, color: '#8b5cf6' }}></i>
+          <i className="fas fa-magic" style={{ fontSize: 32, color: '#94a3b8' }}></i>
         </div>
         <div>
           <div className="ad-title">AlphaDrop</div>
