@@ -14,6 +14,15 @@ function Arrow({ diagonal = false }) {
   return <span aria-hidden="true">{diagonal ? '↗' : '→'}</span>
 }
 
+function ActionArrow({ diagonal = false }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d={diagonal ? 'M7 17 17 7M7 7h10v10' : 'M5 12h14m-6-6 6 6-6 6'}
+        stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 function ThemeToggle() {
   const { isDark, shutterOpen, setShutterOpen } = useTheme()
 
@@ -157,14 +166,14 @@ export default function PortfolioSite({ onDesktopMode }) {
               <p>{profile.introduction}</p>
               <div className="pf-hero__actions">
                 <button type="button" className="pf-primary-link" onClick={() => goTo('work')}>
-                  View selected work <Arrow />
-                </button>
-                <button type="button" className="pf-secondary-link" onClick={onDesktopMode}>
-                  Explore AaryanOS <Arrow diagonal />
+                  <span>View selected work</span> <ActionArrow />
                 </button>
                 <a className="pf-secondary-link" href={profile.resumePdf} target="_blank" rel="noreferrer">
-                  Resume <Arrow diagonal />
+                  <span>Resume</span> <ActionArrow diagonal />
                 </a>
+                <button type="button" className="pf-secondary-link" onClick={onDesktopMode}>
+                  <span>Explore AaryanOS</span> <ActionArrow diagonal />
+                </button>
               </div>
             </div>
           </div>
