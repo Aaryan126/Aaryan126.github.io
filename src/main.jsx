@@ -13,11 +13,23 @@ function dismissLoader() {
   const loader = document.getElementById('loader')
   if (!loader) return
 
-  // Re-enable transitions only after loader has fully faded out
-  loader.addEventListener('transitionend', () => {
+  let finished = false
+  const finish = () => {
+    if (finished) return
+    finished = true
+    window.clearTimeout(fallback)
     loader.remove()
     document.documentElement.classList.remove('no-transition')
-  }, { once: true })
+    window.dispatchEvent(new Event('portfolio-ready'))
+  }
+  // Startup styles or browser settings can suppress transitionend entirely.
+  const fallback = window.setTimeout(finish, 550)
+  loader.addEventListener('transitionend', finish, { once: true })
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    finish()
+    return
+  }
 
   loader.classList.add('fade-out')
 }

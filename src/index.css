@@ -1,5 +1,5 @@
 .no-transition,
-.no-transition *,
+.no-transition *:not(#loader),
 .no-transition *::before,
 .no-transition *::after {
   transition: none !important;

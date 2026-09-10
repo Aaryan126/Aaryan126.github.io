@@ -71,7 +71,7 @@ function AboutApp() {
           <div className="contacts-card-header">
             <div className="contacts-avatar-lg">AK</div>
             <div className="contacts-card-name">Aaryan Kandiah</div>
-            <div className="contacts-card-title">AI Engineer & Data Scientist</div>
+            <div className="contacts-card-title">AI & Software Engineer</div>
           </div>
 
           <div className="contacts-field">
@@ -219,7 +219,7 @@ function LinkedInPage() {
       <div className="li-profile">
         <div className="li-avatar">AK</div>
         <div className="li-name">Aaryan Kandiah</div>
-        <div className="li-headline">AI Engineer & Data Scientist | Building Agentic AI Systems at Univers</div>
+        <div className="li-headline">AI & Software Engineer | Building Agentic AI Systems at Univers</div>
         <div className="li-location">Singapore</div>
         <div className="li-connections">NTU, NUS</div>
         <a href="https://www.linkedin.com/in/aaryan-kandiah-b2a719213" target="_blank" rel="noopener noreferrer" className="li-connect-btn">
@@ -833,7 +833,7 @@ const TERMINAL_COMMANDS = {
   ],
   about: () => [
     '\x1b[1mAaryan Kandiah\x1b[0m',
-    'AI Engineer & Data Scientist',
+    'AI & Software Engineer',
     '',
     'Currently building agentic AI systems at Univers.',
     'NTU graduate (B.Eng EEE, Honours Distinction).',
@@ -897,7 +897,7 @@ const TERMINAL_COMMANDS = {
   goals: () => [
     '\x1b[1mFocus Areas & Goals\x1b[0m',
     '',
-    '  Designing intelligent systems that learn, reason, and act',
+    '  Building intelligent systems that learn, reason, and act',
     '  autonomously across complex environments.',
     '',
     '  Special emphasis on:',
@@ -1035,7 +1035,7 @@ const TERMINAL_COMMANDS = {
     '\x1b[1mAARYAN(1)                  User Commands                  AARYAN(1)\x1b[0m',
     '',
     '\x1b[1mNAME\x1b[0m',
-    '       aaryan - AI Engineer & Data Scientist',
+    '       aaryan - AI & Software Engineer',
     '',
     '\x1b[1mSYNOPSIS\x1b[0m',
     '       aaryan [--skill SKILL] [--project PROJECT] [--mode MODE]',
@@ -1118,7 +1118,7 @@ const TERMINAL_COMMANDS = {
     '                       __/ |                ',
     '                      |___/                 ',
     '',
-    '    AI Engineer & Data Scientist',
+    '    AI & Software Engineer',
     '    Building the future, one model at a time.',
     '',
   ],
@@ -1187,7 +1187,7 @@ const TERMINAL_COMMANDS = {
     '                 ,xNMM.          ----------------------------',
     '               .OMMMMo           \x1b[1mOS:\x1b[0m macOS Sequoia',
     '               OMMM0,            \x1b[1mHost:\x1b[0m MacBook Pro',
-    '     .;loddo:\' loolloddol;.      \x1b[1mRole:\x1b[0m AI Engineer & Data Scientist',
+    '     .;loddo:\' loolloddol;.      \x1b[1mRole:\x1b[0m AI & Software Engineer',
     '   cKMMMMMMMMMMNWMMMMMMMMMM0:    \x1b[1mCompany:\x1b[0m Univers',
     '  .KMMMMMMMMMMMMMMMMMMMMMMMWd.   \x1b[1mEducation:\x1b[0m NTU (B.Eng EEE)',
     '  XMMMMMMMMMMMMMMMMMMMMMMMX.     \x1b[1mPostgrad:\x1b[0m NUS (Aug 2026)',
@@ -1373,7 +1373,7 @@ const EMAILS = [
     preview: 'Thanks for visiting! Here you can learn more about...',
     body: `Hi there,
 
-Thanks for visiting my portfolio! I'm Aaryan Kandiah, an AI Engineer & Data Scientist based in Singapore.
+Thanks for visiting my portfolio! I'm Aaryan Kandiah, an AI & Software Engineer based in Singapore.
 
 I'm currently building agentic AI systems at Univers, and I recently graduated from NTU with a B.Eng in Electrical & Electronic Engineering (Honours, Distinction), specializing in Data Analysis & Machine Learning.
 
@@ -1450,7 +1450,7 @@ GitHub: github.com/Aaryan126
 LinkedIn: linkedin.com/in/aaryan-kandiah-b2a719213
 Location: Singapore
 
-I'm open to opportunities, collaborations, and new ideas.
+I'm open to AI engineering, software engineering, and forward-deployed engineering opportunities.
 Don't hesitate to reach out!`,
     read: false,
   },

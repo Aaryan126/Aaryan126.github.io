@@ -1,9 +1,9 @@
 export const profile = {
   name: 'Aaryan Kandiah',
-  eyebrow: 'AI engineer · product-minded maker · Singapore',
-  headline: 'I design and build intelligent tools for messy, real-world problems.',
+  eyebrow: 'AI engineer · software builder · Singapore',
+  headline: 'I build AI systems and software for messy, real-world problems.',
   introduction:
-    'I work where interaction design, AI systems, and frontend engineering meet, turning complex workflows into products people can understand, trust, and use.',
+    'I build agentic AI, backend services, and full-stack applications that turn complex workflows into reliable software. I like working close to users and solving the problems behind the requirements.',
   email: 'aaryan.kandiah@u.nus.edu',
   location: 'Singapore',
   github: 'https://github.com/Aaryan126',
@@ -16,13 +16,13 @@ export const projects = [
   {
     slug: 'boldr-signaldesk',
     title: 'BOLDR SignalDesk',
-    kicker: 'Responsible AI · Workflow design',
-    subtitle: 'Designing trust into AI-assisted customer support',
+    kicker: 'Applied AI · Workflow automation',
+    subtitle: 'Building reliable AI-assisted customer support',
     image: '/projects/boldr-signaldesk-echelon.webp',
     imagePosition: 'center 42%',
     featured: true,
     year: '2026',
-    role: 'Product design, AI workflow architecture, and full-stack development',
+    role: 'AI workflow architecture and full-stack development',
     timeline: 'AI Workflow Competition · Echelon Singapore',
     outcome: '1st place · selected from 147 builders · $16,000 in prizes and credits',
     summary:
@@ -43,7 +43,7 @@ export const projects = [
       },
       {
         number: '02',
-        title: 'Evidence as interface',
+        title: 'Ground generated claims in evidence',
         text: 'Unsupported claims are blocked and knowledge gaps are surfaced as actionable states, so trust comes from inspectable evidence rather than polished language.',
       },
       {
@@ -66,7 +66,7 @@ export const projects = [
     image: '/projects/adapt.webp',
     featured: true,
     year: '2026',
-    role: 'Product concept, workflow design, and full-stack development',
+    role: 'Multi-model orchestration and full-stack development',
     timeline: 'Agent Forge AI Hackathon',
     outcome: '1st place out of 20+ teams · six Southeast Asian markets',
     summary:
@@ -92,7 +92,7 @@ export const projects = [
       },
       {
         number: '03',
-        title: 'Outputs designed as a set',
+        title: 'Connected pipeline outputs',
         text: 'Strategy, localized copy, and imagery are treated as related campaign artifacts, making comparison and publishing easier.',
       },
     ],
@@ -110,7 +110,7 @@ export const projects = [
     image: '/projects/alphadrop.webp',
     featured: true,
     year: '2025',
-    role: 'Product design, frontend engineering, and on-device ML integration',
+    role: 'Frontend engineering and on-device ML integration',
     timeline: 'Independent shipped product',
     outcome: '200+ users · processing stays in the browser',
     summary:
@@ -189,7 +189,7 @@ export const projects = [
   {
     slug: 'ship-navigation',
     title: 'Ship Navigation System',
-    kicker: 'Interface · Path planning',
+    kicker: 'Algorithms · Path planning',
     subtitle: 'Global and local navigation with obstacle avoidance',
     image: '/projects/ship-navigation.webp',
     year: '2024',
@@ -248,25 +248,25 @@ export const credentials = [
 export const capabilities = [
   {
     number: '01',
-    title: 'Make complexity legible',
-    text: 'I map systems, states, and constraints before deciding what the interface should reveal.',
+    title: 'Start with the real problem',
+    text: 'I work from user workflows, existing systems, and practical constraints to define what the software needs to solve.',
   },
   {
     number: '02',
-    title: 'Design trust explicitly',
-    text: 'For AI products, evidence, uncertainty, review, and failure states are part of the core experience.',
+    title: 'Build reliable AI systems',
+    text: 'I build AI workflows around grounded outputs, human review, and clear failure handling, so the system can be checked and improved.',
   },
   {
     number: '03',
-    title: 'Prototype through code',
-    text: 'I use implementation as a design material, testing interaction ideas in the environment where they must work.',
+    title: 'Own the implementation',
+    text: 'I connect models, APIs, backend services, and frontend code, then iterate on the complete workflow with feedback from users.',
   },
 ]
 
 export const tools = [
-  'Interaction design',
-  'Information architecture',
-  'Rapid prototyping',
+  'Agentic AI',
+  'RAG',
+  'API integration',
   'React',
   'TypeScript',
   'Python',

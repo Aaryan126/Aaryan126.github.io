@@ -7,7 +7,7 @@ import './theme-shutter.css'
 const clamp = (value) => Math.min(100, Math.max(0, value))
 
 export default function ThemeShutter({ children, enabled = true }) {
-  const { isDark, setTheme, shutterOpen, setShutterOpen } = useTheme()
+  const { isDark, setTheme, shutterOpen, setShutterOpen, introPending, cancelIntro } = useTheme()
   const sourceRef = useRef(null)
   const previewRef = useRef(null)
   const dragRef = useRef(null)
@@ -23,7 +23,7 @@ export default function ThemeShutter({ children, enabled = true }) {
   const glassReflection = useTransform(glassFlow, (value) => `${-24 + value * 14}deg`)
   const [readout, setReadout] = useState(isDark ? 0 : 100)
   const [dragging, setDragging] = useState(false)
-  const previewActive = enabled && (shutterOpen || (readout > 0 && readout < 100))
+  const previewActive = enabled && (introPending || shutterOpen || (readout > 0 && readout < 100))
   const linePosition = useTransform(position, (value) => `${value}%`)
   const handlePosition = useTransform(position, (value) => `clamp(26px, ${value}%, calc(100% - 26px))`)
   const clip = useTransform(position, (value) => isDark
@@ -55,6 +55,35 @@ export default function ThemeShutter({ children, enabled = true }) {
   }, [previewActive])
 
   useEffect(() => {
+    if (!introPending) return
+    if (!enabled || reducedMotion) {
+      cancelIntro()
+      return
+    }
+    let introAnimation
+    let cancelled = false
+    const start = () => {
+      if (cancelled || introAnimation) return
+      introAnimation = animate(position, 0, {
+        delay: 0.45,
+        duration: 1.8,
+        ease: [0.45, 0, 0.2, 1],
+        onComplete: () => setTheme(true),
+      })
+      animationRef.current = introAnimation
+    }
+    // Start only once the loader is gone, without moving keyboard focus.
+    window.addEventListener('portfolio-ready', start)
+    if (!document.getElementById('loader')) start()
+    return () => {
+      cancelled = true
+      window.removeEventListener('portfolio-ready', start)
+      introAnimation?.stop()
+    }
+  }, [introPending, enabled, reducedMotion, position, setTheme, cancelIntro])
+
+  useEffect(() => {
+    if (introPending) return
     if (dragRef.current || skipOpenAnimationRef.current) {
       skipOpenAnimationRef.current = false
       return
@@ -67,7 +96,7 @@ export default function ThemeShutter({ children, enabled = true }) {
     })
     animationRef.current = animation
     return () => animation.stop()
-  }, [shutterOpen, isDark, position, reducedMotion])
+  }, [shutterOpen, isDark, position, reducedMotion, introPending])
 
   useEffect(() => () => animationRef.current?.stop(), [])
 

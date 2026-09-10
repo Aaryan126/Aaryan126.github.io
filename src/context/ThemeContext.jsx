@@ -1,15 +1,17 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect, useCallback } from 'react'
 import { ThemeContext } from './theme-context'
 
 export function ThemeProvider({ children }) {
+  const [introPending, setIntroPending] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const [isDark, setIsDark] = useState(() => {
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
     try {
       const saved = localStorage.getItem('theme')
       if (saved === 'dark' || saved === 'light') return saved === 'dark'
     } catch { /* Private browsing can make storage unavailable. */ }
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
-  const [shutterOpen, setShutterOpen] = useState(false)
+  const [shutterOpen, updateShutterOpen] = useState(false)
 
   useLayoutEffect(() => {
     try {
@@ -19,13 +21,21 @@ export function ThemeProvider({ children }) {
     document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
   }, [isDark])
 
-  const setTheme = (dark) => {
+  const cancelIntro = useCallback(() => setIntroPending(false), [])
+
+  const setShutterOpen = useCallback((open) => {
+    setIntroPending(false)
+    updateShutterOpen(open)
+  }, [])
+
+  const setTheme = useCallback((dark) => {
+    setIntroPending(false)
     setIsDark(dark)
-    setShutterOpen(false)
-  }
+    updateShutterOpen(false)
+  }, [])
 
   return (
-    <ThemeContext.Provider value={{ isDark, setTheme, shutterOpen, setShutterOpen }}>
+    <ThemeContext.Provider value={{ isDark, setTheme, shutterOpen, setShutterOpen, introPending, cancelIntro }}>
       {children}
     </ThemeContext.Provider>
   )

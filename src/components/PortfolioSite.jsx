@@ -169,10 +169,10 @@ export default function PortfolioSite({ onDesktopMode }) {
             </div>
           </div>
           <div className="pf-hero__marquee" aria-hidden="true">
-            <span>Interaction design</span><i />
+            <span>AI engineering</span><i />
             <span>Responsible AI</span><i />
-            <span>Prototype through code</span><i />
-            <span>Systems thinking</span>
+            <span>Full-stack development</span><i />
+            <span>Customer problem solving</span>
           </div>
         </section>
 
@@ -180,8 +180,8 @@ export default function PortfolioSite({ onDesktopMode }) {
           <div className="pf-shell">
             <SectionHeading
               eyebrow="01 / Selected work"
-              title="Products shaped around trust, clarity, and real constraints."
-              copy="Three projects that show how I frame a problem, structure a workflow, and carry an idea through implementation."
+              title="AI systems built around real problems and constraints."
+              copy="Three projects spanning AI orchestration, full-stack development, and on-device inference, from problem definition to working software."
             />
             <div className="pf-featured-list">
               {featured.map((project, index) => (
@@ -193,7 +193,7 @@ export default function PortfolioSite({ onDesktopMode }) {
 
         <section className="pf-section pf-principles">
           <div className="pf-shell">
-            <SectionHeading eyebrow="02 / Approach" title="How I make design decisions." />
+            <SectionHeading eyebrow="02 / Approach" title="How I approach engineering problems." />
             <div className="pf-principles__grid">
               {capabilities.map((capability) => (
                 <article key={capability.number} className="pf-principle">
@@ -209,9 +209,9 @@ export default function PortfolioSite({ onDesktopMode }) {
         <section id="experience" className="pf-section pf-evidence">
           <div className="pf-shell">
             <SectionHeading
-              eyebrow="03 / Evidence"
-              title="Work that moves beyond the mockup."
-              copy="Professional experience, shipped products, and outcomes from building in real constraints."
+              eyebrow="03 / Experience"
+              title="Software built for real users."
+              copy="Professional experience, shipped software, and measurable outcomes under real-world constraints."
             />
             <div className="pf-evidence__layout">
               <div className="pf-experience-list">
@@ -273,14 +273,14 @@ export default function PortfolioSite({ onDesktopMode }) {
           <div className="pf-shell pf-about__layout">
             <div>
               <p className="pf-section-index">05 / About</p>
-              <h2>Engineering trained me to make things work. Design makes me ask whether they should work this way.</h2>
+              <h2>I connect AI systems, software, and the people who need them.</h2>
             </div>
             <div className="pf-about__copy">
               <p>
                 I’m Aaryan, an AI engineer in Singapore and an incoming NUS Master of Computing student. My background spans agentic systems, computer vision, data products, and production software.
               </p>
               <p>
-                I’m most interested in the point where a complicated system meets a person: what the interface explains, what it hides, how it earns trust, and how the whole experience behaves outside a perfect demo.
+                I’m interested in AI engineering, software engineering, and forward-deployed engineering roles: working with users to understand a problem, integrate the right systems, and carry a solution through delivery.
               </p>
               <div className="pf-tools" aria-label="Capabilities and tools">
                 {tools.map((tool) => <span key={tool}>{tool}</span>)}
@@ -310,7 +310,7 @@ export default function PortfolioSite({ onDesktopMode }) {
             </div>
             <div className="pf-playground__terminal" aria-hidden="true">
               <p><span>aaryan@portfolio</span> ~ % whoami</p>
-              <p>AI engineer · product-minded maker</p>
+              <p>AI engineer · software builder</p>
               <p><span>aaryan@portfolio</span> ~ % open work</p>
               <p className="pf-terminal-cursor">█</p>
             </div>
@@ -319,8 +319,8 @@ export default function PortfolioSite({ onDesktopMode }) {
 
         <section id="contact" className="pf-contact">
           <div className="pf-shell">
-            <p className="pf-eyebrow">Available for thoughtful collaborations</p>
-            <h2>Have a difficult idea worth making clear?</h2>
+            <p className="pf-eyebrow">Open to AI, software, and forward-deployed engineering roles</p>
+            <h2>Building AI that needs to work in the real world?</h2>
             <a className="pf-contact__email" href={`mailto:${profile.email}`}>
               {profile.email} <Arrow diagonal />
             </a>

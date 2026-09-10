@@ -69,8 +69,8 @@ export default function CaseStudyPage() {
         <section className="pf-case-section pf-case-decisions">
           <div className="pf-shell">
             <div className="pf-case-section__intro">
-              <p className="pf-section-index">02 / Product decisions</p>
-              <h2>The interface follows the logic of the system.</h2>
+              <p className="pf-section-index">02 / Engineering decisions</p>
+              <h2>The decisions behind the system.</h2>
             </div>
             <div className="pf-decision-list">
               {project.decisions.map((decision) => (
@@ -88,7 +88,7 @@ export default function CaseStudyPage() {
           <div className="pf-shell pf-case-system__layout">
             <div>
               <p className="pf-section-index">03 / Delivery</p>
-              <h2>Designed and built as one product.</h2>
+              <h2>Built as an end-to-end system.</h2>
             </div>
             <div>
               <p className="pf-case-lede">{project.summary}</p>
