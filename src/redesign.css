@@ -1108,6 +1108,10 @@ summary:focus-visible {
   background: var(--pf-surface);
 }
 
+.pf-case-media img.pf-case-media__natural {
+  height: auto;
+}
+
 .pf-case-media > p {
   margin-top: 12px;
   color: var(--pf-muted);

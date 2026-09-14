@@ -11,7 +11,8 @@ const PROJECTS = portfolioProjects.map((project) => ({
   video: project.video,
   badge: project.title === 'BOLDR SignalDesk' || project.title === 'ADapt'
     ? '1st Place Winner'
-    : project.title === 'AlphaDrop' ? '200+ Users' : undefined,
+    : project.title === 'Trace' ? '1st Runner Up'
+      : project.title === 'AlphaDrop' ? '200+ Users' : undefined,
 }))
 
 const CERTIFICATIONS = [

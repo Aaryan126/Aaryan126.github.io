@@ -9,7 +9,7 @@ function Arrow({ diagonal = false }) {
 
 export default function CaseStudyPage() {
   const { slug } = useParams()
-  const project = projects.find((item) => item.slug === slug && item.featured)
+  const project = projects.find((item) => item.slug === slug && item.decisions)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -44,6 +44,7 @@ export default function CaseStudyPage() {
         <div className="pf-shell pf-case-media">
           <img
             src={project.image}
+            className={project.imageNaturalSize ? 'pf-case-media__natural' : undefined}
             alt={`${project.title} product interface`}
             style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
           />

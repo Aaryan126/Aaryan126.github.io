@@ -14,7 +14,7 @@ describe('portfolio content', () => {
     const featured = projects.filter((project) => project.featured)
     expect(featured.map((project) => project.slug)).toEqual([
       'boldr-signaldesk',
-      'adapt',
+      'trace',
       'alphadrop',
     ])
 
@@ -28,7 +28,7 @@ describe('portfolio content', () => {
   })
 
   it('preserves the complete portfolio evidence set', () => {
-    expect(projects).toHaveLength(8)
+    expect(projects).toHaveLength(9)
     expect(experiences).toHaveLength(2)
     expect(credentials).toHaveLength(7)
     expect(profile.email).toBe('aaryan.kandiah@u.nus.edu')

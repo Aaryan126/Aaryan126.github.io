@@ -59,12 +59,57 @@ export const projects = [
     linkLabel: 'View repository',
   },
   {
+    slug: 'trace',
+    title: 'Trace',
+    kicker: 'Agentic AI · Decision memory',
+    subtitle: 'Turning browser research into lasting decision memory',
+    image: '/projects/trace.png',
+    imageNaturalSize: true,
+    featured: true,
+    year: '2026',
+    role: 'AI evidence pipeline and full-stack development',
+    timeline: 'Alibaba Cloud x Qoder Hackathon',
+    outcome: '1st Runner Up · Alibaba Cloud x Qoder Hackathon 2026',
+    summary:
+      'A local-first AI decision-memory platform that automatically captures browser research and organizes evolving decisions into Git-inspired threads, branches, commits, diffs, and outcomes.',
+    challenge:
+      'Browser research leaves a trail of tabs, but the reasoning behind a decision is easily lost. Trace connects evidence to evolving conclusions so developers can recover what they decided, why they decided it, and what changed afterward.',
+    constraints: [
+      'Keep decision memory local-first and browser capture privacy-aware.',
+      'Classify and route evidence automatically without interrupting research.',
+      'Preserve branches, supporting evidence, and outcomes as conclusions evolve.',
+      'Surface prior decisions inside Qoder through a read-only integration.',
+    ],
+    decisions: [
+      {
+        number: '01',
+        title: 'Give research a version history',
+        text: 'A React decision-history canvas presents research as Git-inspired threads, branches, commits, diffs, and outcomes, keeping the path to a conclusion visible alongside the current answer.',
+      },
+      {
+        number: '02',
+        title: 'Capture and reconcile evidence autonomously',
+        text: 'The evidence pipeline classifies and routes research within 10–25 seconds, creates checkpoints after 25 seconds of inactivity, and reconciles compatible conclusions at 95%+ confidence.',
+      },
+      {
+        number: '03',
+        title: 'Bring decision memory into Qoder',
+        text: 'A read-only MCP server exposes five decision-retrieval tools to Alibaba Qoder, allowing developers to surface prior conclusions, constraints, evidence, and regrets directly within their workflow.',
+      },
+    ],
+    reflection:
+      'Trace earned 1st Runner Up at the Alibaba Cloud x Qoder Hackathon in 2026. The delivered system combines a React decision-history canvas, a privacy-aware Chrome extension, and a native SwiftUI menu-bar app, validated with 235 automated tests across TypeScript/React and Swift.',
+    tech: ['React', 'TypeScript', 'SwiftUI', 'Chrome Extension API', 'MCP', 'Alibaba Qoder'],
+    link: 'https://github.com/Aaryan126/Trace',
+    linkLabel: 'View repository',
+  },
+  {
     slug: 'adapt',
     title: 'ADapt',
     kicker: 'Localization · Generative workflow',
     subtitle: 'Localizing advertisements without flattening culture',
     image: '/projects/adapt.webp',
-    featured: true,
+    featured: false,
     year: '2026',
     role: 'Multi-model orchestration and full-stack development',
     timeline: 'Agent Forge AI Hackathon',
