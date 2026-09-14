@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import { motion as Motion, useReducedMotion } from 'framer-motion'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTheme } from '../context/useTheme'
 import {
-  capabilities,
+  interests,
   credentials,
   experiences,
   profile,
@@ -93,35 +94,54 @@ export function SiteHeader({ onDesktopMode, compact = false }) {
   )
 }
 
+const MotionLink = Motion.create(Link)
+
 function FeaturedProject({ project, index }) {
+  const reducedMotion = useReducedMotion()
+  const reveal = !reducedMotion && typeof IntersectionObserver !== 'undefined'
+
   return (
-    <article className="pf-featured-card">
-      <Link to={`/work/${project.slug}`} className="pf-featured-card__media" aria-label={`Read ${project.title} case study`}>
-        <div className="pf-featured-card__index">0{index + 1}</div>
-        <img
-          src={project.image}
-          alt={`${project.title} interface preview`}
-          style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
-          loading={index === 0 ? 'eager' : 'lazy'}
-          decoding="async"
-        />
-        <span className="pf-featured-card__open"><Arrow diagonal /></span>
-      </Link>
-      <div className="pf-featured-card__body">
-        <div>
-          <p className="pf-kicker">{project.kicker}</p>
+    <Motion.article
+      className="pf-featured-card"
+      initial={reveal ? { opacity: 0, y: 24 } : false}
+      whileInView={reveal ? { opacity: 1, y: 0 } : undefined}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <MotionLink
+        to={`/work/${project.slug}`}
+        className="pf-featured-card__link"
+        aria-label={`Read ${project.title} case study`}
+        whileHover={reducedMotion ? undefined : { y: -3 }}
+        whileTap={reducedMotion ? undefined : { scale: 0.995 }}
+        transition={{ type: 'spring', stiffness: 280, damping: 28 }}
+      >
+        <div className="pf-featured-card__media">
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </div>
+        <div className="pf-featured-card__body">
+          <div className="pf-featured-card__meta">
+            <p className="pf-kicker">{project.kicker}</p>
+            <span className="pf-mono">{project.year}</span>
+          </div>
           <h3>{project.title}</h3>
           <p className="pf-featured-card__subtitle">{project.subtitle}</p>
+          <p className="pf-featured-card__summary">{project.summary}</p>
+          <ul className="pf-featured-card__tech" aria-label="Selected technologies">
+            {project.tech.slice(0, 3).map((tech) => <li key={tech}>{tech}</li>)}
+          </ul>
+          <div className="pf-featured-card__footer">
+            <p className="pf-featured-card__outcome">{project.outcome}</p>
+            <span className="pf-featured-card__cta">Case study <ActionArrow diagonal /></span>
+          </div>
         </div>
-        <div className="pf-featured-card__details">
-          <p>{project.summary}</p>
-          <p className="pf-outcome">{project.outcome}</p>
-          <Link to={`/work/${project.slug}`} className="pf-text-link">
-            Read case study <Arrow />
-          </Link>
-        </div>
-      </div>
-    </article>
+      </MotionLink>
+    </Motion.article>
   )
 }
 
@@ -202,13 +222,13 @@ export default function PortfolioSite({ onDesktopMode }) {
 
         <section className="pf-section pf-principles">
           <div className="pf-shell">
-            <SectionHeading eyebrow="02 / Approach" title="How I approach engineering problems." />
+            <SectionHeading eyebrow="02 / Interests" title="What I’m interested in exploring." />
             <div className="pf-principles__grid">
-              {capabilities.map((capability) => (
-                <article key={capability.number} className="pf-principle">
-                  <span>{capability.number}</span>
-                  <h3>{capability.title}</h3>
-                  <p>{capability.text}</p>
+              {interests.map((interest) => (
+                <article key={interest.number} className="pf-principle">
+                  <span>{interest.number}</span>
+                  <h3>{interest.title}</h3>
+                  <p>{interest.text}</p>
                 </article>
               ))}
             </div>

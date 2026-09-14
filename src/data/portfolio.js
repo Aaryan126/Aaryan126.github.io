@@ -245,21 +245,21 @@ export const credentials = [
   'Python for Everybody · University of Michigan',
 ]
 
-export const capabilities = [
+export const interests = [
   {
     number: '01',
-    title: 'Start with the real problem',
-    text: 'I work from user workflows, existing systems, and practical constraints to define what the software needs to solve.',
+    title: 'Agentic systems',
+    text: 'I’m interested in agents that reason, use tools, and coordinate across multi-step tasks, especially how memory, retrieval, and orchestration help them work with real systems.',
   },
   {
     number: '02',
-    title: 'Build reliable AI systems',
-    text: 'I build AI workflows around grounded outputs, human review, and clear failure handling, so the system can be checked and improved.',
+    title: 'Trustworthy and reliable AI',
+    text: 'I’m drawn to grounding, evaluation, and interpretability: understanding when an AI system can be trusted, where it fails, and how human oversight can make it more dependable.',
   },
   {
     number: '03',
-    title: 'Own the implementation',
-    text: 'I connect models, APIs, backend services, and frontend code, then iterate on the complete workflow with feedback from users.',
+    title: 'Applied AI in the real world',
+    text: 'I enjoy exploring how AI fits into existing software and everyday workflows, from private, on-device inference to systems that help people make better decisions.',
   },
 ]
 
